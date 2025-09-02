@@ -1,0 +1,23 @@
+{% extends "base_main.html" %}
+
+{% block content %}
+	<h1>Declaración: 
+	  <a href="{% url 'declaracion' %}editar/{{ declaracion.id }}" target="_blank">{{ declaracion.numero }}</a>
+	</h1>
+
+	<p><strong>Fecha de emisión:</strong> {{ declaracion.fecha_emision }}</p>
+
+	<p><strong>Cartaporte:</strong>
+		<a href="{{ declaracion.cartaporte.get_absolute_url }}"> {{ declaracion.cartaporte }}</a>
+	</p>
+
+	<p><strong>Conductor:</strong>
+	  	<a href="{{ declaracion.conductor.get_absolute_url }}">{{ declaracion.documento.getConductor }}</a>
+	</p>
+
+
+	<!----------------------------------- COMMANDS ----------------------------------->
+	{% include "_command_buttons.html" with docType='declaracion' docId=declaracion.id %}
+	<!-------------------------------------------------------------------------------->
+
+{% endblock %}

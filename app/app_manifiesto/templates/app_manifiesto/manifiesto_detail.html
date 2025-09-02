@@ -1,0 +1,27 @@
+{% extends "base_main.html" %}
+
+{% block content %}
+	<h1>Manifiesto: 
+	  <a href="{% url 'manifiesto' %}editar/{{ manifiesto.id }}" target="_blank">{{ manifiesto.numero }}</a>
+	</h1>
+
+	<p><strong>Fecha de emisión:</strong> {{ manifiesto.fecha_emision }}</p>
+
+	<p><strong>Cartaporte:</strong>
+		<a href="{{ manifiesto.cartaporte.get_absolute_url }}"> {{ manifiesto.cartaporte }}</a>
+	</p>
+
+	<p><strong>Vehículo:</strong>
+	  	<a href="{{ manifiesto.vehiculo.get_absolute_url }}">{{ manifiesto.vehiculo }}</a>
+	</p>
+
+	<p><strong>Conductor:</strong>
+	  	<a href="{{ manifiesto.conductor.get_absolute_url }}">{{ manifiesto.documento.getConductor }}</a>
+	</p>
+
+
+	<!----------------------------------- COMMANDS ----------------------------------->
+	{% include "_command_buttons.html" with docType='manifiesto' docId=manifiesto.id %}
+	<!-------------------------------------------------------------------------------->
+
+{% endblock %}

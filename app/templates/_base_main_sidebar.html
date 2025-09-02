@@ -1,0 +1,86 @@
+
+<!-- Main left sidebar of the application -->
+{% block sidebar %}
+	<div class="button-container">
+		<h3>EcuapassDocs</h3>
+	</div>
+	<hr class="sidebar-separator"> <!-- Line with custom class -->
+	<ul class="list-unstyled">
+		{% if not user.is_authenticated %}
+			<li><a href="{% url 'login'%}?next={{request.path}}">Iniciar</a></li>
+		{% else %}
+				<a class="nav-link"> {{ user.username }} ({{ user.pais }})<br> </a>
+
+				<form method="post" action="{% url 'logout' %}">
+					{% csrf_token %}
+						<button type="submit">Cerrar sesión</button>
+				</form>
+	
+			<hr class="sidebar-separator"> <!-- Line with custom class -->
+
+			<a class="nav-link" href="#" data-toggle="collapse" data-target="#cartaporte" aria-expanded="true">> Cartas de Porte:</a>
+			<div id="cartaporte" class="collapse show">
+				<ul class="nav-item">
+					<li><a href="{% url 'cartaporte' %}{{ 'nuevodoc' }}"  target="_blank">Nuevo</a></li>
+					<li><a href="{% url 'cartaporte-listado' %}">Listar</a></li>
+				</ul>
+			</div>
+
+			<a class="nav-link" href="#" data-toggle="collapse" data-target="#manifiesto" aria-expanded="true">> Manifiestos:</a>
+			<div id="manifiesto" class="collapse show">
+				<ul class="nav-item">
+					<li><a href="{% url 'manifiesto' %}{{ 'nuevodoc' }}" target="_blank">Nuevo</a></li>
+					<li><a href="{% url 'manifiesto-listado' %}">Listar</a></li>
+				</ul>
+			</div>
+
+			<a class="nav-link" href="#" data-toggle="collapse" data-target="#declaracion" aria-expanded="true">> Declaraciones:</a>
+			<div id="declaracion" class="collapse show">
+				<ul class="nav-item">
+					<li><a href="{% url 'declaracion' %}{{ 'nuevodoc' }}" target="_blank">Nuevo</a></li>
+					<li><a href="{% url 'declaracion-listado' %}">Listar</a></li>
+				</ul>
+			</div>
+
+			<hr class="sidebar-separator"> <!-- Line with custom class -->
+
+			<a class="nav-link" href="#" data-toggle="collapse" data-target="#entidades" aria-expanded="false">> Entidades:</a>
+			<div id="entidades" class="collapse show">
+				<ul class="nav-item ">
+					<li><a href="{% url 'clientes' %}">Clientes</a></li>
+					<li><a href="{% url 'vehiculos' %}">Vehiculos</a></li>
+					<li><a href="{% url 'conductores' %}">Conductores</a></li>
+				</ul>
+			</div>
+
+			<hr class="sidebar-separator"> <!-- Line with custom class -->
+
+			<a class="nav-link" href="#" data-toggle="collapse" data-target="#usuario" aria-expanded="true">> Usuario:</a>
+			<div id="usuario" class="collapse">
+				<ul class="nav-item">
+					<li>Usuario: {{ user.username }}</li>
+					<li>Pais: {{ user.pais }}<br></li>
+					<li><a href="{% url 'password' %}">Cambiar contraseña</a></li>
+
+						<form method="post" action="{% url 'logout' %}">
+							{% csrf_token %}
+							<button type="submit">Cerrar sesión</button>
+						</form>
+			</div>
+
+			<hr class="sidebar-separator"> <!-- Line with custom class -->
+
+			{% if user.es_director or user.is_staff %}
+				<a class="nav-link" href="#" data-toggle="collapse" data-target="#administracion" aria-expanded="false">Administracion:</a>
+				<div id="administracion" class="collapse show">
+					<ul class="nav-item ">
+						<li><a href="{% url 'usuarios' %}">Usuarios y Entidades</a></li>
+						<li><a href="{% url 'reportes' %}">Reportes y Respaldos</a></li>
+					</ul>
+				</div>
+			{% endif %}  
+
+		{% endif %}
+
+	</ul>
+{% endblock %}

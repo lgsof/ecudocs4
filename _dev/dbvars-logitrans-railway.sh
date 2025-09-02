@@ -1,0 +1,1 @@
+/home/lg/BIO/iaprojects/ecuapassdocs/EcuapassDocs/dev/vars/dbvars-logitrans-railway.sh

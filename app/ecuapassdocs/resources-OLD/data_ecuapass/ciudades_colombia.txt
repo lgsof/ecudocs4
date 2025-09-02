@@ -1,0 +1,234 @@
+--Selección--
+[ACD] Acandi
+[ARF] Acaricuara
+[AGD] Agrado
+[ACL] Aguaclara
+[AFI] Amalfi
+[AND] Andalucia
+[ADN] Andes
+[AQA] Antioquia
+[APO] Apartado
+[API] Apiay
+[ACR] Araracuara
+[AUC] Arauca
+[ARQ] Arauquita
+[ARO] Arboletas
+[ACM] Arica
+[AXM] Armenia
+[ASR] Astrea
+[AYC] Ayacucho
+[AYA] Ayapel
+[BHF] Bahia Cupica
+[BSC] Bahia Solano
+[BAL] Balboa
+[BAC] Barranca de Upia
+[EJA] Barrancabermeja
+[NBB] Barrancominas
+[BAQ] Barranquilla
+[BET] Betania
+[BCC] Boca Chica
+[BOG] Bogota
+[BGA] Bucaramanga
+[BUN] Buenaventura
+[BUG] Buga
+[CAP] Cachipay
+[CAJ] Cajica
+[CLO] Cali
+[CJD] Candilejas
+[CPB] Capurgana
+[CQT] Caquetania
+[CCO] Carimagua
+[CTG] Cartagena
+[CRC] Cartago
+[CUO] Caruru
+[CSR] Casuarito
+[CAU] Cauca
+[CAQ] Caucasia
+[SMP] CEBAF SAN MIGUEL
+[CPL] Chaparral
+[IGO] Chigorodo
+[NNA] Chinchina
+[IVO] Chivolo
+[CIE] Cienaga
+[CIM] Cimitarra
+[DZI] Codazzi
+[COG] Condoto
+[CZU] Corozal
+[COT] Cota
+[CVE] Covenas
+[RAV] Cravo Norte
+[CUC] Cucuta
+[CUI] Currillo
+[DAB] Dabeiba
+[DUR] Durania
+[EBG] El Bagre
+[ELB] El Banco
+[EBQ] El Bosque
+[ECR] El Charco
+[ECO] El Encanto
+[EES] El Espino
+[ELJ] El Recreo
+[EYP] El Yopal
+[ENV] Envigado
+[FLA] Florencia
+[FUN] Fundacion
+[GRA] Gamarra
+[GAM] Gamarra
+[GAR] Garagoa
+[GAZ] Garzon
+[GGL] Gilgal
+[GIR] Girardot
+[GCA] Guacamaya
+[GUA] Guaduas
+[GAA] Guamal
+[GUP] Guapi
+[GPI] Guapi
+[GST] Guaranao
+[GMC] Guerima
+[HTZ] Hato Corozal
+[HRR] Herrera
+[IBE] Ibaque
+[PDA] Inirida
+[IPI] Ipiales
+[ISD] Iscuande
+[ITG] Itagui
+[JUO] Jurado
+[LCR] La Chorrera
+[LAD] La Dorada
+[LAA] La Estrella
+[LPD] La Pedrera
+[LPE] La Primavera
+[LAT] La Uribe
+[LMC] Lamacarena
+[LGT] Las Gaviotas
+[LEJ] Lejanias
+[LET] Leticia
+[LMX] Lopez de Micay Apt/Micay
+[LRI] Lorica
+[NAD] Macanal
+[MAC] Macedonia
+[MGN] Magangue
+[MCJ] Maicao
+[MAM] Mamonal
+[MAU] Manaure
+[MZL] Manizales
+[MQU] Mariquita
+[MAT] Matanza
+[MDE] Medellin
+[MND] Medina
+[MFS] Miraflores
+[MIX] Miriti
+[MVP] Mitu
+[MMP] Mompos
+[MFB] Monfort
+[TUE] Moniquira
+[MOL] Monte Libano
+[MTB] Montelibano
+[MTR] Monteria
+[MOY] Monterrey
+[MHF] Morichal
+[MQR] Mosquera
+[ULS] Mulatos
+[NAR] Nare
+[NCI] Necocli
+[NVA] Neiva
+[NOB] Nobsa
+[NUH] Nunchia
+[NQU] Nuqui
+[OCV] Ocana
+[OIB] Oiba
+[ORC] Orocue
+[OTU] Otu
+[PAL] Palanquero
+[QPI] Palmira
+[EUO] Paratebueno
+[PSO] Pasto
+[PYN] Payan
+[PZA] Paz de Ariporo
+[PEI] Pereira
+[PTX] Pitalito
+[PLA] Planadas
+[PLC] Planeta Rica
+[PLT] Plato
+[PPN] Popayan
+[PRE] Pore
+[POC] Pozos Colorados
+[PVA] Providencia
+[PUU] Puerto Asis
+[PBE] Puerto Berrio
+[PBO] Puerto Bolivar
+[PYA] Puerto Boyaca
+[PCR] Puerto Carreno
+[PUC] Puerto Colombia
+[PUG] Puerto Gaitan
+[PGA] Puerto Gaitan
+[LQM] Puerto Leguizamo
+[PNM] Puerto Limon
+[PUL] Puerto Limon
+[PLL] Puerto Lleras
+[PPR] Puerto Prodeco
+[PCC] Puerto Rico
+[UIB] Quibdo
+[RCO] Rio Cordoba
+[RCH] Riohacha
+[RRO] Rionegro
+[RON] Rondon
+[SNT] Sabana de Torres
+[SAM] Samaca
+[ADZ] San Andres Island
+[SSD] San Felipe
+[SAG] San Gil
+[SJE] San Jose del Gua
+[SJR] San Juan de Uraba
+[SJH] San Juan del Cesar
+[SQE] San Luis de Pale
+[SRS] San Marcos
+[SJG] San Pedro Jagua
+[NPU] San Pedro Uraba
+[SVI] San Vincente
+[SQB] Santa Ana
+[SCA] Santa Cantalina
+[STF] Santa Fee
+[SMG] Santa Margarita
+[SMC] Santa Maria
+[SMR] Santa Marta
+[SAR] Santa Rosa
+[SSL] Santa Rosalia
+[SRO] Santana Ramos
+[RVE] Saravena
+[SRV] Saravena
+[SAV] Savanilla
+[SIB] Sibate
+[PSB] Simon Bolivar
+[SIN] Since
+[SOX] Sogamoso
+[SQF] Solano
+[SOH] Solita
+[TTM] Tablon de Tamara
+[TAM] Tame
+[TME] Tame
+[TCD] Tarapeca
+[TAU] Tauramena
+[TIB] Tibu
+[TBD] Timbiqui
+[TLU] Tolu
+[TQS] Tres Esquinas
+[TDA] Trinidad
+[ULQ] Tulua
+[TCO] Tumaco
+[TUN] Tunja
+[TRB] Turbo
+[UMB] Umbita
+[UNC] Unguia
+[URI] Uribe
+[URR] Urrao
+[VUP] Valledupar
+[VEL] Velez
+[VGZ] Villagarzon
+[VPZ] Villapinzon
+[VVC] Villavicencio
+[AYG] Yaguara
+[AYI] Yai (Yarinacocha)
+[VAB] Yavarate
+[YMB] Yumbo
+[AZT] Zapatoca

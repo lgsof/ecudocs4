@@ -1,0 +1,24 @@
+Amazonas: Chachapoyas, Bagua, Utcubamba, Bongará, Rodríguez de Mendoza
+Áncash: Huaraz, Chimbote, Caraz, Casma, Huaraz
+Apurímac: Abancay, Andahuaylas, Antabamba, Aymaraes, Chincheros
+Arequipa: Arequipa, Camana, Caylloma, Caravelí, Islay
+Ayacucho: Ayacucho, Huanta, Vilcashuamán, Parinacochas, La Mar
+Cajamarca: Cajamarca, Jaén, Chota, Celendín, Cutervo
+Cusco: Cusco, Urubamba, La Convención, Canchis, Paruro
+Huancavelica: Huancavelica, Angaraes, Castrovirreyna, Tayacaja, Huaytará
+Huánuco: Huánuco, Tingo María, Leoncio Prado, Huamalíes, Dos de Mayo
+Ica: Ica, Chincha Alta, Pisco, Nasca, Palpa
+Junín: Huancayo, Jauja, Satipo, La Oroya, Tarma
+La Libertad: Trujillo, Chepén, Pacasmayo, Ascope, Virú
+Lambayeque: Chiclayo, Lambayeque, Ferreñafe, Olmos, Motupe
+Lima: Lima, Huacho, Huaral, Cañete, Barranca
+Loreto: Iquitos, Yurimaguas, Requena, Nauta, Caballococha
+Madre de Dios: Puerto Maldonado, Huepetuhe, Iñapari, Laberinto, Las Piedras
+Moquegua: Moquegua, Ilo, Sánchez Cerro, Omate, Torata
+Pasco: Cerro de Pasco, Oxapampa, Daniel Alcides Carrión, Yanahuanca, Huariaca
+Piura: Piura, Sullana, Talara, Paita, Sechura
+Puno: Puno, Juliaca, Ilave, Azángaro, Huancané
+San Martín: Moyobamba, Tarapoto, Rioja, Juanjuí, Bellavista
+Tacna: Tacna, Alto de la Alianza, Ciudad Nueva, Locumba, Tarata
+Tumbes: Tumbes, Zarumilla, Aguas Verdes, Puerto Pizarro, Pampas de Hospital
+Ucayali: Pucallpa, Atalaya, Contamana, Aguaytía, Curimaná

@@ -1,0 +1,57 @@
+/*
+ * Styles for buttons in command panel
+*/
+
+
+.editar_btn a{
+  color: black;
+}
+
+.editar_btn{
+  background-color: #01FBDD;
+}
+
+#autosave_btn:enabled {
+  background-color: #FFFF00;
+  color: black;
+}
+
+.original_btn a{
+  color: black;
+}
+.original_btn:enabled {
+  background-color: #FAA000;
+}
+
+.copiar_btn a {
+  background-color: #F0FFFF;
+  color: black;
+}
+.copiar_btn:enabled{
+  background-color: #F0FFFF;
+}
+
+.paquete_btn a {
+  color: black;
+}		
+.paquete_btn:enabled {
+  background-color: #9BFF9b;
+}		
+
+.clonar_btn a {
+  color: black;
+}		
+.clonar_btn:enabled {
+  background-color: #ADD8E6;
+}		
+
+
+.borrar_btn a {
+  color: black;
+}		
+
+.borrar_btn:enabled {
+  background-color: #FAAAA0;
+  color: black;
+}		
+

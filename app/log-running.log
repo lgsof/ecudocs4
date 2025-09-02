@@ -1,0 +1,16 @@
+Obteniendo ciudad-pais de '02_Remitente':
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/info/ecuapass_extractor.py", line 133, in removeSubjectCiudadPais
+    cities            = Extractor.getSubjectCitiesString (pais, resourcesPath, source)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/info/ecuapass_extractor.py", line 687, in getSubjectCitiesString
+    citiesString = Extractor.getDataString (ciudadesFile, resourcesPath)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/info/ecuapass_extractor.py", line 727, in getDataString
+    dataDic    = Extractor.getDataDic (dataFilename, resourcesPath)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/info/ecuapass_extractor.py", line 714, in getDataDic
+    for line in dataLines [1:]:
+                ~~~~~~~~~~^^^^
+TypeError: 'NoneType' object is not subscriptable
+

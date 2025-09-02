@@ -1,0 +1,25 @@
+<!-- Template for listing documents with a filter form and results table -->
+
+{% extends "base_main.html" %}
+{% load crispy_forms_tags %}
+{% load render_table from django_tables2 %}
+
+{% block content %}
+
+<div class="container">
+	<h2>Lista de {{ itemsTipo }} </h2>
+
+	<form method="GET" action="">
+		{% csrf_token %}
+		{% crispy itemsForma %}
+	</form>
+	
+	{% if itemsLista %}
+		{% render_table itemsTable %}
+	{% else %}
+	    <p>No hay {{ itemsTipo }} registrados</p>
+	{% endif %}
+</div>
+
+{% endblock %}
+

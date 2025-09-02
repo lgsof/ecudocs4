@@ -1,0 +1,44 @@
+{% extends "base_main.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<!--script src="https://code.jquery.com/jquery-3.6.0.min.js"></script-->
+<script src="{% static 'web/js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'app_docs/js/utils.js' %}"></script>
+
+<div class="container"> 
+    <h2>Ingreso</h2>
+	<form id="login" method="POST", action="">
+        {% csrf_token %}
+        <!-- Display the authentication form -->
+        {{ form|crispy }}
+        <button id="submit" class="btn btn-primary" type="submit">Ingreso</button>
+    </form>
+</div>
+<script>
+	// Script showing the user's "pais" 
+	$('#id_username').on('blur', function() {
+		var username = $(this).val();
+		console.log (">>> username", username);
+		csrftoken = getCookie ('csrftoken');
+
+		$.ajax({
+			type     : "POST",
+		    url      : "{% url 'get_country_for_username' %}",  // URL for the AJAX view
+			data     : {'username': username, 'csrfmiddlewaretoken': csrftoken},
+		    dataType : 'json',
+		    success  : function(data) {
+				$('#id_pais').html('');
+				if (data.pais) 
+					$('#id_pais').append('<option value="' + data.pais + '">' + data.pais + '</option>');
+				else 
+					$('#id_pais').append('<option value="">No country found</option>');
+				}
+		});
+});
+		
+</script>
+
+{% endblock %}
+    

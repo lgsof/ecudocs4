@@ -1,0 +1,39 @@
+.sidebar-nav {
+    margin-top: 10px;
+    padding: 0;
+    list-style: none;
+	background-color: #f0f0ff;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+
+#campo1 {
+  left: 640px; /* Coordenada X */
+  top: 155px; /* Coordenada Y */
+  width: 550px;
+  height: 60px;
+}
+
+#campo2 {
+  left: 640px; /* Coordenada X */
+  top: 245px; /* Coordenada Y */
+  width: 550px;
+  height: 60px;
+}
+
+#campo3 {
+  left: 640px; /* Coordenada X */
+  top: 330px; /* Coordenada Y */
+  width: 550px;
+  height: 60px;
+}
+
+#campo4 {
+  left: 640px; /* Coordenada X */
+  top: 416px; /* Coordenada Y */
+  width: 550px;
+  height: 60px;
+}
+

@@ -1,0 +1,93 @@
+--Selección--
+[ATF] Ambato
+[AZG] AZOGUES
+[BYO] Babahoyo
+[BHA] Bahia de Caraquez
+[EBL] Balao
+[BLI] Bartolome Island
+[EQB] Bucay
+[CAT] Caleta Tagus
+[CHA] Chanduy
+[EQC] Chone
+[CHG] Chongon
+[OCC] Coca
+[CUE] Cuenca
+[DAL] Daule
+[DUN] Duran
+[ELC] El Carmen
+[EGO] El Guabo
+[EQD] El Triunfo
+[ESM] Esmeraldas
+[ESP] Espanola Island
+[FLO] Floreana Island
+[GPS] Galapagos Islands
+[GDA] GUARANDA
+[GYE] Guayaquil
+[GYQ] Guayaquil
+[GUA] Guayas
+[HQL] Huaquillas
+[IBR] IBARRA
+[WGL] Isle Baltra
+[JIP] Jipijapa
+[LLD] La Libertad
+[LPT] La Puntilla
+[LGQ] Lago Agrio
+[LAS] Lasso
+[LAT] Latacunga
+[LOH] Loja
+[MRR] Macara
+[XMS] Macas
+[MAC] Machachi
+[MCH] Machala
+[MEC] Manta
+[MZD] Mendez
+[MIL] Milagro
+[MTO] Montalvo
+[MCR] MONTECRISTI
+[MTV] Monteverde
+[NRJ] Naranjito
+[OTV] OTAVALO
+[PSC] Pascuales
+[PTZ] Pastaza
+[PDL] Pedernales
+[CAR] Pedro Carbo
+[PEL] PELILEO
+[PIN] PI??AS
+[PVO] Portoviejo
+[PSJ] Posorja
+[AYO] Puerto Ayora, Isla Santa Cruz
+[BAQ] Puerto Baquerizo Moreno
+[PBO] Puerto Bolivar
+[PEG] Puerto Egas
+[PEV] Puerto Nuevo
+[VIL] Puerto Villamil, Isla Isabela
+[PUN] Puna
+[PYO] Putumayo
+[PUY] PUYO
+[QVD] Quevedo
+[QUI] Quinche
+[EQA] Quininde
+[UIO] Quito
+[RAB] Rabida Island
+[RBA] Riobamba
+[SNC] Salinas
+[SCY] San Cristobal
+[SLR] San Lorenzo
+[WSE] Santa Cecillia
+[STE] SANTA ELENA
+[STR] SANTA ROSA
+[SDO] Santo Domingo de los Colorados
+[SYM] Seymour
+[SBO] Simon Bolivar
+[SUQ] Sucua
+[TSC] Taisha
+[TPC] Tarapoa
+[TEP] Tepre
+[TPN] Tiputini
+[TUA] Tulcan
+[VEI] Velasco Ibarra
+[YGU] Yaguachi
+[ZTL] Zapotal
+[ZPT] Zapotal de Colonche
+[ZPL] ZAPOTILLO
+[ZLB] ZUMBA LA BALSA

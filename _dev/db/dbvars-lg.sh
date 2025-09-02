@@ -1,0 +1,1 @@
+/home/lg/BIO/ecuapassdocs/EcuapassDocs/EcuapassDocs-dev/_dev/vars/dbvars-lg.sh

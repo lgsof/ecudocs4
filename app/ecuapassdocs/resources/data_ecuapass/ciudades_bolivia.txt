@@ -1,0 +1,52 @@
+--Selección--
+[APB] Apolo
+[ASC] Ascension
+[ABA] Avaroa
+[BVL] Baures
+[BJO] Bermejo
+[CAM] Camiri
+[CAR] Carrasco
+[CIJ] Cobija
+[CBB] Cochabamba
+[CLN] Collpani
+[COL] Collpani
+[CEP] Concepcion
+[ZZ1] Desaguadero
+[ALT] El Alto
+[GUQ] Guaqui
+[GYA] Guayaramerin
+[BVK] Huacaraje
+[LPB] La Paz
+[MGD] Magdalena
+[MHW] Monteagudo
+[ORU] Oruro
+[POI] Potosi
+[PBU] Puerto Busch
+[QJR] Puerto Quijarro
+[PUR] Puerto Rico
+[PSZ] Puerto Suarez
+[REY] Reyes
+[RIB] Riberalta
+[RBO] Robore
+[RBQ] Rurrenabaque
+[SRJ] San Borja
+[SNM] San Ignacio de Moxo
+[SNG] San Ignacio de Velasco
+[SJV] San Javier
+[SJB] San Joaquin
+[SJS] San Jose
+[MQK] San Matias
+[SRD] San Ramon
+[SBL] Santa Ana
+[SRZ] Santa Cruz
+[SCS] Santa Cruz de la Sierra
+[SRB] Santa Rosa
+[SAN] Santivanez
+[SRE] Sucre
+[TJA] Tarija
+[TDD] Trinidad
+[UYU] Uyuni
+[VAH] Vallegrande
+[VLM] Villamontes
+[VVI] Viru Viru
+[BYC] Yacuiba

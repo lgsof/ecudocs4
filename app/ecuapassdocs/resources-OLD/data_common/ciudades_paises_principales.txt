@@ -1,0 +1,332 @@
+Abancay-PERU
+Aguachica-COLOMBIA
+Aguarico-ECUADOR
+Aguas Verdes-PERU
+Aguaytía-PERU
+Alausí-ECUADOR
+Alto de la Alianza-PERU
+Ambato-ECUADOR
+Ancón-ECUADOR
+Andahuaylas-PERU
+Angaraes-PERU
+Antabamba-PERU
+Antonio Ante-ECUADOR
+Arajuno-ECUADOR
+Archidona-ECUADOR
+Arenillas-ECUADOR
+Arequipa-PERU
+Arjona-COLOMBIA
+Armenia-COLOMBIA
+Ascope-PERU
+Astrea-COLOMBIA
+Atacames-ECUADOR
+Atalaya-PERU
+Ayacucho-PERU
+Aymaraes-PERU
+Azogues-ECUADOR
+Azángaro-PERU
+Babahoyo-ECUADOR
+Baeza-ECUADOR
+Bagua-PERU
+Ballenita-ECUADOR
+Barranca-PERU
+Barrancabermeja-COLOMBIA
+Barranquilla-COLOMBIA
+Baños-ECUADOR
+Bellavista-PERU
+Bello-COLOMBIA
+Biblián-ECUADOR
+Bogotá-COLOMBIA
+Bolívar-ECUADOR
+Bongará-PERU
+Bosconia-COLOMBIA
+Bucaramanga-COLOMBIA
+Buenaventura-COLOMBIA
+Caballococha-PERU
+Cajamarca-PERU
+Cali-COLOMBIA
+Caluma-ECUADOR
+Camana-PERU
+Campoalegre-COLOMBIA
+Canchis-PERU
+Caravelí-PERU
+Caraz-PERU
+Cartagena-COLOMBIA
+Cascales-ECUADOR
+Casma-PERU
+Castrovirreyna-PERU
+Catamayo-ECUADOR
+Cayambe-ECUADOR
+Caylloma-PERU
+Cañar-ECUADOR
+Cañete-PERU
+Celendín-PERU
+Celica-ECUADOR
+Cereté-COLOMBIA
+Cerro de Pasco-PERU
+Cevallos-ECUADOR
+Chachagüí-COLOMBIA
+Chachapoyas-PERU
+Chambo-ECUADOR
+Chepén-PERU
+Chiclayo-PERU
+Chimbo-ECUADOR
+Chimbote-PERU
+Chincha Alta-PERU
+Chincheros-PERU
+Chinchiná-COLOMBIA
+Chiquinquirá-COLOMBIA
+Chone-ECUADOR
+Chota-PERU
+Chía-COLOMBIA
+Circasia-COLOMBIA
+Ciudad Nueva-PERU
+Ciénaga-COLOMBIA
+Coca-ECUADOR
+Codazzi-COLOMBIA
+Colta-ECUADOR
+Contamana-PERU
+Corozal-COLOMBIA
+Cotacachi-ECUADOR
+Cuenca-ECUADOR
+Curimaná-PERU
+Cusco-PERU
+Cutervo-PERU
+Cuyabeno-ECUADOR
+Cúcuta-COLOMBIA
+Daniel Alcides Carrión-PERU
+Daule-ECUADOR
+Dos de Mayo-PERU
+Dosquebradas-COLOMBIA
+Duitama-COLOMBIA
+Durán-ECUADOR
+Déleg-ECUADOR
+Echeandía-ECUADOR
+El Banco-COLOMBIA
+El Carmen de Bolívar-COLOMBIA
+El Chaco-ECUADOR
+El Esfuerzo-ECUADOR
+Envigado-COLOMBIA
+Esmeraldas-ECUADOR
+Espejo-ECUADOR
+Espinal-COLOMBIA
+Facatativá-COLOMBIA
+Ferreñafe-PERU
+Floridablanca-COLOMBIA
+Fundación-COLOMBIA
+Galapa-COLOMBIA
+Garzón-COLOMBIA
+Gigante-COLOMBIA
+Girardot-COLOMBIA
+Girón-COLOMBIA
+Girón-ECUADOR
+Gonzanamá-ECUADOR
+Gualaceo-ECUADOR
+Gualaquiza-ECUADOR
+Guamo-COLOMBIA
+Guano-ECUADOR
+Guaranda-ECUADOR
+Guayaquil-ECUADOR
+Guayzimi-ECUADOR
+Honda-COLOMBIA
+Huaca-ECUADOR
+Huacho-PERU
+Huamalíes-PERU
+Huancané-PERU
+Huancavelica-PERU
+Huancayo-PERU
+Huanta-PERU
+Huaquillas-ECUADOR
+Huaral-PERU
+Huaraz-PERU
+Huaraz-PERU
+Huariaca-PERU
+Huaytará-PERU
+Huepetuhe-PERU
+Huánuco-PERU
+Ibagué-COLOMBIA
+Ibarra-ECUADOR
+Ica-PERU
+Ilave-PERU
+Ilo-PERU
+Ipiales-COLOMBIA
+Iquitos-PERU
+Islay-PERU
+Itagüí-COLOMBIA
+Iñapari-PERU
+Jamundí-COLOMBIA
+Jauja-PERU
+Jaén-PERU
+Jipijapa-ECUADOR
+Juanjuí-PERU
+Juliaca-PERU
+La Concordia-ECUADOR
+La Convención-PERU
+La Dorada-COLOMBIA
+La Joya de los Sachas-ECUADOR
+La Libertad-ECUADOR
+La Maná-ECUADOR
+La Mar-PERU
+La Oroya-PERU
+La Tebaida-COLOMBIA
+La Troncal-ECUADOR
+La Virginia-COLOMBIA
+Laberinto-PERU
+Lago Agrio-ECUADOR
+Lambayeque-PERU
+Las Piedras-PERU
+Latacunga-ECUADOR
+Leoncio Prado-PERU
+Lima-PERU
+Locumba-PERU
+Loja-ECUADOR
+Lorica-COLOMBIA
+Los Patios-COLOMBIA
+Luz de América-ECUADOR
+Macas-ECUADOR
+Machala-ECUADOR
+Magangué-COLOMBIA
+Malambo-COLOMBIA
+Manizales-COLOMBIA
+Manta-ECUADOR
+Mariquita-COLOMBIA
+Marsella-COLOMBIA
+Medellín-COLOMBIA
+Mejía-ECUADOR
+Mera-ECUADOR
+Milagro-ECUADOR
+Mira-ECUADOR
+Montalvo-ECUADOR
+Montelíbano-COLOMBIA
+Montenegro-COLOMBIA
+Montería-COLOMBIA
+Moquegua-PERU
+Motupe-PERU
+Moyobamba-PERU
+Muisne-ECUADOR
+Nasca-PERU
+Nauta-PERU
+Neiva-COLOMBIA
+Nueva Loja-ECUADOR
+Ocaña-COLOMBIA
+Olmos-PERU
+Omate-PERU
+Otavalo-ECUADOR
+Ovejas-COLOMBIA
+Oxapampa-PERU
+Pacasmayo-PERU
+Paipa-COLOMBIA
+Paita-PERU
+Palanda-ECUADOR
+Palmira-COLOMBIA
+Palpa-PERU
+Pampas de Hospital-PERU
+Pamplona-COLOMBIA
+Parinacochas-PERU
+Paruro-PERU
+Pasaje-ECUADOR
+Pasto-COLOMBIA
+Pedro Moncayo-ECUADOR
+Pelileo-ECUADOR
+Pereira-COLOMBIA
+Piedecuesta-COLOMBIA
+Pisco-PERU
+Pitalito-COLOMBIA
+Piura-PERU
+Pivijay-COLOMBIA
+Planeta Rica-COLOMBIA
+Popayán-COLOMBIA
+Portoviejo-ECUADOR
+Pucallpa-PERU
+Puebloviejo-ECUADOR
+Puerto Ayora-ECUADOR
+Puerto Baquerizo Moreno-ECUADOR
+Puerto Colombia-COLOMBIA
+Puerto Francisco de Orellana-ECUADOR
+Puerto Maldonado-PERU
+Puerto Napo-ECUADOR
+Puerto Pizarro-PERU
+Puerto Villamil-ECUADOR
+Pujilí-ECUADOR
+Puno-PERU
+Puyo-ECUADOR
+Páez-COLOMBIA
+Quevedo-ECUADOR
+Quinindé-ECUADOR
+Quito-ECUADOR
+Requena-PERU
+Riobamba-ECUADOR
+Rioja-PERU
+Riosucio-COLOMBIA
+Rocafuerte-ECUADOR
+Rodríguez de Mendoza-PERU
+Rumiñahui-ECUADOR
+Sabaneta-COLOMBIA
+Salcedo-ECUADOR
+Salento-COLOMBIA
+Salinas-ECUADOR
+Samborondón-ECUADOR
+San Juan Bosco-ECUADOR
+San Lorenzo-ECUADOR
+San Marcos-COLOMBIA
+San Miguel-ECUADOR
+Santa Clara-ECUADOR
+Santa Elena-ECUADOR
+Santa Marta-COLOMBIA
+Santa Rosa de Cabal-COLOMBIA
+Santa Rosa-ECUADOR
+Santander de Quilichao-COLOMBIA
+Santiago de Méndez-ECUADOR
+Santo Domingo-ECUADOR
+Saquisilí-ECUADOR
+Saraguro-ECUADOR
+Satipo-PERU
+Sechura-PERU
+Shell-ECUADOR
+Shushufindi-ECUADOR
+Shushufindi-ECUADOR
+Sigsig-ECUADOR
+Silvia-COLOMBIA
+Sincelejo-COLOMBIA
+Soacha-COLOMBIA
+Sogamoso-COLOMBIA
+Soledad-COLOMBIA
+Sucre-COLOMBIA
+Sucúa-ECUADOR
+Sullana-PERU
+Sánchez Cerro-PERU
+Tacna-PERU
+Talara-PERU
+Tarapoto-PERU
+Tarata-PERU
+Tarma-PERU
+Tayacaja-PERU
+Tena-ECUADOR
+Tingo María-PERU
+Tisaleo-ECUADOR
+Torata-PERU
+Totoro-COLOMBIA
+Trujillo-PERU
+Tulcán-ECUADOR
+Tuluá-COLOMBIA
+Tumaco-COLOMBIA
+Tumbes-PERU
+Tunja-COLOMBIA
+Turbaco-COLOMBIA
+Túquerres-COLOMBIA
+Urcuquí-ECUADOR
+Urubamba-PERU
+Utcubamba-PERU
+Valle Hermoso-ECUADOR
+Valledupar-COLOMBIA
+Ventanas-ECUADOR
+Vilcashuamán-PERU
+Villa del Rosario-COLOMBIA
+Villamaría-COLOMBIA
+Virú-PERU
+Yanahuanca-PERU
+Yantzaza-ECUADOR
+Yurimaguas-PERU
+Zamora-ECUADOR
+Zarumilla-PERU
+Zumbi-ECUADOR

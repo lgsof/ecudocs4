@@ -1,0 +1,1 @@
+/home/lg/BIO/ecuapassdocs/EcuapassDocs/dev/scripts/db/db-functions.py

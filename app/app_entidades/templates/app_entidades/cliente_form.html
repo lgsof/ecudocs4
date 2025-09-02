@@ -1,0 +1,17 @@
+{% extends "base_main.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container"> 
+	<h2>Edición de Cliente</h2>
+		<form action="" method="post">
+			{% csrf_token %}
+			{{ form|crispy }}
+			</br>
+			<button type="submit" class="btn btn-primary">Guardar</button>
+			<a href="{% url 'listar' %}" class="btn btn-secondary">Cancelar</a>
+		</form>
+</div>
+
+{% endblock %}

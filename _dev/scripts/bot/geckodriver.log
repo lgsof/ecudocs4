@@ -1,0 +1,555 @@
+1726239762824	geckodriver	INFO	Listening on 127.0.0.1:47475
+1726239763834	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofileW4WhJw"
+Gtk-Message: 10:02:43.894: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 10:02:44.655: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 10:02:44.655: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726239765349	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726239765744	Marionette	INFO	Listening on port 45475
+Read port: 45475
+1726239766123	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+1726239805910	Marionette	INFO	Stopped listening on port 45475
+1726239807550	geckodriver	INFO	Listening on 127.0.0.1:33337
+1726239808567	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofile4W9vJJ"
+Gtk-Message: 10:03:28.628: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 10:03:29.367: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 10:03:29.367: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726239810066	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726239810458	Marionette	INFO	Listening on port 44041
+Read port: 44041
+1726239810632	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+1726239869917	Marionette	INFO	Stopped listening on port 44041
+1726240264815	geckodriver	INFO	Listening on 127.0.0.1:52857
+1726240265833	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofilebGTaKW"
+Gtk-Message: 10:11:05.894: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 10:11:06.579: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 10:11:06.586: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726240267284	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726240267658	Marionette	INFO	Listening on port 37957
+Read port: 37957
+1726240268081	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+1726240271171	Marionette	INFO	Stopped listening on port 37957
+1726240336812	geckodriver	INFO	Listening on 127.0.0.1:38333
+1726240336824	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofileLtS14E"
+Gtk-Message: 10:12:16.876: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 10:12:17.522: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 10:12:17.522: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726240338185	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726240338573	Marionette	INFO	Listening on port 38659
+Read port: 38659
+1726240338861	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+1726240342066	Marionette	INFO	Stopped listening on port 38659
+1726242857074	geckodriver	INFO	Listening on 127.0.0.1:43437
+1726242858088	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofiled00flK"
+Gtk-Message: 10:54:18.146: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 10:54:18.744: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 10:54:18.744: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726242859412	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726242859796	Marionette	INFO	Listening on port 34621
+Read port: 34621
+1726242860184	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+1726242863559	Marionette	INFO	Stopped listening on port 34621
+1726242927154	geckodriver	INFO	Listening on 127.0.0.1:50319
+1726242928168	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofilesDLEUl"
+Gtk-Message: 10:55:28.228: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 10:55:28.920: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 10:55:28.920: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726242929587	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726242929961	Marionette	INFO	Listening on port 42389
+Read port: 42389
+1726242930116	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+1726243357463	Marionette	INFO	Stopped listening on port 42389
+1726243360067	geckodriver	INFO	Listening on 127.0.0.1:53437
+1726243361082	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofileXkvW7u"
+Gtk-Message: 11:02:41.142: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 11:02:41.857: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 11:02:41.857: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726243362583	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726243362970	Marionette	INFO	Listening on port 40037
+Read port: 40037
+1726243363186	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+1726243371821	Marionette	INFO	Stopped listening on port 40037
+1726244194577	geckodriver	INFO	Listening on 127.0.0.1:50205
+1726244195596	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofileIg7zuy"
+Gtk-Message: 11:16:35.669: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 11:16:36.331: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 11:16:36.331: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726244196986	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726244197370	Marionette	INFO	Listening on port 35635
+Read port: 35635
+1726244197535	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+1726244206433	Marionette	INFO	Stopped listening on port 35635
+1726244233318	geckodriver	INFO	Listening on 127.0.0.1:41737
+1726244234333	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofileNdv0hh"
+Gtk-Message: 11:17:14.395: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 11:17:15.116: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 11:17:15.117: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726244235825	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726244236206	Marionette	INFO	Listening on port 36419
+Read port: 36419
+1726244236350	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+1726244251629	Marionette	INFO	Stopped listening on port 36419
+1726244273955	geckodriver	INFO	Listening on 127.0.0.1:42021
+1726244274971	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofileiILjQc"
+Gtk-Message: 11:17:55.032: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 11:17:55.743: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 11:17:55.744: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726244276437	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726244276815	Marionette	INFO	Listening on port 32963
+Read port: 32963
+1726244277143	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+1726244293559	Marionette	INFO	Stopped listening on port 32963
+1726244346096	geckodriver	INFO	Listening on 127.0.0.1:58011
+1726244347114	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofileSGf7hl"
+Gtk-Message: 11:19:07.176: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 11:19:07.866: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 11:19:07.866: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726244348524	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726244348903	Marionette	INFO	Listening on port 46147
+Read port: 46147
+1726244349058	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+1726244402545	Marionette	INFO	Stopped listening on port 46147
+1726244406478	geckodriver	INFO	Listening on 127.0.0.1:59585
+1726244407494	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofileLNTFnH"
+Gtk-Message: 11:20:07.553: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 11:20:08.199: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 11:20:08.200: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726244408861	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726244409261	Marionette	INFO	Listening on port 41393
+Read port: 41393
+1726244409545	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+1726244425585	Marionette	INFO	Stopped listening on port 41393
+1726244491846	geckodriver	INFO	Listening on 127.0.0.1:59863
+1726244492865	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofile3ZXXlT"
+Gtk-Message: 11:21:32.925: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 11:21:33.605: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 11:21:33.606: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726244494274	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726244494643	Marionette	INFO	Listening on port 33875
+Read port: 33875
+1726244494804	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+1726244519459	Marionette	INFO	Stopped listening on port 33875
+1726244664183	geckodriver	INFO	Listening on 127.0.0.1:38959
+1726244665200	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofilehzYb80"
+Gtk-Message: 11:24:25.257: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 11:24:25.917: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 11:24:25.918: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726244666591	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726244666979	Marionette	INFO	Listening on port 33873
+Read port: 33873
+1726244667178	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+1726244724759	geckodriver	INFO	Listening on 127.0.0.1:53333
+1726244725776	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofileE7ZObf"
+Gtk-Message: 11:25:25.834: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 11:25:26.533: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 11:25:26.533: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726244727338	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726244727734	Marionette	INFO	Listening on port 36589
+Read port: 36589
+1726244728045	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://byza.corebd.net."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://byza.corebd.net."
+console.warn: FormAutofillSection: isRecordCreatable: Country not supported: COLOMBIA
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+1726244756985	Marionette	INFO	Stopped listening on port 36589
+1726244760747	Marionette	INFO	Stopped listening on port 33873
+1726244847083	geckodriver	INFO	Listening on 127.0.0.1:33333
+1726244848098	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofiletVB7m0"
+Gtk-Message: 11:27:28.156: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 11:27:28.781: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 11:27:28.782: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726244849464	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726244849842	Marionette	INFO	Listening on port 34445
+Read port: 34445
+1726244850160	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://byza.corebd.net."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://byza.corebd.net."
+console.warn: FormAutofillSection: isRecordCreatable: Country not supported: COLOMBIA
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+1726244872053	Marionette	INFO	Stopped listening on port 34445
+1726244923425	geckodriver	INFO	Listening on 127.0.0.1:41819
+1726244924442	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofileijW2TW"
+Gtk-Message: 11:28:44.507: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 11:28:45.215: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 11:28:45.222: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726244925937	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726244926338	Marionette	INFO	Listening on port 34579
+Read port: 34579
+1726244926525	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://byza.corebd.net."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://byza.corebd.net."
+console.warn: FormAutofillSection: isRecordCreatable: Country not supported: COLOMBIA
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+1726245030306	geckodriver	INFO	Listening on 127.0.0.1:45439
+1726245031323	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofileIuu4As"
+Gtk-Message: 11:30:31.386: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 11:30:31.968: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 11:30:31.968: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726245032665	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726245033041	Marionette	INFO	Listening on port 37439
+Read port: 37439
+1726245033445	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://byza.corebd.net."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://byza.corebd.net."
+console.warn: FormAutofillSection: isRecordCreatable: Country not supported: COLOMBIA
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+1726245091845	Marionette	INFO	Stopped listening on port 34579
+1726245556295	geckodriver	INFO	Listening on 127.0.0.1:57149
+1726245557310	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofilehYolpe"
+Gtk-Message: 11:39:17.392: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 11:39:18.122: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 11:39:18.122: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726245558765	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726245559129	Marionette	INFO	Listening on port 34303
+Read port: 34303
+1726245559463	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://byza.corebd.net."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://byza.corebd.net."
+console.warn: FormAutofillSection: isRecordCreatable: Country not supported: COLOMBIA
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+1726245653793	Marionette	INFO	Stopped listening on port 34303
+1726245658924	Marionette	INFO	Stopped listening on port 37439
+1726245691901	geckodriver	INFO	Listening on 127.0.0.1:60395
+1726245692917	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofileP8Y1gW"
+Gtk-Message: 11:41:32.980: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 11:41:33.689: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 11:41:33.689: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726245694359	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726245694751	Marionette	INFO	Listening on port 43791
+Read port: 43791
+1726245695104	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://byza.corebd.net."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://byza.corebd.net."
+console.warn: FormAutofillSection: isRecordCreatable: Country not supported: COLOMBIA
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+JavaScript error: , line 0: NotFoundError: No such JSProcessActor 'DevToolsProcess'
+JavaScript error: , line 0: NotFoundError: No such JSProcessActor 'DevToolsProcess'
+JavaScript error: , line 0: NotFoundError: No such JSProcessActor 'DevToolsProcess'
+1726245874606	Marionette	INFO	Stopped listening on port 43791
+1726246253840	geckodriver	INFO	Listening on 127.0.0.1:32881
+1726246254856	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofileB8JamR"
+Gtk-Message: 11:50:54.915: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 11:50:55.604: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 11:50:55.605: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726246256284	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726246256645	Marionette	INFO	Listening on port 32927
+Read port: 32927
+1726246256847	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://byza.corebd.net."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://byza.corebd.net."
+console.warn: FormAutofillSection: isRecordCreatable: Country not supported: COLOMBIA
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+1726246380469	Marionette	INFO	Stopped listening on port 32927
+1726246538675	geckodriver	INFO	Listening on 127.0.0.1:36919
+1726246539692	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofileZwvVGa"
+Gtk-Message: 11:55:39.752: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 11:55:40.412: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 11:55:40.412: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726246541093	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726246541474	Marionette	INFO	Listening on port 45611
+Read port: 45611
+1726246541677	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://byza.corebd.net."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://byza.corebd.net."
+console.warn: FormAutofillSection: isRecordCreatable: Country not supported: COLOMBIA
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+1726246693450	Marionette	INFO	Stopped listening on port 45611
+1726247207389	geckodriver	INFO	Listening on 127.0.0.1:51311
+1726247208405	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofilecKFGf1"
+Gtk-Message: 12:06:48.468: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 12:06:49.158: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 12:06:49.158: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726247209860	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726247210287	Marionette	INFO	Listening on port 45513
+Read port: 45513
+1726247210488	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+1726247215641	Marionette	INFO	Stopped listening on port 45513
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 47: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1726247231577	geckodriver	INFO	Listening on 127.0.0.1:38207
+1726247232599	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofileplZvB8"
+Gtk-Message: 12:07:12.694: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 12:07:13.265: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 12:07:13.265: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726247234102	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726247234558	Marionette	INFO	Listening on port 41545
+Read port: 41545
+1726247234863	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://byza.corebd.net."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://byza.corebd.net."
+console.warn: FormAutofillSection: isRecordCreatable: Country not supported: COLOMBIA
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+1726247260240	Marionette	INFO	Stopped listening on port 41545
+1726247277341	geckodriver	INFO	Listening on 127.0.0.1:37973
+1726247278357	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofileFCbc6h"
+Gtk-Message: 12:07:58.421: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 12:07:59.129: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 12:07:59.129: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726247279841	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726247280222	Marionette	INFO	Listening on port 40067
+Read port: 40067
+1726247280435	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://byza.corebd.net."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://byza.corebd.net."
+console.warn: FormAutofillSection: isRecordCreatable: Country not supported: COLOMBIA
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.warn: FormAutofillSection: isRecordCreatable: Country not supported: COLOMBIA
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+JavaScript error: resource:///modules/UrlbarInput.sys.mjs, line 1980: TypeError: this.searchModeSwitcher is undefined
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+1726249222821	Marionette	INFO	Stopped listening on port 40067
+1726249352629	geckodriver	INFO	Listening on 127.0.0.1:49713
+1726249353658	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofilec2sA6H"
+Gtk-Message: 12:42:33.729: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 12:42:34.317: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 12:42:34.317: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726249355021	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726249355434	Marionette	INFO	Listening on port 44629
+Read port: 44629
+1726249355629	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://byza.corebd.net."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://byza.corebd.net."
+console.warn: FormAutofillSection: isRecordCreatable: Country not supported: COLOMBIA
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+1726249363658	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'complete'.
+JavaScript error: resource:///modules/UrlbarInput.sys.mjs, line 1980: TypeError: this.searchModeSwitcher is undefined
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+1726249381141	Marionette	INFO	Stopped listening on port 44629
+1726249397158	geckodriver	INFO	Listening on 127.0.0.1:42235
+1726249398169	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofileCK8rVJ"
+Gtk-Message: 12:43:18.231: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 12:43:18.961: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 12:43:18.961: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726249399636	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726249400035	Marionette	INFO	Listening on port 33849
+Read port: 33849
+1726249400348	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://byza.corebd.net."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://byza.corebd.net."
+console.warn: FormAutofillSection: isRecordCreatable: Country not supported: COLOMBIA
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+1726249408257	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'complete'.
+JavaScript error: resource:///modules/UrlbarInput.sys.mjs, line 1980: TypeError: this.searchModeSwitcher is undefined
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+1726249463036	geckodriver	INFO	Listening on 127.0.0.1:57237
+1726249464051	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/opt/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofileBcngBb"
+Gtk-Message: 12:44:24.108: Failed to load module "xapp-gtk3-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Gtk-Message: 12:44:24.821: Failed to load module "window-decorations-gtk-module"
+Gtk-Message: 12:44:24.821: Failed to load module "colorreload-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726249465484	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1726249465881	Marionette	INFO	Listening on port 32883
+Read port: 32883
+1726249466232	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://byza.corebd.net."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://byza.corebd.net."
+console.warn: FormAutofillSection: isRecordCreatable: Country not supported: COLOMBIA
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+1726249474003	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'complete'.
+JavaScript error: resource:///modules/UrlbarInput.sys.mjs, line 1980: TypeError: this.searchModeSwitcher is undefined
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+console.error: (new TypeError("this.searchModeSwitcher is undefined", "resource:///modules/UrlbarInput.sys.mjs", 1980))
+1726249501251	Marionette	INFO	Stopped listening on port 32883
+1726249505684	Marionette	INFO	Stopped listening on port 33849

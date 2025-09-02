@@ -1,0 +1,97 @@
+--Selección--
+[ALD] Alerta
+[ANC] Ancon
+[ANS] Andahuaylas
+[ATA] Anta
+[AQP] Arequipa
+[ARI] Arica
+[ATI] Atico
+[AYP] Ayacucho
+[PUB] Bayovar
+[BLP] Bellavista
+[CAB] Cabo Blanco
+[CJA] Cajamarca
+[CLL] Callao
+[CAS] Casma
+[CRZ] Cerro Azul
+[CHH] Chachapoyas
+[CHN] Chancan
+[CHY] Chancay
+[CHA] Chanchamayo
+[CIX] Chiclayo
+[CHM] Chimbote
+[CHI] Chincha
+[CON] Conchan
+[CUZ] Cuzco
+[EEN] Eten
+[GSM] General San Martin
+[HCO] Huacho
+[HUN] Huancavelica
+[HCY] HUANCAYO
+[HUU] Huanuco
+[HUA] Huaral
+[HUZ] Huaraz
+[HUY] Huarmey
+[IBP] Iberia
+[ICA] Ica
+[ILQ] Ilo
+[IQT] Iquitos
+[JAE] Jaen
+[JAU] Jauja
+[JJI] Juanjui
+[JUL] Juliaca
+[LOA] La Oroya
+[LPP] La Pampilla
+[LPN] La Planchada
+[LAG] Lagunas
+[LIM] Lima
+[LOB] Lobitos
+[LOO] Los Organos
+[MFT] Machu Picchu
+[MAL] Mala
+[MCA] Mancora
+[MRI] Matarani
+[MLQ] Mollendo
+[MOQ] Moquegua
+[MBA] Moyobamba
+[MBP] Moyobamba
+[NGS] Negritos
+[OLM] Olmos
+[OQU] Oquendo
+[PAC] Pacasmayo
+[PAI] Paita
+[PAM] Paramonga
+[PMT] Pimentel
+[PIO] Pisco
+[PIU] Piura
+[PCL] Pucallpa
+[PCH] Puerto Chicama
+[PEM] Puerto Maldonado
+[PUN] Puno
+[PLO] Punta Lobitos
+[UMI] Quince Mil
+[QUI] Quinches
+[RIJ] Rioja
+[RIM] Rodriguez de Mendoza
+[SVY] Salaverry
+[SAM] Samanco
+[BAR] San Bartolo
+[LSB] San Borja/Lima
+[SJA] San Juan
+[APE] San Juan Aposento
+[SNX] San Nicolas
+[SMG] Santa Maria
+[SQU] Saposoa
+[SYC] Shiringayoc
+[SUL] Sullana
+[SUP] Supe
+[TCQ] Tacna
+[TYL] Talara
+[TDM] Tambo de Mora
+[TAG] Tambo Grande
+[TPP] Tarapoto
+[TGI] Tingo Maria
+[TRU] Trujillo
+[TBP] Tumbes
+[YMS] Yurimaguas
+[ZOR] Zorritos

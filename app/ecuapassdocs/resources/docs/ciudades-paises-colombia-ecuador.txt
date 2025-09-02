@@ -1,0 +1,325 @@
+AZOGUES-Ecuador
+Acandi-Colombia
+Acaricuara-Colombia
+Agrado-Colombia
+Aguaclara-Colombia
+Amalfi-Colombia
+Ambato-Ecuador
+Andalucia-Colombia
+Andes-Colombia
+Antioquia-Colombia
+Apartado-Colombia
+Apiay-Colombia
+Araracuara-Colombia
+Arauca-Colombia
+Arauquita-Colombia
+Arboletas-Colombia
+Arica-Colombia
+Armenia-Colombia
+Astrea-Colombia
+Ayacucho-Colombia
+Ayapel-Colombia
+Babahoyo-Ecuador
+Bahia Cupica-Colombia
+Bahia Solano-Colombia
+Bahia de Caraquez-Ecuador
+Balao-Ecuador
+Balboa-Colombia
+Barranca de Upia-Colombia
+Barrancabermeja-Colombia
+Barrancominas-Colombia
+Barranquilla-Colombia
+Bartolome Island-Ecuador
+Betania-Colombia
+Boca Chica-Colombia
+Bogota-Colombia
+Bucaramanga-Colombia
+Bucay-Ecuador
+Buenaventura-Colombia
+Buga-Colombia
+CEBAF SAN MIGUEL-Colombia
+Cachipay-Colombia
+Cajica-Colombia
+Caleta Tagus-Ecuador
+Cali-Colombia
+Candilejas-Colombia
+Capurgana-Colombia
+Caquetania-Colombia
+Carimagua-Colombia
+Cartagena-Colombia
+Cartago-Colombia
+Caruru-Colombia
+Casuarito-Colombia
+Cauca-Colombia
+Caucasia-Colombia
+Chanduy-Ecuador
+Chaparral-Colombia
+Chigorodo-Colombia
+Chinchina-Colombia
+Chivolo-Colombia
+Chone-Ecuador
+Chongon-Ecuador
+Cienaga-Colombia
+Cimitarra-Colombia
+Coca-Ecuador
+Codazzi-Colombia
+Condoto-Colombia
+Corozal-Colombia
+Cota-Colombia
+Covenas-Colombia
+Cravo Norte-Colombia
+Cucuta-Colombia
+Cuenca-Ecuador
+Currillo-Colombia
+Dabeiba-Colombia
+Daule-Ecuador
+Duran-Ecuador
+Durania-Colombia
+El Bagre-Colombia
+El Banco-Colombia
+El Bosque-Colombia
+El Carmen-Ecuador
+El Charco-Colombia
+El Encanto-Colombia
+El Espino-Colombia
+El Guabo-Ecuador
+El Recreo-Colombia
+El Triunfo-Ecuador
+El Yopal-Colombia
+Envigado-Colombia
+Esmeraldas-Ecuador
+Espanola Island-Ecuador
+Floreana Island-Ecuador
+Florencia-Colombia
+Fundacion-Colombia
+GUARANDA-Ecuador
+Galapagos Islands-Ecuador
+Gamarra-Colombia
+Gamarra-Colombia
+Garagoa-Colombia
+Garzon-Colombia
+Gilgal-Colombia
+Girardot-Colombia
+Guacamaya-Colombia
+Guaduas-Colombia
+Guamal-Colombia
+Guapi-Colombia
+Guapi-Colombia
+Guaranao-Colombia
+Guayaquil-Ecuador
+Guayaquil-Ecuador
+Guayas-Ecuador
+Guerima-Colombia
+Hato Corozal-Colombia
+Herrera-Colombia
+Huaquillas-Ecuador
+IBARRA-Ecuador
+Ibaque-Colombia
+Inirida-Colombia
+Ipiales-Colombia
+Iscuande-Colombia
+Isle Baltra-Ecuador
+Itagui-Colombia
+Jipijapa-Ecuador
+Jurado-Colombia
+La Chorrera-Colombia
+La Dorada-Colombia
+La Estrella-Colombia
+La Libertad-Ecuador
+La Pedrera-Colombia
+La Primavera-Colombia
+La Puntilla-Ecuador
+La Uribe-Colombia
+Lago Agrio-Ecuador
+Lamacarena-Colombia
+Las Gaviotas-Colombia
+Lasso-Ecuador
+Latacunga-Ecuador
+Lejanias-Colombia
+Leticia-Colombia
+Loja-Ecuador
+Lopez de Micay Apt/Micay-Colombia
+Lorica-Colombia
+MONTECRISTI-Ecuador
+Macanal-Colombia
+Macara-Ecuador
+Macas-Ecuador
+Macedonia-Colombia
+Machachi-Ecuador
+Machala-Ecuador
+Magangue-Colombia
+Maicao-Colombia
+Mamonal-Colombia
+Manaure-Colombia
+Manizales-Colombia
+Manta-Ecuador
+Mariquita-Colombia
+Matanza-Colombia
+Medellin-Colombia
+Medina-Colombia
+Mendez-Ecuador
+Milagro-Ecuador
+Miraflores-Colombia
+Miriti-Colombia
+Mitu-Colombia
+Mompos-Colombia
+Monfort-Colombia
+Moniquira-Colombia
+Montalvo-Ecuador
+Monte Libano-Colombia
+Montelibano-Colombia
+Monteria-Colombia
+Monterrey-Colombia
+Monteverde-Ecuador
+Morichal-Colombia
+Mosquera-Colombia
+Mulatos-Colombia
+Naranjito-Ecuador
+Nare-Colombia
+Necocli-Colombia
+Neiva-Colombia
+Nobsa-Colombia
+Nunchia-Colombia
+Nuqui-Colombia
+OTAVALO-Ecuador
+Ocana-Colombia
+Oiba-Colombia
+Orocue-Colombia
+Otu-Colombia
+PELILEO-Ecuador
+PI??AS-Ecuador
+PUYO-Ecuador
+Palanquero-Colombia
+Palmira-Colombia
+Paratebueno-Colombia
+Pascuales-Ecuador
+Pastaza-Ecuador
+Pasto-Colombia
+Payan-Colombia
+Paz de Ariporo-Colombia
+Pedernales-Ecuador
+Pedro Carbo-Ecuador
+Pereira-Colombia
+Pitalito-Colombia
+Planadas-Colombia
+Planeta Rica-Colombia
+Plato-Colombia
+Popayan-Colombia
+Pore-Colombia
+Portoviejo-Ecuador
+Posorja-Ecuador
+Pozos Colorados-Colombia
+Providencia-Colombia
+Puerto Asis-Colombia
+Puerto Ayora, Isla Santa Cruz-Ecuador
+Puerto Baquerizo Moreno-Ecuador
+Puerto Berrio-Colombia
+Puerto Bolivar-Colombia
+Puerto Bolivar-Ecuador
+Puerto Boyaca-Colombia
+Puerto Carreno-Colombia
+Puerto Colombia-Colombia
+Puerto Egas-Ecuador
+Puerto Gaitan-Colombia
+Puerto Gaitan-Colombia
+Puerto Leguizamo-Colombia
+Puerto Limon-Colombia
+Puerto Limon-Colombia
+Puerto Lleras-Colombia
+Puerto Nuevo-Ecuador
+Puerto Prodeco-Colombia
+Puerto Rico-Colombia
+Puerto Villamil, Isla Isabela-Ecuador
+Puna-Ecuador
+Putumayo-Ecuador
+Quevedo-Ecuador
+Quibdo-Colombia
+Quinche-Ecuador
+Quininde-Ecuador
+Quito-Ecuador
+Rabida Island-Ecuador
+Rio Cordoba-Colombia
+Riobamba-Ecuador
+Riohacha-Colombia
+Rionegro-Colombia
+Rondon-Colombia
+SANTA ELENA-Ecuador
+SANTA ROSA-Ecuador
+Sabana de Torres-Colombia
+Salinas-Ecuador
+Samaca-Colombia
+San Andres Island-Colombia
+San Cristobal-Ecuador
+San Felipe-Colombia
+San Gil-Colombia
+San Jose del Gua-Colombia
+San Juan de Uraba-Colombia
+San Juan del Cesar-Colombia
+San Lorenzo-Ecuador
+San Luis de Pale-Colombia
+San Marcos-Colombia
+San Pedro Jagua-Colombia
+San Pedro Uraba-Colombia
+San Vincente-Colombia
+Santa Ana-Colombia
+Santa Cantalina-Colombia
+Santa Cecillia-Ecuador
+Santa Fee-Colombia
+Santa Margarita-Colombia
+Santa Maria-Colombia
+Santa Marta-Colombia
+Santa Rosa-Colombia
+Santa Rosalia-Colombia
+Santana Ramos-Colombia
+Santo Domingo de los Colorados-Ecuador
+Saravena-Colombia
+Saravena-Colombia
+Savanilla-Colombia
+Seymour-Ecuador
+Sibate-Colombia
+Simon Bolivar-Colombia
+Simon Bolivar-Ecuador
+Since-Colombia
+Sogamoso-Colombia
+Solano-Colombia
+Solita-Colombia
+Sucua-Ecuador
+Tablon de Tamara-Colombia
+Taisha-Ecuador
+Tame-Colombia
+Tame-Colombia
+Tarapeca-Colombia
+Tarapoa-Ecuador
+Tauramena-Colombia
+Tepre-Ecuador
+Tibu-Colombia
+Timbiqui-Colombia
+Tiputini-Ecuador
+Tolu-Colombia
+Tres Esquinas-Colombia
+Trinidad-Colombia
+Tulcan-Ecuador
+Tulua-Colombia
+Tumaco-Colombia
+Tunja-Colombia
+Turbo-Colombia
+Umbita-Colombia
+Unguia-Colombia
+Uribe-Colombia
+Urrao-Colombia
+Valledupar-Colombia
+Velasco Ibarra-Ecuador
+Velez-Colombia
+Villagarzon-Colombia
+Villapinzon-Colombia
+Villavicencio-Colombia
+Yaguachi-Ecuador
+Yaguara-Colombia
+Yai (Yarinacocha)-Colombia
+Yavarate-Colombia
+Yumbo-Colombia
+ZAPOTILLO-Ecuador
+ZUMBA LA BALSA-Ecuador
+Zapatoca-Colombia
+Zapotal de Colonche-Ecuador
+Zapotal-Ecuador

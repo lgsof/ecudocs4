@@ -1,0 +1,32 @@
+{% extends "base_main.html" %}
+{% include "_command_buttons.html" %}
+
+{% block content %}
+	<h1>Cartaporte: 
+	  <a href="{% url 'cartaporte' %}editar/{{ cartaporte.id }}" >{{ cartaporte.numero }}</a>
+	</h1>
+
+	<p><strong>Fecha emision:</strong> {{ cartaporte.fecha_emision }}</p>
+
+	<p><strong>Remitente:</strong> 
+	  <a href="{{ cartaporte.remitente.get_absolute_url }}">{{ cartaporte.documento.getRemitente }}</a>
+	</p> 
+
+	<p><strong>Destinatario:</strong> 
+	  <a href="{{ cartaporte.destinatario.get_absolute_url }}">{{ cartaporte.documento.getDestinatario }}</a>
+	</p> 
+
+	<!----------------------------------- COMMANDS ----------------------------------->
+	{% include "_command_buttons.html" with docType='cartaporte' docId=cartaporte.id %}
+	<!-------------------------------------------------------------------------------->
+
+	<hr>
+	<div style="margin-left:20px;margin-top:20px">
+	  <h4>Lista de Manifiestos:</h4>
+	  {% for manifiesto in cartaporte.manifiestos.all %}
+	  <li>
+		<a href="{{ manifiesto.get_absolute_url }}"  target="_blank">{{ manifiesto.numero }}</a> ({{manifiesto.fecha_emision}})
+	  </li>
+	  {% endfor %}
+	</div>
+{% endblock %}

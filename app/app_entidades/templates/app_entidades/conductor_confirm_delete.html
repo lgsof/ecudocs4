@@ -1,0 +1,14 @@
+{% extends "base_main.html" %}
+
+{% block content %}
+
+<h1>Vehículo borrado</h1>
+
+<p>¿Seguro quieres borrar este conductor: CC: {{ conductor.documento }}, nombre: {{ conductor.nombre }}?</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" action="" value="Si, borrar." />
+</form>
+
+{% endblock %}
