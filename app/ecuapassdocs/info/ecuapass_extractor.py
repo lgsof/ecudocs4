@@ -22,6 +22,38 @@ def main ():
 # Class for extracting different values from document texts
 #--------------------------------------------------------------------
 class Extractor:
+	#-------------------------------------------------------------------
+	#-- Get subject info: nombre, dir, pais, ciudad, id, idNro ---------
+	#-------------------------------------------------------------------
+	def getSubjectInfoFromText (text, type=None):
+		subject = None
+		resourcesPath = "data_ecuapass"
+		try:
+			subject = Utils.createEmptyDic (["nombre","direccion","pais","ciudad","tipoId","numeroId"])
+			print (f"\n\n+++ SubjectInfo for '{type}' in text:\n'{text}'")
+
+			text, subject = Extractor.removeSubjectId (text, subject, type)
+			# subject       = self.processIdTypeNum (subject)
+
+			if len (text.split("\n")) > 1:          # When 'pais' is in the company name first line
+				subText = text.split ("\n", 1)[1]
+				subText, subject = Extractor.removeSubjectCiudadPais (subText, subject, resourcesPath, type)
+				text = "\n".join ([text.split ("\n")[0], subText])
+			else:
+				text, subject = Extractor.removeSubjectCiudadPais (text, subject, resourcesPath, type)
+
+			print (f"\t+++ SubjectInfo for Ciudad-Pais: '{subject}'\n'{text}'")
+
+			text, subject = Extractor.removeSubjectNombreDireccion (text, subject, type)
+		except:
+			Utils.printException (f"Obteniendo datos del sujeto: '{type}' en el texto:\n'{text}'")
+
+		if any (x == None for x in subject.values()):
+			subject = Utils.addLow (subject)
+
+		print (f"+++ Subject info: '{subject}'")
+		return (subject)
+
 	#-- Remove "||LOW" sufix
 	def delLow (text):
 		if text == None: 
@@ -152,6 +184,8 @@ class Extractor:
 		except:
 			Utils.printException (f"Obteniendo nombre-direccion de '{type}'")
 
+		subject ["nombre"]    = Utils.checkLow (subject ["nombre"], "No se pudo extraer el nombre")
+		subject ["direccion"] = Utils.checkLow (subject ["direccion"], "No se pudo extraer la dirección")
 		return (text, subject)
 
 	#-- Assuming nombre is always in the first line
@@ -283,6 +317,17 @@ class Extractor:
 		mrn_match = re.search (reMRN, text)  # Searches for the first occurrence
 
 		return mrn_match.group (1) if mrn_match else None
+
+
+	#----------------------------------------------------------------
+	# String fucntions
+	#----------------------------------------------------------------
+	def getDescription (text):
+		try:
+			return text.strip()
+		except Exception as ex:
+			Utils.printException ("Error extrayendo descripción de texto")
+		return ""
 
 	def getLastString (text):
 		string = None
@@ -587,8 +632,12 @@ class Extractor:
 	#-- Extract numerical or text date from text ----------------------
 	#------------------------------------------------------------------
 	def getFechaEmisionFromText (text):
-		fecha        = Extractor.getDate (text)
-		fechaEmision = Utils.formatDateStringToPGDate (fecha)
+		fechaEmision = ""
+		try:
+			fecha        = Extractor.getDate (text)
+			fechaEmision = Utils.formatDateStringToPGDate (fecha)
+		except Exception as ex:
+			Utils.printException (f"Error obteniendo fecha emisión desde texto: '{text}'")
 		return fechaEmision
 
 	def getDate (text, resourcesPath=None):
@@ -638,7 +687,7 @@ class Extractor:
 			numericalDate = f"{result.group('day')}-{str (month).zfill(2)}-{year}"
 			print (f"+++ getDate results: '{numericalDate}'")
 		except Exception as e:
-			Utils.printException (f"Obteniendo fecha desde texto: '{text}'", e)
+			Utils.printException (f"Error obteniendo fecha desde texto: '{text}'", e)
 			
 		return numericalDate
 

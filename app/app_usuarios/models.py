@@ -78,7 +78,7 @@ class Usuario (AbstractUser):
 
 	# Campos extra a los del AbstractUser
 	nombre	= models.CharField (_ ('nombre'), max_length=100, blank=True)
-	empresa = models.ForeignKey ('Empresa', on_delete=models.SET_NULL,
+	empresa = models.ForeignKey ('Empresa', on_delete=models.CASCADE, 
 								null=True, blank=True, related_name='usuarios')
 	pais	= models.CharField (max_length=20, choices=Pais.choices,
 							   default=Pais.TODOS)

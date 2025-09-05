@@ -101,9 +101,10 @@ function checkFormatNumber (number) {
 }
 
 // Set restrictions and styles for each input textarea
-function setParametersToInputs (textAreas, inputParameters, docType) {
+function setParametersToInputs (textAreas, inputsParameters, docType) {
 	textAreas.forEach (function (textArea) {
 		const input               = inputsParameters [textArea.id];
+
 		textArea.value            = input ["value"]
 		//textArea.value            = textArea.id
 		textArea.style.fontSize   = input ["fontSize"];

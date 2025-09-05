@@ -8,6 +8,7 @@ from django.db import models
 from django.urls import reverse
 
 from ecuapassdocs.info.ecuapass_utils import Utils 
+from ecuapassdocs.info.ecuapass_extractor import Extractor 
 
 from django.db.models import Q
 
@@ -25,6 +26,10 @@ class DocBaseModel (models.Model):
 	referencia     = models.CharField (max_length=50, null=True, blank=True)
 	fecha_emision  = models.DateField (null=True, blank=True)
 	fecha_creacion = models.DateTimeField (auto_now_add=True)
+
+	# TODOS los campos del formulario en formato txt## van aquí
+	# Ej: {"txt00": "...", "txt01": "...", "txt13_1": "...", ...}
+	txtFields = models.JSONField (default=dict, blank=True)	
 
 	class Meta:
 		abstract = True
@@ -45,6 +50,54 @@ class DocBaseModel (models.Model):
 	#-- Return: "cartaporte", "manifiesto" or "declaracion")
 	def getDocName(self):
 		return self.getDocType ().lower ()
+
+	#----------------------------------------------------------------
+	# Get/Set txt form fields
+	#----------------------------------------------------------------
+	def setTxtNumero (self, numero):
+		self.setTxt ("txt00", numero)
+
+	def setTxtPais (self, pais):
+		self.setTxt ("txt0a", Utils.getCodigoPaisFromPais (pais))
+
+	def getTxtDescripcion (self):
+		docKeys	= {"CARTAPORTE":"txt12", "MANIFIESTO":"txt29", "DECLARACION":"txt10"}
+		text    = self.txtFields [docKeys [self.getDocType()]]
+		return	Extractor.getDescription (text)
+
+	#-- Extract 'fecha emision' from doc fields
+	def getTxtFechaEmision (self):
+		try:
+			docKeys	= {"CARTAPORTE":"txt19", "MANIFIESTO":"txt40", "DECLARACION":"txt23"}
+			text    = self.txtFields [docKeys [self.getDocType()]]
+			return Extractor.getFechaEmisionFromText (text)
+		except Exception as ex:
+			Utils.printException (f"Error obteniendo fecha emision para '{self.getDocType()}'")
+		return None
+
+	#----------------------------------------------------------------
+	# Helpers for get/set form txt fields
+	#----------------------------------------------------------------
+	def getTxt (self, key, default=None):
+		return self.txtFields.get (key, default)
+
+	def setTxt (self, key, value):
+		data           = dict (self.txtFields)
+		data [key]     = value
+		self.txtFields = data
+
+	def setTxtFields (self, mapping: dict, skip_empty=True):
+		"""Actualiza varios txt## de una vez."""
+		data = dict (self.txtFields)
+		for k, v in mapping.items():
+			if not skip_empty or (v not in (None, "", [])):
+				data[k] = v
+		self.txtFields = data	
+
+	def getTxtFields (self):
+		txtFields = dict (self.txtFields)
+		return txtFields
+
 	#----------------------------------------------------------------
 	# Set base values to document. Overwritten in child classes
 	#----------------------------------------------------------------
@@ -87,19 +140,7 @@ class DocBaseModel (models.Model):
 		url     = f"{docName}-detalle"
 		return reverse (url, args=[self.pk])
 
-	#-------------------------------------------------------------------
-	#-- Documents function
-	#-------------------------------------------------------------------
-	#-- Extract 'fecha emision' from doc fields
-	def getDocFechaEmision (self, docFields):
-		try:
-			keys	= {"CARTAPORTE":"19_Emision", "MANIFIESTO":"40_Fecha_Emision", "DECLARACION":"23_Fecha_Emision"}
-			text	= docFields [keys [docType]]
-			return Extractor.getFechaEmisionFromText (docFields ["19_Emision"]) 
-		except Exception as ex:
-			Utils.printException (f"Error obteniendo fecha emision para '{self.docType}'")
-		return None
-
+	
 	#-------------------------------------------------------------------
 	#-- Search a pattern in all 'FORMMODEL' fields of a model
 	#-- Overwritten in some child classes

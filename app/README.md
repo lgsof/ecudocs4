@@ -4,8 +4,9 @@
 - Custom user management
 
 ## LOG
-Aug/13: r0.859 : Moved to klnx
+Sep/05: r0.900 : Redesigned to use only one Document class including txt fields. Working basics
 
+Aug/13: r0.859 : Moved to klnx
 Mar/10: r0.858 : Added working dirs _doc and _dev
 
 Oct/26: r0.857 : Working on Aldia scraping.

@@ -23,6 +23,7 @@ import app_declaracion
 #from app_manifiesto.models_docmci import Manifiesto
 
 from app_entidades.models_Entidades import Cliente
+from app_usuarios.models import Usuario, Empresa
 
 #-------------------------------------------------------------------
 # Class with general Script for handing models in DB and others
@@ -175,7 +176,15 @@ class Scripts:
 		return instances.first () if instances else None
 
 	def getEmpresaByNickname (nickname):
-		instances = Scripts.getEmpresaByNickname (nickname)
+		instances = Empresa.objects.filter (nickname=nickname)
+		return instances.first () if instances else None
+
+	def getUsuarioByUsernameEmpresa (username, idEmpresa):
+		instances = Usuario.objects.filter (username=username, empresa_id= idEmpresa)
+		return instances.first () if instances else None
+
+	def getDocumentById (ModelCLASS, id):
+		instances = ModelCLASS.objects.filter (id=id)
 		return instances.first () if instances else None
 		
 	##----------------------------------------------------------

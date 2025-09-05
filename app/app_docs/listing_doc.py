@@ -8,7 +8,7 @@ from django.shortcuts import render
 
 # For forms
 from django import forms
-from django.utils import timezone
+from django.utils import timezone, formats
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column, Field
 
@@ -113,14 +113,22 @@ class BaseListadoTable (tables.Table):
 # Base table used for listing the three doc types: CPI, MCI, DTI
 #----------------------------------------------------------
 class DocumentosListadoTable (BaseListadoTable):
-#class DocumentosListadoTable (tables.Table):
-	#row_number = tables.Column (empty_values=(), verbose_name="No.")  # Add a custom column for enumeration
-
 	template = "django_tables2/bootstrap4.html"
-	fecha_emision = tables.Column (verbose_name="F. Emisión") # To show related info
 
 	class Meta:
 		abstract = True
+		attrs = {
+			"class": "table table-striped table-bordered small-table",
+			"style": "font-size:14px; line-height:1.0;"  # test
+		}	
+
+	descripcion = tables.Column(
+		verbose_name="Descripción",
+		attrs={"td": {"class": "text-truncate", "style": "max-width:480px; white-space:normal; overflow:hidden;"}}
+	)
+	fecha_emision = tables.Column (
+		verbose_name="F. Emisión"
+	) 
 
 	#-- Define links for document table columns: numero, acciones (actualizar, eliminar)
 	def __init__ (self, *args, **kwargs):
@@ -146,11 +154,17 @@ class DocumentosListadoTable (BaseListadoTable):
 		return format_html('<a href="{}" target="_blank" >{}</a>', 
 					 reverse(self.urlEditar, args=[record.pk]), value)
 
-	#-- Change format to agree with form date format
+       # Use Django’s format system
 	def render_fecha_emision(self, value):
-		# Ensure value is a datetime object before formatting
-		if isinstance(value, (datetime, (date, datetime))):
-			return value.strftime('%m/%d/%Y')  # Format to 'dd/mm/yyyy'
-		return ''
+		return formats.date_format(value, "SHORT_DATE_FORMAT")  
+		# or value.strftime("%d/%m/%Y")
+
+	def render_descripcion(self, value):
+		return Truncator(value or "").chars(50)   # e.g. ~150 chars
+
+		## Ensure value is a datetime object before formatting
+		#if isinstance(value, (datetime, (date, datetime))):
+		#	return value.strftime('%m/%d/%Y')  # Format to 'dd/mm/yyyy'
+		#return ''
 
 

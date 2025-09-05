@@ -1,78 +1,77 @@
 {% load static %}
-
-
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>{% block title %}EcuapassDocs 0.5{% endblock %}</title>
 	<!-- Include Bootstrap CSS -->
 	<link rel="stylesheet" href="{% static 'web/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'app_docs/css/tables.css' %}">
 	<!--
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	-->
 	<style>
-	body {
-		display: flex;
-		min-height: 100vh;
-		flex-direction: column;
-	}
-	.wrapper {
-		display: flex;
-		flex: 1;
-	}
-	
-	.button-container {
-		text-align: center; /* Centers the button */
-	}
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        .wrapper {
+            display: flex;
+            flex: 1;
+        }
+        
+        .button-container {
+            text-align: center; /* Centers the button */
+        }
 
-	.sidebar {
-		width: 210px;
-		background-color: #00001e;
-		color: yellow;
-		padding: 5px;
-		height: 100vh;
-		overflow-y: auto;
-	}
+        .sidebar {
+            width: 210px;
+            background-color: #00001e;
+            color: yellow;
+            padding: 5px;
+            height: 100vh;
+            overflow-y: auto;
+        }
 
-	.sidebar-separator {
-		border: none;
-		border-top: 1px solid yellow; /* White line to contrast with blue background */
-		margin: 10px 0;
-	}
+        .sidebar-separator {
+            border: none;
+            border-top: 1px solid yellow; /* White line to contrast with blue background */
+            margin: 10px 0;
+        }
 
-	.sidebar .section-title {
-			font-weight: bold; /* Make section titles bold */
-			padding-left: 10px;
-	}
+        .sidebar .section-title {
+                font-weight: bold; /* Make section titles bold */
+                padding-left: 10px;
+        }
 
-	.sidebar .nav-link {
-		color: #ffaa00;
-		padding-left: 10px;
-		font-weight: bold;
-		font-size:16px;
-	}
-	.sidebar .nav-item .nav-link {
-		padding-left: 00px;
-		color: cyan;
-		font-weight: bold;
-	}
+        .sidebar .nav-link {
+            color: #ffaa00;
+            padding-left: 10px;
+            font-weight: bold;
+            font-size:16px;
+        }
+        .sidebar .nav-item .nav-link {
+            padding-left: 00px;
+            color: cyan;
+            font-weight: bold;
+        }
 
-	#sidebar {
-		width: 250px;
-		background-color: #00001e;
-		color: yellow;
-		padding: 05px;
-	}
-	#sidebar a {
-		color: cyan;
-		text-decoration: none;
-		display: block;
-		padding: 0px;
-	}
-	#sidebar a:hover {
-		background-color: #495057;
-	}
-	#content {
-		flex: 1;
-		padding: 20px;
-	}
+        #sidebar {
+            width: 250px;
+            background-color: #00001e;
+            color: yellow;
+            padding: 05px;
+        }
+        #sidebar a {
+            color: cyan;
+            text-decoration: none;
+            display: block;
+            padding: 0px;
+        }
+        #sidebar a:hover {
+            background-color: #495057;
+        }
+        #content {
+            flex: 1;
+            padding: 20px;
+        }
 	</style>

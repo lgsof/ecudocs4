@@ -53,20 +53,22 @@ LAST_SAVED_VALUES = None
 class EcuapassDocView (LoginRequiredMixin, View):
 
 	def __init__(self, docType, background_image, parameters_file, *args, **kwargs):
+		print (f"\n+++ Creando nueva vista EcuapassDocView...")
 		super().__init__ (*args, **kwargs)
 		self.docType	      = docType
 		self.template_name    = "documento_forma.html"
 		self.background_image = background_image
+		self.parameters_file  = parameters_file
 
-		self.doc              = DocEcuapass (docType, parameters_file)
 		self.commander        = Commander (self.docType)
+		self.doc              = DocEcuapass (self.docType, self.parameters_file)
 
 	#-------------------------------------------------------------------
 	# Usado para llenar una forma (manifiesto) vacia_
 	# Envía los parámetros o restricciones para cada campo en la forma de HTML
 	#-------------------------------------------------------------------
 	def get (self, request, *args, **kwargs):
-		print ("\n\n+++ GET : EcuapassDocView +++")
+		print ("\n\n+++ GET :: EcuapassDocView +++")
 		urlCommand = resolve (request.path_info).url_name
 		return self.getResponseForCommand (urlCommand, request, *args, **kwargs)
 
@@ -76,7 +78,7 @@ class EcuapassDocView (LoginRequiredMixin, View):
 	#-------------------------------------------------------------------
 	@method_decorator(csrf_protect)
 	def post (self, request, *args, **kwargs):
-		print ("\n\n+++ POST : EcuapassDocView +++")
+		print ("\n\n+++ POST :: EcuapassDocView +++")
 		buttonCommand  = request.POST.get ('boton_seleccionado', '').lower()
 		return self.getResponseForCommand (buttonCommand, request, *args, **kwargs)
 
@@ -85,16 +87,15 @@ class EcuapassDocView (LoginRequiredMixin, View):
 	#-------------------------------------------------------------------
 	def getResponseForCommand (self, command, request, *args, **kwargs):
 		response = None
-		self.doc.updateFromRequest (request)
-		self.doc.printInfo()
+		self.getCurrentDocuments (request)
 
-		if "guardar" in command:
+		if "editar" in command or "nuevo" in command:
+			return self.onEditCommand (request, *args, **kwargs)
+		elif "guardar" in command:
 			docId = self.onSaveCommand (request) 
 			return redirect (f"editar/{docId}")
-		elif "editar" in command or "nuevo" in command:
-			return self.onEditCommand (command, request, *args, **kwargs)
 		elif "pdf" in command:
-			return self.commander.onPdfCommand (command, request, *args, **kwargs)
+			return self.commander.onPdfCommand (command, self.doc, request, *args, **kwargs)
 		elif "clonar" in command:
 			return self.onCloneCommand (command, request, *args, **kwargs)
 		else:
@@ -103,28 +104,97 @@ class EcuapassDocView (LoginRequiredMixin, View):
 		return response
 
 	#-------------------------------------------------------------------
+	#-------------------------------------------------------------------
+	def onPdfCommand  (self, command, request, *args, **kwargs):
+		formFields = self.doc.getFormFieldsFromRequest (request)
+		pk        = kwargs.get ('pk')
+		if (pk):
+			self.docParams  = self.doc.getExistingDocument (pk)
+			self.formFields = self.doc.getFormFieldsFromDocParams (self.docParams)
+			return self.commander.onPdfCommand (command, request, *args, **kwargs)
+	#-------------------------------------------------------------------
+	#-- Get/Create current document 
+	#-------------------------------------------------------------------
+	def getCurrentDocuments (self, request):
+		print (f"\n+++ Getting session current documents...'")
+		if not "current_docs" in request.session:
+			print (f"\n+++ Creating session current documents...'")
+			request.session ["current_docs"] = {}
+
+		self.currentDocs = request.session ["current_docs"]
+
+	#-------------------------------------------------------------------
 	# Edit existing, new, or clon doc
 	#-------------------------------------------------------------------
-	def onEditCommand  (self, command, request, *args, **kwargs):
+	def onEditCommand  (self, request, *args, **kwargs):
 		print (f"\n+++ onEditCommand...")
-		pk = kwargs.get ('pk')
+		pk        = kwargs.get ('pk')
+		if (pk):
+			docParams = self.editExistingDocument (request, pk)
+		else:
+			docParams = self.editNewDocument (request)
 
-		self.docParams = self.doc.getDocParams (pk)
-			
 		# Send input fields parameters (bounds, maxLines, maxChars, ...)
 		docUrl     = self.docType.lower()
-		docNumber  = self.docParams ["numero"]["value"]
-		docTitle   = Utils.getDocPrefix (self.docType) + " : " + docNumber
 		contextDic = {
-			"docTitle"         : docTitle,
+			"docTitle"         : self.doc.getDocTitulo (),
 			"docType"          : self.docType, 
-			"pais"             : self.doc.pais,
-			"input_parameters" : self.docParams, 
+			"pais"             : self.doc.getDocPais (),
+			"input_parameters" : docParams,
 			"background_image" : self.background_image,
 			"document_url"	   : docUrl,
 			"timestamp"        : now().timestamp ()
 		}
 		return render (request, self.template_name, contextDic)
+
+
+	def editExistingDocument (self, request, pk):
+		print (f"\n+++ Editing exising document {pk=}'")
+		self.docParams  = self.doc.getExistingDocument (pk)
+		self.formFields = self.doc.getFormFieldsFromDocParams (self.docParams)
+		request.session ["current_docs"][self.formFields ["numero"]] = self.formFields
+
+		return self.docParams
+
+	def editNewDocument (self, request):
+		print (f"\n+++ Editing new document...'")
+		formFields                     = self.doc.getFormFields ()
+
+		formFields ["id"]          = ""
+		formFields ["numero"]      = self.doc.generateDocNumber ("NEW")
+		formFields ["usuario"]     = request.user.username
+		formFields ["empresa"]     = request.empresa.nickname
+		formFields ["pais"]        = request.session.get ("pais")
+		formFields ["url"]         = resolve (request.path_info).url_name
+		request.session ["current_docs"][formFields ["numero"]] = formFields
+
+		request.session.modified = True
+		self.doc.update (formFields)
+
+		docParams = self.doc.getDocParams ()
+		docParams ["numero"]["value"] = formFields ["numero"]
+		docParams ["txt00"]["value"] = formFields ["numero"]
+
+		self.currentDocs = request.session ["current_docs"]
+		return docParams
+
+	#-------------------------------------------------------------------
+	# Save document to DB checking max docs for user
+	#-------------------------------------------------------------------
+	def onSaveCommand (self, request, *args, **kwargs):
+		print ("+++ Guardando documento...")
+		print (f"\n+++ {request.POST.get ('txt00')=}'")
+		docNumber = request.POST.get ('numero')
+		if "NUEVO" in docNumber:
+			formFields = self.doc.getFormFieldsFromRequest (request)
+			self.doc.update (formFields)
+			docId = self.doc.saveNewDocToDB ()
+		else:
+			formFields = self.doc.getFormFieldsFromRequest (request)
+			self.doc.update (formFields)
+			docId = self.doc.saveDocumentToDB ()
+
+		return docId
 
 	#-------------------------------------------------------------------
 	# Set "txt00" to "CLON" and call edit without "pk" so with current docParams
@@ -136,26 +206,7 @@ class EcuapassDocView (LoginRequiredMixin, View):
 		self.docParams ["numero"]['value'] = "CLON"
 		self.docParams ["txt00"]['value'] = "CLON"
 		return self.onEditCommand (command, request, args, kwargs)
-			
-	#-------------------------------------------------------------------
-	# Save document to DB checking max docs for user
-	#-------------------------------------------------------------------
-	def onSaveCommand (self, request, *args, **kwargs):
-		print ("+++ Guardando documento...")
-		docId, docNumber = self.doc.saveDocumentToDB ()
-		return docId
-
-#	#-------------------------------------------------------------------
-#	# Update parameter fields from current session for any interaction
-#	#-------------------------------------------------------------------
-#	def updateDocument (self, request):
-#		print (f"\n+++ ...updateDocument...'")
-#		self.doc.pais      = request.session.get ("pais")
-#		self.doc.usuario   = request.user
-#		self.doc.empresa   = request.empresa
-#		self.doc.url       = resolve (request.path_info).url_name
-#		self.doc.formFiels = self.doc.getFormFieldsFromRequest (request)
-
+	
 	#-------------------------------------------------------------------
 	# Check if document has changed
 	#-------------------------------------------------------------------
@@ -175,30 +226,6 @@ class EcuapassDocView (LoginRequiredMixin, View):
 				print (f"EXCEPCION: Clave '{k}' no existe")
 
 		return False
-
-#	#-------------------------------------------------------------------
-#	#-- Set saved or default values to inputs
-#	#-------------------------------------------------------------------
-#	def copySavedValuesToInputs (self, recordId):
-#		instanceDoc = None
-#		if (self.docType.upper() == "CARTAPORTE"):
-#			instanceDoc = CartaporteForm.objects.get (id=recordId)
-#		elif (self.docType.upper() == "MANIFIESTO"):
-#			instanceDoc = ManifiestoForm.objects.get (id=recordId)
-#		elif (self.docType.upper() == "DECLARACION"):
-#			instanceDoc = DeclaracionForm.objects.get (id=recordId)
-#		else:
-#			print (f"Error: Tipo de documento '{self.docType}' no soportado")
-#			return None
-#
-#		# Iterating over fields
-#		for field in instanceDoc._meta.fields:	# Not include "numero" and "id"
-#			text = getattr (instanceDoc, field.name)
-#			maxChars = self.docParams [field.name]["maxChars"]
-#			newText = Utils.breakLongLinesFromText (text, maxChars)
-#			self.docParams [field.name]["value"] = newText if newText else ""
-#
-#		return self.docParams
 
 	#-------------------------------------------------------------------
 	#-- Save document to DB if form's values have changed
@@ -242,21 +269,5 @@ class EcuapassDocView (LoginRequiredMixin, View):
 				print (f"EXCEPCION: Clave '{k}' no existe")
 
 		return False
-
-	#---------------------- OBSOLETE -----------------------------------
-	#-------------------------------------------------------------------
-	#-- Return a dic with the texts from the document form (e.g. txt00,)
-	#-------------------------------------------------------------------
-#	def getInputValuesFromForm (self, request):
-#		inputFields = {}
-#		requestValues = request.POST 
-#
-#		for key in requestValues:
-#			if "boton" in key:
-#				continue
-#
-#			inputFields [key] = requestValues [key].replace ("\r\n", "\n")
-#
-#		return inputFields
 
 

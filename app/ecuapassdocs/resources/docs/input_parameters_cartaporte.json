@@ -5,7 +5,6 @@
         "ecudocsField": "id",
         "codebinField": "idcpic",
         "appField": "",
-        "aldiaField": "",
         "restrictions": [
             "hidden",
             "readonly"
@@ -17,24 +16,60 @@
         "ecudocsField": "numero",
         "codebinField": "nocpic",
         "appField": "txt00",
-        "aldiaField": "caprntcrid",
         "restrictions": [
             "hidden",
             "readonly"
         ]
     },
+
+    "usuario": {
+        "value": "",
+        "class": "input_general",
+        "ecudocsField": "",
+        "codebinField": "",
+        "appField": "",
+        "restrictions": [
+            "hidden",
+            "readonly"
+        ]
+    },
+
+    "empresa": {
+        "value": "",
+        "class": "input_general",
+        "ecudocsField": "",
+        "codebinField": "",
+        "appField": "",
+        "restrictions": [
+            "hidden",
+            "readonly"
+        ]
+    },
+
     "pais": {
         "value": "",
         "class": "input_general",
         "ecudocsField": "pais",
         "codebinField": "",
         "appField": "txt0a",
-        "aldiaField": "docField_pais",
         "restrictions": [
             "hidden",
             "readonly"
         ]
     },
+
+    "url": {
+        "value": "",
+        "class": "input_general",
+        "ecudocsField": "",
+        "codebinField": "",
+        "appField": "",
+        "restrictions": [
+            "hidden",
+            "readonly"
+        ]
+    },
+
     "txt0a": {
         "align": "left",
         "class": "input_numero",
@@ -53,8 +88,7 @@
         "value": "",
         "width": 40,
         "x": 696,
-        "y": 88,
-        "aldiaField": ""
+        "y": 88
     },
     "txt00": {
         "align": "left",
@@ -73,8 +107,7 @@
         "value": "",
         "width": 233,
         "x": 797,
-        "y": 88,
-        "aldiaField": "caprntcrid"
+        "y": 88
     },
     "txt01": {
         "align": "left",
@@ -93,10 +126,7 @@
         "value": "",
         "width": 501,
         "x": 40,
-        "y": 162,
-        "aldiaField": {
-            "transportista": [ "nmb_transportista", "dct_transportista", "cddid_transportista_bb"]
-        }
+        "y": 162
     },
     "txt02": {
         "align": "left",
@@ -112,8 +142,7 @@
         "value": "",
         "width": 495,
         "x": 46,
-        "y": 302,
-        "aldiaField": "caprntcrcampo2"
+        "y": 302
     },
     "txt03": {
         "align": "left",
@@ -129,8 +158,7 @@
         "value": "",
         "width": 495,
         "x": 46,
-        "y": 397,
-        "aldiaField": "caprntcrcampo3"
+        "y": 397
     },
     "txt04": {
         "align": "left",
@@ -146,8 +174,7 @@
         "value": "",
         "width": 495,
         "x": 46,
-        "y": 492,
-        "aldiaField": "caprntcrcampo4"
+        "y": 492
     },
     "txt05": {
         "align": "left",
@@ -163,8 +190,7 @@
         "value": "",
         "width": 495,
         "x": 560,
-        "y": 140,
-        "aldiaField": "caprntcrcampo5"
+        "y": 140
     },
     "txt06": {
         "align": "left",
@@ -180,8 +206,7 @@
         "value": "",
         "width": 495,
         "x": 560,
-        "y": 235,
-        "aldiaField": "caprntcrcampo6"
+        "y": 235
     },
     "txt07": {
         "align": "left",
@@ -197,8 +222,7 @@
         "value": "",
         "width": 495,
         "x": 560,
-        "y": 312,
-        "aldiaField": "caprntcrcampo7"
+        "y": 312
     },
     "txt08": {
         "align": "left",
@@ -214,8 +238,7 @@
         "value": "",
         "width": 495,
         "x": 560,
-        "y": 405,
-        "aldiaField": "caprntcrcampo8"
+        "y": 405
     },
     "txt09": {
         "align": "left",
@@ -231,8 +254,7 @@
         "value": "",
         "width": 495,
         "x": 560,
-        "y": 500,
-        "aldiaField": "caprntcrcampo9"
+        "y": 500
     },
     "txt10": {
         "align": "left",
@@ -248,10 +270,7 @@
         "value": "",
         "width": 130,
         "x": 43,
-        "y": 643,
-        "aldiaField": {
-            "cantidad": [ "caprntcrcantidad", "mpqid_bb" ]
-        }
+        "y": 643
     },
     "txt11": {
         "align": "left",
@@ -267,10 +286,7 @@
         "value": "",
         "width": 122,
         "x": 183,
-        "y": 643,
-        "aldiaField": {
-            "marcas": [ "caprntcrmarca", "caprntcrnumero" ]
-        }
+        "y": 643
     },
     "txt12": {
         "align": "left",
@@ -286,8 +302,7 @@
         "value": "",
         "width": 462,
         "x": 315,
-        "y": 643,
-        "aldiaField": "caprntcrdescripcionnaturaleza"
+        "y": 643
     },
     "txt13_1": {
         "align": "right",
@@ -303,8 +318,7 @@
         "value": "",
         "width": 121,
         "x": 797,
-        "y": 677,
-        "aldiaField": "caprntcrpesoneto"
+        "y": 677
     },
     "txt13_2": {
         "align": "right",
@@ -320,8 +334,7 @@
         "value": "",
         "width": 121,
         "x": 935,
-        "y": 677,
-        "aldiaField": "caprntcrpesobruto"
+        "y": 677
     },
     "txt14": {
         "align": "right",
@@ -337,8 +350,7 @@
         "value": "",
         "width": 121,
         "x": 797,
-        "y": 777,
-        "aldiaField": "caprntcrvolumen"
+        "y": 777
     },
     "txt15": {
         "align": "right",
@@ -354,8 +366,7 @@
         "value": "",
         "width": 121,
         "x": 935,
-        "y": 777,
-        "aldiaField": "docField_otrasUnidades"
+        "y": 777
     },
     "txt16": {
         "align": "left",
@@ -371,10 +382,7 @@
         "value": "",
         "width": 263,
         "x": 795,
-        "y": 869,
-        "aldiaField": {
-            "incoterms": [ "nctid_bb", "caprntcrprecio", "mndid", "caprntcrdescripcion" ]
-        }
+        "y": 869
     },
     "txt17_11": {
         "align": "right",
@@ -390,8 +398,7 @@
         "value": "",
         "width": 114,
         "x": 112,
-        "y": 997,
-        "aldiaField": "caprntcrfleteremitente"
+        "y": 997
     },
     "txt17_12": {
         "align": "right",
@@ -407,8 +414,7 @@
         "value": "",
         "width": 114,
         "x": 112,
-        "y": 1018,
-        "aldiaField": "caprntcrseguroremitente"
+        "y": 1018
     },
     "txt17_13": {
         "align": "right",
@@ -424,8 +430,7 @@
         "value": "",
         "width": 114,
         "x": 112,
-        "y": 1039,
-        "aldiaField": "caprntcrotroremitente"
+        "y": 1039
     },
     "txt17_14": {
         "align": "right",
@@ -441,8 +446,7 @@
         "value": "",
         "width": 114,
         "x": 112,
-        "y": 1061,
-        "aldiaField": "docField_totalRemitente"
+        "y": 1061
     },
     "txt17_21": {
         "align": "left",
@@ -461,8 +465,7 @@
         "value": "",
         "width": 80,
         "x": 240,
-        "y": 997,
-        "aldiaField": "mndidremitente"
+        "y": 997
     },
     "txt17_22": {
         "align": "left",
@@ -481,8 +484,7 @@
         "value": "",
         "width": 80,
         "x": 240,
-        "y": 1018,
-        "aldiaField": "mndidseguroremitente"
+        "y": 1018
     },
     "txt17_23": {
         "align": "left",
@@ -501,8 +503,7 @@
         "value": "",
         "width": 80,
         "x": 240,
-        "y": 1039,
-        "aldiaField": "mndidotroremitente"
+        "y": 1039
     },
     "txt17_24": {
         "align": "left",
@@ -521,8 +522,7 @@
         "value": "",
         "width": 80,
         "x": 240,
-        "y": 1061,
-        "aldiaField": "docField_RemitenteMoneda"
+        "y": 1061
     },
     "txt17_31": {
         "align": "right",
@@ -538,8 +538,7 @@
         "value": "",
         "width": 100,
         "x": 334,
-        "y": 997,
-        "aldiaField": "caprntcrfletedestinatario"
+        "y": 997
     },
     "txt17_32": {
         "align": "right",
@@ -555,8 +554,7 @@
         "value": "",
         "width": 100,
         "x": 334,
-        "y": 1018,
-        "aldiaField": "caprntcrsegurodestinatario"
+        "y": 1018
     },
     "txt17_33": {
         "align": "right",
@@ -572,8 +570,7 @@
         "value": "",
         "width": 100,
         "x": 334,
-        "y": 1039,
-        "aldiaField": "caprntcrotrodestinatario"
+        "y": 1039
     },
     "txt17_34": {
         "align": "right",
@@ -589,8 +586,7 @@
         "value": "",
         "width": 100,
         "x": 334,
-        "y": 1061,
-        "aldiaField": "docField_totalDestinatario"
+        "y": 1061
     },
     "txt17_41": {
         "align": "left",
@@ -609,8 +605,7 @@
         "value": "",
         "width": 94,
         "x": 447,
-        "y": 997,
-        "aldiaField": "mndiddestinatario"
+        "y": 997
     },
     "txt17_42": {
         "align": "left",
@@ -629,8 +624,7 @@
         "value": "",
         "width": 94,
         "x": 447,
-        "y": 1018,
-        "aldiaField": "mndidsegurodestinatario"
+        "y": 1018
     },
     "txt17_43": {
         "align": "left",
@@ -649,8 +643,7 @@
         "value": "",
         "width": 94,
         "x": 447,
-        "y": 1039,
-        "aldiaField": "mndidotrodestinatario"
+        "y": 1039
     },
     "txt17_44": {
         "align": "left",
@@ -669,8 +662,7 @@
         "value": "",
         "width": 94,
         "x": 447,
-        "y": 1061,
-        "aldiaField": "docField_totalDestinatarioMoneda"
+        "y": 1061
     },
     "txt18": {
         "align": "left",
@@ -686,8 +678,7 @@
         "value": "",
         "width": 503,
         "x": 40,
-        "y": 1103,
-        "aldiaField": "caprntcrdocumento"
+        "y": 1103
     },
     "txt19": {
         "align": "left",
@@ -703,8 +694,7 @@
         "value": "",
         "width": 503,
         "x": 40,
-        "y": 1171,
-        "aldiaField": "caprntcrcampo19"
+        "y": 1171
     },
     "txt20": {
         "align": "left",
@@ -720,8 +710,7 @@
         "value": "",
         "width": 503,
         "x": 560,
-        "y": 963,
-        "aldiaField": ""
+        "y": 963
     },
     "txt21": {
         "align": "left",
@@ -737,8 +726,7 @@
         "value": "",
         "width": 503,
         "x": 560,
-        "y": 963,
-        "aldiaField": "caprntcrinstrucciones"
+        "y": 963
     },
     "txt22": {
         "align": "left",
@@ -754,8 +742,7 @@
         "value": "",
         "width": 503,
         "x": 560,
-        "y": 1070,
-        "aldiaField": "caprntcrcampo22"
+        "y": 1070
     },
     "txt23": {
         "align": "left",
@@ -771,8 +758,7 @@
         "value": "",
         "width": 503,
         "x": 560,
-        "y": 1210,
-        "aldiaField": "caprntcrcampo23"
+        "y": 1210
     },
     "txt24": {
         "align": "center",
@@ -788,8 +774,7 @@
         "value": "",
         "width": 173,
         "x": 477,
-        "y": 1357,
-        "aldiaField": ""
+        "y": 1357
     },
     "fecha_creacion": {
         "align": "center",
@@ -805,8 +790,7 @@
         "value": "",
         "width": 173,
         "x": 477,
-        "y": 1357,
-        "aldiaField": "caprntcrfechacreacion"
+        "y": 1357
     },
     "referencia": {
         "align": "center",
@@ -822,7 +806,6 @@
         "value": "",
         "width": 173,
         "x": 477,
-        "y": 1357,
-        "aldiaField": ""
+        "y": 1357
     }
 }

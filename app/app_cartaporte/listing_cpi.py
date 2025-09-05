@@ -2,6 +2,7 @@
 from app_docs.forms_docs import BuscarDocForm
 from app_docs.listing_doc import DocumentosListadoView, DocumentosListadoTable
 
+from django.utils.text import Truncator
 import django_tables2 as tables
 
 from .models_doccpi import Cartaporte
@@ -17,14 +18,18 @@ class CartaportesListadoView (DocumentosListadoView):
 # Table
 #----------------------------------------------------------
 class CartaportesListadoTable (DocumentosListadoTable):
-	class Meta:
+	class Meta (DocumentosListadoTable.Meta):
 		model         = Cartaporte
 		urlDoc        = "cartaporte"
-		fields        = ("row_number", "numero", "remitente", "descripcion", "referencia", "acciones")
+		fields        = ("row_number", "numero", "descripcion", "referencia", "remitente", "fecha_emision", "acciones")
 		template_name = DocumentosListadoTable.template
-		attrs         = {'class': 'table table-striped table-bordered'}		
 
 	remitente = tables.Column(
 		verbose_name="Remitente",
 		attrs={"td": {"class": "text-truncate", "style": "max-width: 500px;"}}
 	)
+
+	def render_descripcion(self, value):
+		return Truncator(value or "").chars(50)   # e.g. ~150 chars
+
+

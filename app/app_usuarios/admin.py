@@ -8,11 +8,11 @@ from .models import Usuario, Empresa
 # --- Usuario ---
 class UsuarioAdmin(UserAdmin):
     readonly_fields = ('date_joined',)
-    list_display = ('username', 'email', 'perfil', 'is_staff', 'date_joined')
+    list_display = ('username', 'empresa', 'email', 'perfil', 'is_staff', 'date_joined')
     list_filter  = ('perfil', 'is_staff')
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
-        ('Personal Info', {'fields': ('nombre', 'email', 'perfil')}),
+        ('Personal Info', {'fields': ('nombre', 'empresa', 'pais', 'email', 'perfil')}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('Important Dates', {'fields': ('last_login', 'date_joined')}),
     )

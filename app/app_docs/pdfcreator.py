@@ -49,6 +49,8 @@ class CreadorPDF:
 		# Remove "id" field needed only for access DB
 		self.paramFields.pop ("id")
 		self.paramFields.pop ("numero")
+		self.paramFields.pop ("fecha_creacion")
+		self.paramFields.pop ("referencia")
 		#self.paramFields.popitem ()      # OriginalCopia
 
 	#----------------------------------------------------------------

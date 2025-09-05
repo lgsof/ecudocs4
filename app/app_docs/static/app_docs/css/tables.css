@@ -1,0 +1,13 @@
+.table.small-table {
+    font-size: 0.75rem;      /* ≈12px font */
+    line-height: 1.1;        /* tighter vertical spacing */
+}
+.table.small-table-compact {
+    font-size: 11px;         /* small text */
+    line-height: 1.0;        /* very tight rows */
+    padding: 2px 4px;        /* reduce cell padding */
+}
+.table.small-table-compact td,
+.table.small-table-compact th {
+    padding: 2px 6px;        /* overrides Bootstrap’s default padding */
+}

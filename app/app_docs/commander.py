@@ -14,19 +14,19 @@ class Commander:
 		self.docType = docType
 	#-------------------------------------------------------------------
 	#-------------------------------------------------------------------
-	def onPdfCommand (self, pdfType, request, *args, **kwargs):
+	def onPdfCommand (self, pdfCommand, doc, request, *args, **kwargs):
 		print (f"\n+++ onPdfCommand:", request.method, ": PK :", kwargs.get ("pk"))
 		if request.method == "GET":
 			pk = kwargs.get ('pk')
-			formFields = DocUtils.getFormFieldsFromDB (self.docType, pk)
+			formFields = doc.getFormFieldsFromDB (pk)
 		else:
-			formFields = DocUtils.getFormFieldsFromRequest (request)
+			formFields = doc.getFormFieldsFromRequest (request)
 
 		# Create a single PDF or PDF with child documents (Cartaporte + Manifiestos)
-		if "paquete" in pdfType:
+		if "paquete" in pdfCommand:
 			pdfResponse = self.createPdfResponseMultiDoc (formFields)
 		else:
-			pdfResponse = self.createPdfResponseSingleDoc (formFields, pdfType)
+			pdfResponse = self.createPdfResponseSingleDoc (formFields, pdfCommand)
 		return pdfResponse
 
 	#-------------------------------------------------------------------

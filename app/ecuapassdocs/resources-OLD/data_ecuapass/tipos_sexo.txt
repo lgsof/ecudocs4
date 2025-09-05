@@ -1,3 +1,0 @@
-﻿--Selección--
-[M] Hombre
-[F] Mujer

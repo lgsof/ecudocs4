@@ -3,6 +3,7 @@ import re
 from django.db import models
 
 from ecuapassdocs.info.ecuapass_extractor import Extractor
+from ecuapassdocs.info.ecuapass_utils import Utils
 
 import app_manifiesto as appMci
 from app_docs.models_docbase import DocBaseModel
@@ -23,10 +24,6 @@ class Cartaporte (DocBaseModel):
 	remitente    = models.ForeignKey (Cliente, related_name="cartaportes_remitente", on_delete=models.SET_NULL, null=True, blank=True)
 	destinatario = models.ForeignKey (Cliente, related_name="cartaportes_destinatario", on_delete=models.SET_NULL, null=True, blank=True)
 
-	# TODOS los campos del formulario en formato txt## van aquí
-	# Ej: {"txt00": "...", "txt01": "...", "txt13_1": "...", ...}
-	txtFields = models.JSONField (default=dict, blank=True)	
-
 	# ---------------- Helpers --------------------------------------
 	#-- Get str for printing
 	def __str__ (self):
@@ -36,68 +33,46 @@ class Cartaporte (DocBaseModel):
 	# ---------------------------------------------------------------
 	# Save doc to DB
 	# ---------------------------------------------------------------
-	def save (self, doc, docNumber=None):
-		print (f"\n+++ Saving Cartaporte number: '{docNumber}'")
-		if docNumber:
-			self.numero  = docNumber
-			self.usuario = doc.usuario
-			self.empresa = doc.empresa
-			self.pais    = doc.pais
+	def update (self, doc):
+		print (f"\n+++ Guardando cartaporte número: '{doc.numero}'")
+		if doc.numero:
+			self.numero        = doc.numero
+			empresaInstance    = Scripts.getEmpresaByNickname (doc.empresa)
+			self.empresa       = empresaInstance
+			usuarioInstance    = Scripts.getUsuarioByUsernameEmpresa (doc.usuario, empresaInstance.id)
+			self.usuario       = usuarioInstance
+			self.pais          = doc.pais
+			self.descripcion   = self.getTxtDescripcion ()
+			self.fecha_emision = self.getTxtFechaEmision ()
 
-			docFields      = doc.getDocFields ()
-			self.remitente = self.getDocRemitente (docFields)  
-			super().save()
+			# Set txt fields
+			self.setTxtFields (doc.getTxtFields ())
+			self.setTxtNumero (self.numero)
+			self.setTxtPais (self.pais)
 
-	#-- Get/Set txt form fields
-	def get_txt (self, key, default=None):
-		return self.txtFields.get (key, default)
+			docFields         = doc.getDocFields ()
+			self.remitente    = self.getTxtRemitente ()  
+			print (f"\n+++ {self.txtFields=}'")
 
-	def set_txt (self, key, value):
-		data       = dict (self.txtFields)
-		data [key] = value
-		self.txtFields   = data
+			self.save()
 
-	def set_txt_fields (self, mapping: dict, skip_empty=True):
-		"""Actualiza varios txt## de una vez."""
-		data = dict (self.txtFields)
-		for k, v in mapping.items():
-			if not skip_empty or (v not in (None, "", [])):
-				data[k] = v
-		self.txtFields = data	
+	#-- Return docParams from doc DB instance
+	def getDocParams (self, inputParams):
+		docParams = inputParams
+		docParams ["id"]["value"]       = self.id
+		docParams ["numero"]["value"]   = self.numero
+		docParams ["pais"]["value"]     = self.pais
+		docParams ["usuario"]["value"]  = self.usuario.username
+		docParams ["empresa"]["value"]  = self.empresa.nickname
 
-	def get_txt_fields (self):
-		txtFields = dict (self.txtFields)
-		return txtFields
+		txtFields = self.getTxtFields ()
+		for k, v in txtFields.items():	# Not include "numero" and "id"
+			text     = txtFields [k]
+			maxChars = inputParams [k]["maxChars"]
+			newText  = Utils.breakLongLinesFromText (text, maxChars)
+			docParams [k]["value"] = newText if newText else ""
+		return docParams
 
-	def getRemitente(self):
-		return self.txtFields.get ("txt02")
-
-	def getDestinatario(self):
-		return self.txtFields.get ("txt03")
-
-	def getMercanciaInfo(self):
-		return {
-			"cantidad":   self.txtFields.get("txt10"),
-			"marcas":	  self.txtFields.get("txt11"),
-			"descripcion": self.txtFields.get("txt12"),
-		}	
-
-	def setValues (self, formFields, docFields, pais, username):
-		# Base values
-		self.pais = pais
-		self.descripcion   = self.getDocDescripcion (docFields)
-		self.fecha_emision = self.getDocFechaEmision (docFields)
-
-		# Document values
-		self.remitente     = self.getDocRemitente (docFields)
-		self.destinatario  = self.getDocDestinatario (docFields)
-
-		# Mezcla todos los txt## que vengan
-		only_txt = {k: v for k, v in formFields.items() if str (k).startswith("txt")}
-		self.set_txt_fields (only_txt)		
-		
-		# If not has, then create "suggested" manifiesto
-		#self.createUpdateSuggestedManifiesto ()
 
 	#-- Check if the CPI has a "manifiesto"
 	def hasManifiesto (self):
@@ -109,73 +84,22 @@ class Cartaporte (DocBaseModel):
 			print (f"+++ No existe manifiesto para cartaporte nro: '{cartaporteNumber}´")
 			return False
 
-	def getDocRemitente (self, docFields):
-		cliente = Scripts.getSaveClienteInstanceFromText (docFields ["02_Remitente"], type="02_Remitente")
-		print (f"\n+++ {cliente=}'")
+	#---------------------------------------------------------------
+	# Get/Set txt fields
+	#---------------------------------------------------------------
+	def getTxtRemitente (self):
+		cliente = Scripts.getSaveClienteInstanceFromText (self.getTxt ("txt02"), type="02_Remitente")
 		return cliente 
 
-	def getDocDestinatario (self, docFields):
-		clienteInfo = Scripts.getSaveClienteInstanceFromText (docFields ["03_Destinatario"], type="03_Destinatario")
-		return clienteInfo
+	def getTxtDestinatario (self):
+		cliente = Scripts.getSaveClienteInstanceFromText (self.getTxt ("txt03"), type="03_Destinatario")
+		return cliente
 
-	def getDocDescripcion (self, docFields):
-		return docFields ["12_Descripcion_Bultos"]
+	def getMercanciaInfo(self):
+		return {
+			"cantidad":   self.txtFields.get("txt10"),
+			"marcas":	  self.txtFields.get("txt11"),
+			"descripcion": self.txtFields.get("txt12"),
+		}	
 
-	#----------------------------------------------------------------
-	#-- Old form fields
-	#----------------------------------------------------------------
-#	def getNumberFromId (self):
-#		numero = 2000000+ self.numero 
-#		numero = f"CI{numero}"
-#		return (self.numero)
-#
-#	def getNumero (self):
-#		return self.txt00
-#	def getRemitente (self):
-#		return self.txt02
-#	def getDestinatario (self):
-#		return self.txt03
-#
-#	def getMercanciaInfo (self):
-#		return {"cantidad":self.txt10, "marcas":self.txt11, "descripcion":self.txt12}
-#
-#	#-- Get info from CartaporteForm itself, empresa, pais, and predictions
-#	def getManifiestoInfo (self, empresa, pais):
-#		empresaInfo = EcuData.empresas [empresa]
-#
-#		# Info from Empresa, pais
-#		info = {}
-#		info ["pais"]               = pais[:2]
-#		info ["permisoOriginario"]  = empresaInfo ["permisos"]["originario"]
-#		info ["permisoServicios"]   = empresaInfo ["permisos"]["servicios1"]
-#
-#		aduanasDic = { "COLOMBIA": {"aduanaCruce":"IPIALES-COLOMBIA", "aduanaDestino":"TULCAN-ECUADOR"},
-#			           "ECUADOR" : {"aduanaCruce":"TULCAN-ECUADOR", "aduanaDestino":"IPIALES-COLOMBIA"},
-#			           "PERU"    : {"aduanaCruce":"", "aduanaDestino":""} }
-#		info.update (aduanasDic [pais])
-#
-#		# Info from Cartaporte
-#		info ["cartaporte"]         = self.numero
-#		info ["cantidad"]           = self.txt10
-#		info ["marcas"]             = self.txt11
-#		info ["descripcion"]        = self.txt12
-#		info ["pesoNeto"]           = self.txt13_1
-#		info ["pesoBruto"]          = self.txt13_2
-#		info ["volumen"]            = self.txt14
-#		info ["otrasUnd"]           = self.txt15
-#		info ["incoterms"]          = re.sub (r'[\r\n]+\s*', '. ', self.txt16) # Plain INCONTERMS
-#		info ["fechaEmision"]       = self.txt19
-#
-#		# Info from predicions: vehiculo, carga
-##		predInfo  = self.getPredictor ()
-##		info.update (predInfo)
-#
-#		return info
-#
-#	def getPredictor (self):
-#		from app_cartaporte.predictor import Predictor
-#		predictor = Predictor ()
-#		predInfo  = predictor.predictManifiestoInfo (self)
-#		return predInfo
-#
 
