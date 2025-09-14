@@ -4,6 +4,8 @@
 - Custom user management
 
 ## LOG
+Sep/15: r0.900 : Redesigned: working full CPIs. 
+
 Sep/02: r0.870 : New simple ecudocs4
 
 Aug/16: r0.860 : New repo EcuapassDocs3

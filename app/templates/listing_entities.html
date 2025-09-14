@@ -1,6 +1,6 @@
 <!-- Template for listing documents with a filter form and results table -->
 
-{% extends "base_main.html" %}
+{% extends "main_page_template.html" %}
 {% load crispy_forms_tags %}
 {% load render_table from django_tables2 %}
 
@@ -13,7 +13,7 @@
 		{% csrf_token %}
 		{% crispy itemsForma %}
 	</form>
-	
+
 	{% if itemsLista %}
 		{% render_table itemsTable %}
 	{% else %}

@@ -20,10 +20,16 @@ urlpatterns = [
 	path('editar/<int:pk>', CartaporteDocView.as_view(), name='cartaporte-editar'),
 
 	# PDF, detail, remove
-	path('pdf_original/<int:pk>', CartaporteDocView.as_view(), name='cartaporte-pdf_original'),
-	path('pdf_copia/<int:pk>', CartaporteDocView.as_view(), name='cartaporte-pdf_copia'),
-	path('pdf_paquete/<int:pk>', CartaporteDocView.as_view(), name='cartaporte-pdf_paquete'),
+	path('pdf/<str:filename>', CartaporteDocView.as_view(), name='cartaporte-pdf'),
+	#path('pdf/<int:pk>', CartaporteDocView.as_view(), name='cartaporte-pdf'),
+	#path('pdf/<str:pdfType>/<str:filename>', CartaporteDocView.as_view(), name='cartaporte-pdf'),
+
+	#path('pdf_original/<int:pk>', CartaporteDocView.as_view(), name='cartaporte-pdf_original'),
+	#path('pdf_copia/<int:pk>', CartaporteDocView.as_view(), name='cartaporte-pdf_copia'),
+	#path('pdf_paquete/<int:pk>', CartaporteDocView.as_view(), name='cartaporte-pdf_paquete'),
+
 	path('clonar/<int:pk>', CartaporteDocView.as_view(), name='cartaporte-clonar'),
+
     path('detalle/<pk>', views_cpi.CartaporteDetailView.as_view(), name='cartaporte-detalle'),
 	path('borrar/<int:pk>', views_cpi.CartaporteDelete.as_view(), name='cartaporte-delete'),
 

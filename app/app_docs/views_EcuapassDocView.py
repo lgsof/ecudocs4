@@ -1,14 +1,13 @@
 
-import json, os, re, sys
-from os.path import join
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
 
 from django.utils.timezone import now
-from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import render
 from django.views import View
 
 from django.contrib import messages
-from django.forms.models import model_to_dict
 
 # For CSRF protection
 from django.utils.decorators import method_decorator
@@ -20,18 +19,12 @@ from django.urls import resolve   # To get calling URLs
 
 # Own imports
 from ecuapassdocs.info.ecuapass_utils import Utils 
-from ecuapassdocs.utils.docutils import DocUtils
 
-from app_cartaporte.models_doccpi import Cartaporte
 from app_manifiesto.models_docmci import Manifiesto, ManifiestoForm
 from app_declaracion.models_docdti import Declaracion, DeclaracionForm
 
-from app_usuarios.models import Usuario
-
-from .pdfcreator import CreadorPDF 
 from .docs_DocEcuapass import DocEcuapass 
-from ecuapassdocs.utils.models_scripts import Scripts
-from .commander import Commander
+from ecuapassdocs.utils.commander import Commander
 
 #--------------------------------------------------------------------
 #-- Handle URL request for new doc template with iframes
@@ -44,7 +37,7 @@ def docView(request, *args, **kwargs):
 	else:
 		context = {f"requestType":f"{docType}-nuevo"}
 
-	return render(request, 'documento_main.html', context)
+	return render(request, 'documento_forma_main.html', context)
 
 #--------------------------------------------------------------------
 #-- Vista para manejar las solicitudes de manifiesto
@@ -56,7 +49,7 @@ class EcuapassDocView (LoginRequiredMixin, View):
 		print (f"\n+++ Creando nueva vista EcuapassDocView...")
 		super().__init__ (*args, **kwargs)
 		self.docType	      = docType
-		self.template_name    = "documento_forma.html"
+		self.template_name    = "documento_forma_frame.html"
 		self.background_image = background_image
 		self.parameters_file  = parameters_file
 
@@ -69,6 +62,8 @@ class EcuapassDocView (LoginRequiredMixin, View):
 	#-------------------------------------------------------------------
 	def get (self, request, *args, **kwargs):
 		print ("\n\n+++ GET :: EcuapassDocView +++")
+		print (f"\t+++ getResponseForCommand::{request.GET=}'")
+		pdfType  = request.GET.get ('pdfType', '').lower()
 		urlCommand = resolve (request.path_info).url_name
 		return self.getResponseForCommand (urlCommand, request, *args, **kwargs)
 
@@ -79,6 +74,7 @@ class EcuapassDocView (LoginRequiredMixin, View):
 	@method_decorator(csrf_protect)
 	def post (self, request, *args, **kwargs):
 		print ("\n\n+++ POST :: EcuapassDocView +++")
+		print (f"\t+++ getResponseForCommand::{request.POST=}'")
 		buttonCommand  = request.POST.get ('boton_seleccionado', '').lower()
 		return self.getResponseForCommand (buttonCommand, request, *args, **kwargs)
 
@@ -87,15 +83,16 @@ class EcuapassDocView (LoginRequiredMixin, View):
 	#-------------------------------------------------------------------
 	def getResponseForCommand (self, command, request, *args, **kwargs):
 		response = None
-		self.getCurrentDocuments (request)
+		self.docParams  = self.doc.update (request, args, kwargs)
+		self.formFields = self.doc.getFormFields ()
 
 		if "editar" in command or "nuevo" in command:
-			return self.onEditCommand (request, *args, **kwargs)
+			return self.onEditCommand ("NORMAL", request, *args, **kwargs)
 		elif "guardar" in command:
-			docId = self.onSaveCommand (request) 
-			return redirect (f"editar/{docId}")
+			docId = self.onSaveCommand (request, args, kwargs) 
+			return HttpResponseRedirect (self.get_edit_url(docId))
 		elif "pdf" in command:
-			return self.commander.onPdfCommand (command, self.doc, request, *args, **kwargs)
+			return self.onPdfCommand (command, request, *args, **kwargs)
 		elif "clonar" in command:
 			return self.onCloneCommand (command, request, *args, **kwargs)
 		else:
@@ -104,109 +101,88 @@ class EcuapassDocView (LoginRequiredMixin, View):
 		return response
 
 	#-------------------------------------------------------------------
+	# Set "txt00" to "CLON" and call edit without "pk" so with current docParams
 	#-------------------------------------------------------------------
-	def onPdfCommand  (self, command, request, *args, **kwargs):
-		formFields = self.doc.getFormFieldsFromRequest (request)
-		pk        = kwargs.get ('pk')
-		if (pk):
-			self.docParams  = self.doc.getExistingDocument (pk)
-			self.formFields = self.doc.getFormFieldsFromDocParams (self.docParams)
-			return self.commander.onPdfCommand (command, request, *args, **kwargs)
+	def onCloneCommand  (self, command, request, *args, **kwargs):
+		print (f"\n+++ onCloneCommand...")
+		pk = kwargs.get ('pk')
+		return self.onEditCommand ("CLON", request, args, kwargs)
+	
 	#-------------------------------------------------------------------
-	#-- Get/Create current document 
 	#-------------------------------------------------------------------
-	def getCurrentDocuments (self, request):
-		print (f"\n+++ Getting session current documents...'")
-		if not "current_docs" in request.session:
-			print (f"\n+++ Creating session current documents...'")
-			request.session ["current_docs"] = {}
+	def onPdfCommand (self, pdfCommand, request, *args, **kwargs):
+		print (f"\n+++ onPdfCommand:", request.method, ": PK :", kwargs.get ("pk"))
+		if request.method == "GET":
+			pk         = int (request.GET.get ("pk"))
+			pdfCommand = request.GET.get ("pdfType")
+			self.formFields = self.doc.getFormFieldsFromDB (pk)
+		else:
+			self.formFields = self.doc.getFormFieldsFromRequest (request)
 
-		self.currentDocs = request.session ["current_docs"]
+		return self.commander.createPdf (pdfCommand, self.formFields)
+
+	#-------------------------------------------------------------------
+	# Save document to DB checking max docs for user
+	#-------------------------------------------------------------------
+	def onSaveCommand (self, request, *args, **kwargs):
+		print ("+++ onSaveCommand...")
+		pk  = kwargs.get ('pk')
+		docNumber  = self.formFields ["numero"]
+		if "NUEVO" in docNumber or "CLON" in docNumber:
+			docId = self.doc.saveDocumentNewToDB ()
+		else:
+			docId = self.doc.saveDocumentExistingToDB ()
+
+		return docId
 
 	#-------------------------------------------------------------------
 	# Edit existing, new, or clon doc
 	#-------------------------------------------------------------------
-	def onEditCommand  (self, request, *args, **kwargs):
+	def onEditCommand  (self, editType, request, *args, **kwargs):
 		print (f"\n+++ onEditCommand...")
 		pk        = kwargs.get ('pk')
-		if (pk):
-			docParams = self.editExistingDocument (request, pk)
-		else:
-			docParams = self.editNewDocument (request)
+
+		if (editType=="NORMAL" and not pk): # New
+			formFields = self.editDocumentNew (request)
+		elif (editType=="NORMAL" and pk):   # Existing 
+			formFields = self.editDocumentFromDB (request, pk)
+		elif (editType=="CLON"):              # Clone
+			formFields = self.editDocumentClon (request)
 
 		# Send input fields parameters (bounds, maxLines, maxChars, ...)
-		docUrl     = self.docType.lower()
+		self.doc.updateFromFormFields (formFields)
+		docParams = self.doc.getDocParamsFromFormFields (self.formFields)
 		contextDic = {
 			"docTitle"         : self.doc.getDocTitulo (),
 			"docType"          : self.docType, 
 			"pais"             : self.doc.getDocPais (),
 			"input_parameters" : docParams,
 			"background_image" : self.background_image,
-			"document_url"	   : docUrl,
+			"document_url"	   : self.docType.lower(),
 			"timestamp"        : now().timestamp ()
 		}
 		return render (request, self.template_name, contextDic)
 
-
-	def editExistingDocument (self, request, pk):
-		print (f"\n+++ Editing exising document {pk=}'")
-		self.docParams  = self.doc.getExistingDocument (pk)
-		self.formFields = self.doc.getFormFieldsFromDocParams (self.docParams)
-		request.session ["current_docs"][self.formFields ["numero"]] = self.formFields
-
-		return self.docParams
-
-	def editNewDocument (self, request):
+	#-- Update form fields new doc
+	def editDocumentNew (self, request):
 		print (f"\n+++ Editing new document...'")
-		formFields                     = self.doc.getFormFields ()
+		self.formFields ["id"]     = ""
+		self.formFields ["numero"] = self.doc.generateDocNumberTemporal ()
+		return self.formFields
 
-		formFields ["id"]          = ""
-		formFields ["numero"]      = self.doc.generateDocNumber ("NEW")
-		formFields ["usuario"]     = request.user.username
-		formFields ["empresa"]     = request.empresa.nickname
-		formFields ["pais"]        = request.session.get ("pais")
-		formFields ["url"]         = resolve (request.path_info).url_name
-		request.session ["current_docs"][formFields ["numero"]] = formFields
+	#-- Get doc from DB and updates session docs
+	def editDocumentFromDB (self, request, pk):
+		print (f"\n+++ Editing exising document {pk=}'")
+		self.formFields = self.doc.getExistingDocumentFromDB (pk)
+		return self.formFields
 
-		request.session.modified = True
-		self.doc.update (formFields)
+	def editDocumentClon (self, request):
+		print (f"\n+++ Editing cloned document...'")
+		self.formFields = self.doc.getFormFieldsFromRequest (request)
+		self.formFields ["numero"] = "CLON"
+		self.formFields ["txt00"]  = "CLON"
+		return self.formFields
 
-		docParams = self.doc.getDocParams ()
-		docParams ["numero"]["value"] = formFields ["numero"]
-		docParams ["txt00"]["value"] = formFields ["numero"]
-
-		self.currentDocs = request.session ["current_docs"]
-		return docParams
-
-	#-------------------------------------------------------------------
-	# Save document to DB checking max docs for user
-	#-------------------------------------------------------------------
-	def onSaveCommand (self, request, *args, **kwargs):
-		print ("+++ Guardando documento...")
-		print (f"\n+++ {request.POST.get ('txt00')=}'")
-		docNumber = request.POST.get ('numero')
-		if "NUEVO" in docNumber:
-			formFields = self.doc.getFormFieldsFromRequest (request)
-			self.doc.update (formFields)
-			docId = self.doc.saveNewDocToDB ()
-		else:
-			formFields = self.doc.getFormFieldsFromRequest (request)
-			self.doc.update (formFields)
-			docId = self.doc.saveDocumentToDB ()
-
-		return docId
-
-	#-------------------------------------------------------------------
-	# Set "txt00" to "CLON" and call edit without "pk" so with current docParams
-	#-------------------------------------------------------------------
-	def onCloneCommand  (self, command, request, *args, **kwargs):
-		print (f"\n+++ onCloneCommand...")
-		pk = kwargs.get ('pk')
-		self.docParams = self.doc.getDocParams (pk)
-		self.docParams ["numero"]['value'] = "CLON"
-		self.docParams ["txt00"]['value'] = "CLON"
-		return self.onEditCommand (command, request, args, kwargs)
-	
 	#-------------------------------------------------------------------
 	# Check if document has changed
 	#-------------------------------------------------------------------
@@ -270,4 +246,12 @@ class EcuapassDocView (LoginRequiredMixin, View):
 
 		return False
 
+
+	#----------------------------------------------------------------
+	# Build the URL name you already use for editing.
+	# Example: name='cartaporte_editar' with path('cartaporte/editar/<int:pk>/...')
+	#----------------------------------------------------------------
+	def get_edit_url(self, pk: int) -> str:
+		url_name = f"{self.docType.lower()}-editardoc"
+		return reverse(url_name, kwargs={"pk": pk})
 

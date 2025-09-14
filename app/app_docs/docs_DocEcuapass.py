@@ -4,19 +4,14 @@ General class for handling documents for cartaporte, manifiesto, declaracion
 
 import uuid
 from django.urls import resolve   # To get calling URLs
-from django.shortcuts import get_object_or_404, render, redirect
-from django.http import HttpResponse
 
 from ecuapassdocs.utils.resourceloader import ResourceLoader 
 from ecuapassdocs.info.ecuapass_utils import Utils
-from ecuapassdocs.utils.docutils import DocUtils
-from app_usuarios.models import Usuario
 
 from app_cartaporte.models_doccpi import Cartaporte
 from app_manifiesto.models_docmci import Manifiesto, ManifiestoForm
 from app_declaracion.models_docdti import Declaracion, DeclaracionForm
 from ecuapassdocs.utils.models_scripts import Scripts
-from .pdfcreator import CreadorPDF 
 
 class DocEcuapass:
 	def __init__ (self, docType, paramsFile):
@@ -28,18 +23,52 @@ class DocEcuapass:
 		self.formFields = {k:"" for k in self.inputParams.keys()} # id, numero, usuario, empresa, ..., txt01:xxx, txt02:yyy, ...
 
 	#-------------------------------------------------------------------
+	# Print all instance variables
+	#-------------------------------------------------------------------
+	def printInfo (self):
+		print (f"\n+++ Info current doc:'")
+		for key, value in vars (self).items():
+			print(f"\n\t{key}: {value}")
+		
+	#-------------------------------------------------------------------
 	# Update from view form fields
 	#-------------------------------------------------------------------
-	def update (self, formFields):
-		self.id       = formFields ["id"] 
-		self.numero   = formFields ["numero"] 
-		self.usuario  = formFields ["usuario"]
-		self.empresa  = formFields ["empresa"]
-		self.pais     = formFields ["pais"]
-		self.url      = formFields ["url"]
+	def update (self, request, args, kwargs):
+		self.id       = ""
+		self.numero   = ""
+		self.usuario  = request.user.username
+		self.empresa  = request.empresa.nickname
+		self.pais     = request.session.get ("pais") 
+		self.url      = resolve (request.path_info).url_name
 
-		self.formFields  = formFields
+		pk            = kwargs.get ('pk')
+		if pk:
+			self.id = pk
 
+		# Fill formFields
+		self.formFields = self.createFormFields ()
+		if request.POST:
+			requestFields = request.POST
+			self.id       = requestFields ["id"]
+			self.numero   = requestFields ["numero"]
+			fields = ["id", "numero", "usuario", "empresa", "pais", "url"]
+			for f in fields:
+				self.formFields [f] = requestFields [f]
+
+			for key in [x for x in requestFields.keys() if x.startswith ("txt")]:
+				self.formFields [key] = requestFields [key].replace ("\r\n", "\n")
+
+		self.docParams  = self.getDocParamsFromFormFields (self.formFields)
+		return self.docParams
+
+	#-- Update from formFields
+	def updateFromFormFields (self, formFields):
+		fields = ["id", "numero", "usuario", "empresa", "pais", "url"]
+		for key in fields:
+			setattr (self, key, formFields [key])
+		self.formFields = formFields
+
+	#----------------------------------------------------------------
 	# Return current form fields
 	def getFormFields (self):
 		return self.formFields
@@ -66,16 +95,16 @@ class DocEcuapass:
 		return id 
 
 	#-- Save new document ----------------------------------------------
-	def saveNewDocToDB  (self):
+	def saveDocumentNewToDB  (self):
 		print  (f">>> Guardando '{self.docType}' nuevo en la BD...")
-		self.numero = self.generateDocNumber ()      # Fist, generate docNumber based on id of last ModelCLASS row"
+		self.numero = self.generateDocNumberFinal ()      # Fist, generate docNumber based on id of last ModelCLASS row"
 		docInstance = self.ModelCLASS ()
 		docInstance.update  (doc=self)
 		return docInstance.id
 
 	#-- Save existing document -----------------------------------------
-	def saveExistingDocToDB (self):
-		print (f">>> Guardando '{self.docType}' existente en la BD...")
+	def saveDocumentExistingToDB (self):
+		print (f"+++\t Guardando '{self.docType}' existente en la BD...")
 		docInstance = Scripts.getDocumentById (self.ModelCLASS, self.id)
 		docInstance.update  (doc=self)
 
@@ -105,12 +134,14 @@ class DocEcuapass:
 	#-------------------------------------------------------------------
 	#-- Generate doc number from last doc number saved in DB
 	#-------------------------------------------------------------------
-	def generateDocNumber  (self, type=None):
+	#-- Generate temporal doc number
+	def generateDocNumberTemporal  (self):
 		docType  = Utils.getDocPrefix (self.docType)
+		return  f"NUEVO-{docType}-{str(uuid.uuid4())}"
 
-		if type == "NEW":
-			return  f"NUEVO-{docType}-{str(uuid.uuid4())}"
-
+	#-- Generate final doc number
+	def generateDocNumberFinal  (self):
+		docType  = Utils.getDocPrefix (self.docType)
 		num_zeros = 5
 		lastDoc   = self.ModelCLASS.objects.filter  (pais=self.pais).exclude  (numero="SUGERIDO").order_by  ("-id").first  ()
 		if lastDoc:
@@ -135,13 +166,19 @@ class DocEcuapass:
 	def getDocPais (self):
 		return self.pais
 
-	# Return document params -- e.g. txt01: {id,numero,pais,txt01 {align,class,ecudocField,...,value}
-	def getExistingDocument (self, idRecord):
+	# Get doc from DB. Return doc params -- e.g. txt01: {id,numero,pais,txt01 {align,class,ecudocField,...,value}
+	def getExistingDocumentFromDB (self, idRecord):
 		record      = self.ModelCLASS.objects.filter (id=idRecord).first()
 		docParams   = record.getDocParams (self.inputParams)
 		formFields  = self.getFormFieldsFromDocParams (docParams)
-		self.update (formFields)
-		return docParams
+		return formFields
+
+	#----------------------------------------------------------------
+	# Getters/Settes/Converter between fields (formFields, docParams)
+	#----------------------------------------------------------------
+	#-- Create empty formFields with all keys of inputParams
+	def createFormFields (self):
+		return self.getFormFieldsFromDocParams (self.inputParams)
 
 	def getFormFieldsFromDocParams (self, docParams):
 		formFields = {}
@@ -158,16 +195,32 @@ class DocEcuapass:
 	def getFormFieldsFromRequest (self, request):
 		print (f"\n+++ ...getFormFieldsFromRequest...")
 		formFields = {}
-		formFields ["id"]      = request.POST.get ("id") 
-		formFields ["numero"]  = request.POST.get ("numero") 
-		formFields ["pais"]    = request.session.get ("pais") 
+
 		formFields ["usuario"] = request.user.username
 		formFields ["empresa"] = request.empresa.nickname
+		formFields ["pais"]    = request.session.get ("pais") 
 		formFields ["url"]     = resolve (request.path_info).url_name
-		requestValues          = request.POST 
-		for key in [x for x in requestValues if x.startswith ("txt")]:
-			formFields [key] = requestValues [key].replace ("\r\n", "\n")
+
+		if request.POST:
+			formFields ["id"]      = request.POST.get ("id") 
+			formFields ["numero"]  = request.POST.get ("numero") 
+			requestValues          = request.POST 
+			for key in [x for x in requestValues if x.startswith ("txt")]:
+				formFields [key] = requestValues [key].replace ("\r\n", "\n")
+
 		return formFields
+
+	#-- Return docParams from form fields
+	def getDocParamsFromFormFields (self, formFields):
+		docKeys = ["id", "numero", "pais", "usuario", "empresa"]
+		docParams = self.inputParams
+		for k in docKeys:
+			docParams [k]["value"] = formFields [k]
+
+		for k in formFields.keys():	
+			docParams [k]["value"] = formFields [k]
+		self.docParams = docParams
+		return docParams
 
 	def getDocParams (self, idRecord=None):
 		# Check if new or existing document

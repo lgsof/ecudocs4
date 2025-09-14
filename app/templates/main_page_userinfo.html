@@ -1,0 +1,46 @@
+<style>
+    .user-info-sidebar {
+        background-color: #f8f9fa;
+        padding: 5px;
+        border-radius: 4px;
+        margin-bottom: 15px;
+        font-size: 12px;
+    }
+    
+    .user-info-sidebar table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    .user-info-sidebar th {
+        text-align: left;
+        font-weight: 600;
+        color: black;
+        padding: 2px 8px 2px 0;
+        width: 35%;
+        font-size: 11px;
+    }
+    
+    .user-info-sidebar td {
+        color: blue;
+        padding: 2px 0;
+        font-weight: 500;
+    }
+</style>
+
+<div class="user-info-sidebar">
+    <table>
+        <tr>
+            <th>Usuario:</th>
+            <td>{{ user.username }}</td>
+        </tr>
+        <tr>
+            <th>Empresa:</th>
+            <td>{{ user.empresa.nickname }}</td>
+        </tr>
+        <tr>
+            <th>País:</th>
+            <td>{{ user.pais }}</td>
+        </tr>
+    </table>
+</div>

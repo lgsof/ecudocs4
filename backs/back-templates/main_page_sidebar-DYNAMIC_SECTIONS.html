@@ -1,0 +1,129 @@
+{# templates/partials/sidebar.html #}
+{% block sidebar %}
+<aside class="sidebar bg-light border-right p-3">
+	<div class="d-flex align-items-center justify-content-between mb-2">
+		<h5 class="mb-0">EcuapassDocs</h5>
+	</div>
+	<hr class="sidebar-separator">
+
+	<ul class="list-unstyled mb-0">
+		{% if not user.is_authenticated %}
+		<li>
+			<a href="{% url 'login' %}?next={{ request.path }}">Iniciar</a>
+		</li>
+		{% else %}
+			<hr class="sidebar-separator">
+
+			{# Helper to detect active section by url_name #}
+			{% with current=request.resolver_match.url_name %}
+			
+			{# Standard document sections with Nuevo/Listar pattern #}
+			{% for section_name, section_title in docsSidebarItems.document_sections.items %}
+				{% with listado_key=section_name|add:"-listado" %}
+				<a class="nav-link p-0 mb-1"
+				   href="#{{ section_name }}"
+				   data-bs-toggle="collapse"
+				   aria-expanded="{% if current == section_name or current == listado_key %}true{% else %}false{% endif %}"
+				   aria-controls="{{ section_name }}">
+					▸ {{ section_title }}
+				</a>
+				<div id="{{ section_name }}"
+					 class="collapse {% if current == section_name or current == listado_key %}show{% endif %}">
+					<ul class="nav flex-column ml-3 mb-2">
+						<li class="nav-item">
+							<a class="nav-link py-1 px-0 {% if current == section_name %}active{% endif %}"
+							   href="{% url section_name %}nuevodoc" target="_blank">
+								Nuevo
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link py-1 px-0 {% if current == listado_key %}active{% endif %}"
+							   href="{% url listado_key %}">
+								Listar
+							</a>
+						</li>
+					</ul>
+				</div>
+				{% endwith %}
+			{% endfor %}
+
+			<hr class="sidebar-separator">
+
+			<!-- Entidades -->
+			<a class="nav-link p-0 mb-1"
+			   href="#entidades"
+			   data-bs-toggle="collapse"
+			   aria-expanded="{% if current in 'clientes vehiculos conductores' %}true{% else %}false{% endif %}"
+			   aria-controls="entidades">
+				▸ Entidades
+			</a>
+			<div id="entidades"
+				 class="collapse {% if current in 'clientes vehiculos conductores' %}show{% endif %}">
+				<ul class="nav flex-column ml-3 mb-2">
+					{% for entity_name, entity_title in entity_sections.items %}
+					<li class="nav-item">
+						<a class="nav-link py-1 px-0 {% if current == entity_name %}active{% endif %}"
+						   href="{% url entity_name %}">
+							{{ entity_title }}
+						</a>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+
+			<hr class="sidebar-separator">
+			{% include 'main_page_userinfo.html' %}
+
+			<form method="post" action="{% url 'logout' %}" class="mb-3">
+				{% csrf_token %}
+				<button type="submit" class="btn btn-sm btn-outline-secondary btn-block">
+					Cerrar sesión
+				</button>
+			</form>
+
+			<!-- Usuario -->
+			<a class="nav-link p-0 mb-1"
+				 href="#usuario"
+				 data-bs-toggle="collapse"
+				 aria-expanded="false"
+				aria-controls="usuario">
+				 ▸ Usuario
+			</a>
+			<div id="usuario" class="collapse">
+				<ul class="nav flex-column ml-3 mb-2">
+					<li class="nav-item">
+						<a class="nav-link py-1 px-0" href="{% url 'password' %}">Cambiar contraseña</a>
+					</li>
+				</ul>
+			</div>
+
+			{% if user.es_director or user.is_staff %}
+			<hr class="sidebar-separator">
+			<!-- Administración -->
+			<a class="nav-link p-0 mb-1"
+			   href="#administracion"
+			   data-bs-toggle="collapse"
+			   aria-expanded="{% if current in 'usuarios reportes' %}true{% else %}false{% endif %}"
+			   aria-controls="administracion">
+				▸ Administración
+			</a>
+			<div id="administracion"
+				 class="collapse {% if current in 'usuarios reportes' %}show{% endif %}">
+				<ul class="nav flex-column ml-3 mb-2">
+					{% for admin_name, admin_title in admin_sections.items %}
+					<li class="nav-item">
+						<a class="nav-link py-1 px-0 {% if current == admin_name %}active{% endif %}"
+						   href="{% url admin_name %}">
+							{{ admin_title }}
+						</a>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+			{% endif %}
+			
+			{% endwith %}
+		{% endif %}
+	</ul>
+</aside>
+{% endblock %}

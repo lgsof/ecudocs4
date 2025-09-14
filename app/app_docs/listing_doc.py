@@ -2,9 +2,12 @@
 Base classes (View, Table) for listing ECUAPASS documents (Cartaporte, Manifiesto, Declaracion)
 """
 
+import json
+
 # For views
 from django.views import View
 from django.shortcuts import render
+from django.conf import settings
 
 # For forms
 from django import forms
@@ -65,9 +68,18 @@ class DocumentosListadoView (View):
 		table = self.DOCTABLE (instances)
 		RequestConfig (request, paginate={'per_page': 15}).configure (table) # Pagination
 
-		args =	{'itemsTipo':self.docsTipo, 'itemsLista': instances, 
+		args =	{
+				'release': self.getRelease (),
+				'itemsTipo':self.docsTipo, 'itemsLista': instances, 
 				 'itemsForma': form, 'itemsTable': table}
 		return render(request, 'listing_entities.html', args)
+
+	def getRelease (self):
+		infoFile = settings.STATIC_ROOT + "/app_docs/json/ecuapassdocs-info.json"
+		with open (infoFile) as fp:
+			info = json.load (fp)
+		return info ["release"]
+	
 
 #----------------------------------------------------------
 #-- Forma
@@ -135,14 +147,32 @@ class DocumentosListadoTable (BaseListadoTable):
 		self.urlDoc               = getattr (self.Meta, 'urlDoc', 'default-url')
 		self.urlEditar            = f"{self.urlDoc}-editardoc"
 
-		self.base_columns ['numero']  = tables.LinkColumn (self.urlEditar, args=[A('pk')])
+		# Focus (don’t navigate if already open)
+		self.base_columns['numero'] = tables.TemplateColumn(
+			template_code='''
+			  <a href="{{ record.get_link_editar }}"
+				class="open-doc"
+				data-win="doc_{{ record.pk }}">
+				{{ record.numero }}
+			  </a>
+			''',
+			verbose_name="Número",
+			accessor="numero",   # keep sorting by the underlying field
+			orderable=True
+		)
+
 		# Column for apply actions in the current item document
 		self.base_columns ['acciones'] = tables.TemplateColumn(
 			template_code='''
-			<a href="{{ record.get_link_editar }}" target='_blank'>Editar</a>
-			<a href="{{ record.get_link_pdf }}" target='_blank'>PDF</a>
-			<a href="{{ record.get_link_eliminar }}" target='_blank'>Eliminar</a>
-			<a href="{{ record.get_link_detalle }}" target='_blank'>Detalle</a>
+			<!-- Focus (don’t navigate if already open) -->
+			<a href="{{ record.get_link_editar }}" class="open-doc" data-win="doc_{{ record.pk }}">Editar</a>
+
+			<a href="{{ record.get_link_pdf }}?pk={{ record.id }}&pdfType=original" target='_blank'>PdfO</a>
+			<a href="{{ record.get_link_pdf }}?pk={{ record.id }}&pdfType=copia" target='_blank'>PdfC</a>
+			<a href="{{ record.get_link_pdf }}?pk={{ record.id }}&pdfType=paquete" target='_blank'>PdfP</a>
+
+			<a href="{{ record.get_link_eliminar }}" class="open-doc" data-win="doc_{{ record.pk }}">Eliminar</a>
+			<a href="{{ record.get_link_detalle }}" class="open-doc" data-win="doc_{{ record.pk }}">Detalle</a>
 			''',
 			verbose_name='Acciones'
 		)
@@ -150,9 +180,9 @@ class DocumentosListadoTable (BaseListadoTable):
 		#self.counter = 0  # Initialize a counter to keep track of rows
 
 	#-- Generate a URL for each record
-	def render_numero (self, value, record):
-		return format_html('<a href="{}" target="_blank" >{}</a>', 
-					 reverse(self.urlEditar, args=[record.pk]), value)
+#	def render_numero (self, value, record):
+#		return format_html('<a href="{}" target="_blank" >{}</a>', 
+#					 reverse(self.urlEditar, args=[record.pk]), value)
 
        # Use Django’s format system
 	def render_fecha_emision(self, value):

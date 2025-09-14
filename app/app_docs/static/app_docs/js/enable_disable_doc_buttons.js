@@ -2,7 +2,7 @@
 
 function enableDisableDocButtons (document, docNumber) {
 	//let docNumber = document.getElementById ("numero")
-	if (docNumber.value === "" || docNumber.value === "CLON") {
+	if (docNumber.value === "" || docNumber.value.includes ("NUEVO") || docNumber.value === "CLON") {
 		document.getElementById("boton_pdf_original").setAttribute("disabled", "disabled");
 		document.getElementById("boton_pdf_copia").setAttribute("disabled", "disabled");
 		document.getElementById("boton_pdf_paquete").setAttribute("disabled", "disabled");

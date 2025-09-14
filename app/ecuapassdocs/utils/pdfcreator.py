@@ -56,11 +56,11 @@ class CreadorPDF:
 	#----------------------------------------------------------------
 	# Create multiPDF for values and docTypes
 	#----------------------------------------------------------------
-	def createMultiPdf (self, values, types):
+	def createPdfFileMultiDoc (self, values, types):
 		pdf_list = []
 		docNumber = None
 		for i, (formFields, docType) in enumerate (zip (values, types)):
-			outPdfPath = self.createPdfDocument (docType, formFields, "COPIA")
+			outPdfPath = self.createPdfFileSingleDoc (docType, formFields, "COPIA")
 			pdf_list.append (outPdfPath)
 
 			if i == 0:
@@ -89,7 +89,7 @@ class CreadorPDF:
 	#-- Crea PDF con otro PDF como background y añade texto sobre este
 	#-- pdfType: "original", "copia", "clon"
 	#----------------------------------------------------------------
-	def createPdfDocument (self, docType, formFields, pdfType):
+	def createPdfFileSingleDoc (self, docType, formFields, pdfType):
 		self.setFilenamesForResources (docType)
 
 		pdfType     = pdfType.lower()
@@ -110,6 +110,7 @@ class CreadorPDF:
 			print (f"ERROR. Tipo de documento desconocido: '{docType}'")
 			
 		outPdfPath  = join (tmpPath, f"{self.prefix}-{docNumber}.pdf") 
+
 		outJsonPath = join (tmpPath, f"{self.prefix}-{docNumber}.json") 
 
 		text_pdf, jsonFieldsDic = self.writeInputsToPdf (docType, self.paramFields, formFields)
@@ -126,6 +127,7 @@ class CreadorPDF:
 		LINESPACE = 2
 		packet = io.BytesIO()
 		can = canvas.Canvas(packet)
+
 
 		for key, params in paramFields.items():
 			if not key.startswith ("txt"):
@@ -162,6 +164,7 @@ class CreadorPDF:
 				drawFun (x, y, line.strip())
 
 		jsonFieldsDic = self.embedFieldsIntoPDF (docType, can, paramFields, formFields)
+		#can.setTitle ("My Custom PDF Title")   # <--- this sets the browser tab title
 		can.save()
 
 		packet.seek(0)

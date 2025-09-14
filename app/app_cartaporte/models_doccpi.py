@@ -1,6 +1,7 @@
 import re
 
 from django.db import models
+from django.http import HttpResponse
 
 from ecuapassdocs.info.ecuapass_extractor import Extractor
 from ecuapassdocs.info.ecuapass_utils import Utils
@@ -42,19 +43,25 @@ class Cartaporte (DocBaseModel):
 			usuarioInstance    = Scripts.getUsuarioByUsernameEmpresa (doc.usuario, empresaInstance.id)
 			self.usuario       = usuarioInstance
 			self.pais          = doc.pais
-			self.descripcion   = self.getTxtDescripcion ()
-			self.fecha_emision = self.getTxtFechaEmision ()
 
 			# Set txt fields
 			self.setTxtFields (doc.getTxtFields ())
 			self.setTxtNumero (self.numero)
 			self.setTxtPais (self.pais)
 
+			self.descripcion   = self.getTxtDescripcion ()
+			self.fecha_emision = self.getTxtFechaEmision ()
+
 			docFields         = doc.getDocFields ()
 			self.remitente    = self.getTxtRemitente ()  
 			print (f"\n+++ {self.txtFields=}'")
 
 			self.save()
+
+			# after saving
+			resp = HttpResponse("OK")
+			resp["HX-Trigger"] = '{"docs-updated": true}'
+			return resp
 
 	#-- Return docParams from doc DB instance
 	def getDocParams (self, inputParams):
@@ -88,7 +95,8 @@ class Cartaporte (DocBaseModel):
 	# Get/Set txt fields
 	#---------------------------------------------------------------
 	def getTxtRemitente (self):
-		cliente = Scripts.getSaveClienteInstanceFromText (self.getTxt ("txt02"), type="02_Remitente")
+		text    = self.getTxt ("txt02")
+		cliente = Scripts.getSaveClienteInstanceFromText (text, type="02_Remitente") if text else None
 		return cliente 
 
 	def getTxtDestinatario (self):

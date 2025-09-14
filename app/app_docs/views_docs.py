@@ -23,6 +23,7 @@ def index (request):
 	"""
 	Función vista para la página inicio del sitio.
 	"""
+
 	# Genera contadores de algunos de los objetos principales
 	num_clientes = Cliente.objects.all().count()
 	num_conductors = Conductor.objects.all().count()

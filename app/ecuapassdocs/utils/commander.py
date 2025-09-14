@@ -3,8 +3,10 @@ from django.http import HttpResponse
 
 from ecuapassdocs.info.ecuapass_utils import Utils
 from ecuapassdocs.utils.models_scripts import Scripts
-from .pdfcreator import CreadorPDF 
 from ecuapassdocs.utils.docutils import DocUtils
+from ecuapassdocs.utils.pdfcreator import CreadorPDF
+
+from urllib.parse import quote
 
 import app_cartaporte
 import app_manifiesto
@@ -12,16 +14,10 @@ import app_manifiesto
 class Commander:
 	def __init__ (self, docType):
 		self.docType = docType
-	#-------------------------------------------------------------------
-	#-------------------------------------------------------------------
-	def onPdfCommand (self, pdfCommand, doc, request, *args, **kwargs):
-		print (f"\n+++ onPdfCommand:", request.method, ": PK :", kwargs.get ("pk"))
-		if request.method == "GET":
-			pk = kwargs.get ('pk')
-			formFields = doc.getFormFieldsFromDB (pk)
-		else:
-			formFields = doc.getFormFieldsFromRequest (request)
 
+	#-------------------------------------------------------------------
+	#-------------------------------------------------------------------
+	def createPdf (self, pdfCommand, formFields):
 		# Create a single PDF or PDF with child documents (Cartaporte + Manifiestos)
 		if "paquete" in pdfCommand:
 			pdfResponse = self.createPdfResponseMultiDoc (formFields)
@@ -43,7 +39,7 @@ class Commander:
 			inputValuesList		  = [docFields] + valuesList
 			docTypesList		  = [self.docType] + typesList
 
-			outPdfPath = creadorPDF.createMultiPdf (inputValuesList, docTypesList)
+			outPdfPath = creadorPDF.createPdfFileMultiDoc (inputValuesList, docTypesList)
 			return self.createPdfResponse (outPdfPath)
 		except Exception as ex:
 			Utils.printException ("Error creando PDF múltiple")
@@ -79,21 +75,28 @@ class Commander:
 		try:
 			print ("+++ Creando respuesta PDF simple...")
 			creadorPDF = CreadorPDF ("ONE_PDF")
-			outPdfPath = creadorPDF.createPdfDocument (self.docType, formFields, pdfType)
+			outPdfPath = creadorPDF.createPdfFileSingleDoc (self.docType, formFields, pdfType)
 			return self.createPdfResponse (outPdfPath)
 		except Exception as ex:
 			Utils.printException ("Error creando PDF simple")
 		return None
 
 	#-- Create PDF response
-	def createPdfResponse (self, outPdfPath):
+	def createPdfResponse(self, outPdfPath):
+		import os
+		from django.http import HttpResponse
+		
+		filename = os.path.basename(outPdfPath)
+	
 		with open(outPdfPath, 'rb') as pdf_file:
-			pdfContent = pdf_file.read()
+			response = HttpResponse(pdf_file.read(), content_type='application/pdf')
+			response['Content-Disposition'] = f'inline; filename="{filename}"'
+			
+			# Cache control headers
+			response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+			response['Pragma'] = 'no-cache'
+			response['Expires'] = '0'
+			
+		return response
 
-		# Prepare and return HTTP response for PDF
-		pdfResponse = HttpResponse (content_type='application/pdf')
-		pdfResponse ['Content-Disposition'] = f'inline; filename="{outPdfPath}"'
-		pdfResponse.write (pdfContent)
-
-		return pdfResponse
 

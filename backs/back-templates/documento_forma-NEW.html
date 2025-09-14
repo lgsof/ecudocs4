@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{{ docTitle }}</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    html, body { height: 100%; margin: 0; }
+    .page { display: flex; flex-direction: column; height: 100%; }
+
+    /* Sticky top bar for document actions */
+    .top-panel {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #333;
+      color: #fff;
+      padding: 8px 10px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .top-panel .submit {
+      background: #444;
+      border: 0;
+      color: #fff;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+    .top-panel .submit:disabled { opacity: .6; cursor: default; }
+
+    /* Scrollable workspace, centers the doc */
+    .workspace {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow: auto;
+      display: flex;
+      justify-content: center;   /* center horizontally */
+      align-items: flex-start;   /* keep top aligned */
+      background: #f4f6f8;       /* optional: nice gutter */
+      padding: 16px;
+    }
+
+    /* Fixed-size document canvas */
+    .doc-canvas {
+      position: relative;
+      width: 1100px;
+      height: 1424px;
+      background-image: url('{% static background_image %}');
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    /* Overlay inputs placed absolutely */
+    .doc-canvas input,
+    .doc-canvas textarea {
+      position: absolute;
+      resize: none;
+    }
+  </style>
+
+  <!-- your CSS/JS includes as before -->
+  <link rel="stylesheet" href="{% static 'app_docs/css/documento_forma_styles.css' %}">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <script src="{% static 'app_docs/js/utils.js' %}"></script>
+  <script src="{% static 'app_docs/js/createInputTextareas.js' %}"></script>
+  <script src="{% static 'app_docs/js/handleInput.js' %}"></script>
+  <script src="{% static 'app_docs/js/handlePredictions.js' %}"></script>
+  <script src="{% static 'app_docs/js/setParametersToInputs.js' %}"></script>
+  <script src="{% static 'app_docs/js/autocomplete-documents.js' %}"></script>
+  <script src="{% static 'app_docs/js/enable_disable_doc_buttons.js' %}"></script>
+</head>
+
+<body>
+  <form action="{% url document_url %}" method="post" id="forma_pdf" class="page">
+    {% csrf_token %}
+
+    <!-- Top bar -->
+    <div class="top-panel">
+      <button class="submit" type="submit" onclick="setActionUrl('/editar/')" id="boton_guardar">Guardar</button>
+      <button class="submit" type="submit" onclick="setActionUrl('/pdf_original/')" id="boton_pdf_original" disabled>PDF Original</button>
+      <button class="submit" type="submit" onclick="setActionUrl('/pdf_copia/')" id="boton_pdf_copia" disabled>PDF Copia</button>
+      <button class="submit" type="submit" onclick="setActionUrl('/pdf_paquete/')" id="boton_pdf_paquete" disabled>PDF Paquete</button>
+      <button class="submit" type="submit" onclick="setActionUrl('/clonar/')" id="boton_clonar" disabled>Clonar</button>
+      <button class="submit" type="submit" onclick="setActionUrl('/detalle/')" id="boton_detalle" disabled>Detalles</button>
+    </div>
+
+    <!-- Centered scrollable workspace -->
+    <div class="workspace">
+      <div class="doc-canvas" id="docCanvas"></div>
+    </div>
+
+    <input type="hidden" name="boton_seleccionado" id="boton_seleccionado">
+    <input type="hidden" name="trigger_url" value="{{ request.build_absolute_uri }}">
+  </form>
+
+  <script>
+    let inputsParameters = {{ input_parameters|safe }};
+    let docType = '{{ docType }}';
+
+    const canvasEl = document.getElementById("docCanvas");
+    const textAreas = createInputTextareas(inputsParameters, canvasEl);
+
+    setParametersToInputs(textAreas, inputsParameters, docType);
+    handlePredictions(docType, textAreas);
+    setAutocompleteForDocument(docType);
+
+    let docNumber = document.getElementById("id");
+    enableDisableDocButtons(document, docNumber);
+
+    $('#forma_pdf').on('submit', function (event) {
+      const submitter = event.originalEvent?.submitter;
+      if (submitter) {
+        document.getElementById('boton_seleccionado').value = submitter.id;
+      }
+    });
+  </script>
+</body>
+</html>
+

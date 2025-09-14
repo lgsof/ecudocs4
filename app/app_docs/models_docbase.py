@@ -10,7 +10,8 @@ from django.urls import reverse
 from ecuapassdocs.info.ecuapass_utils import Utils 
 from ecuapassdocs.info.ecuapass_extractor import Extractor 
 
-from django.db.models import Q
+from django.db.models import Q, CharField, TextField, EmailField, SlugField, URLField
+from django.db.models.functions import Cast
 
 #from .models_Entidades import Cliente
 
@@ -51,6 +52,10 @@ class DocBaseModel (models.Model):
 	def getDocName(self):
 		return self.getDocType ().lower ()
 
+	def getPdfName(self):
+		docPrefix = Utils.getDocPrefix (self.getDocType())
+		return f"{docPrefix}-{self.numero}.pdf"
+
 	#----------------------------------------------------------------
 	# Get/Set txt form fields
 	#----------------------------------------------------------------
@@ -61,16 +66,20 @@ class DocBaseModel (models.Model):
 		self.setTxt ("txt0a", Utils.getCodigoPaisFromPais (pais))
 
 	def getTxtDescripcion (self):
-		docKeys	= {"CARTAPORTE":"txt12", "MANIFIESTO":"txt29", "DECLARACION":"txt10"}
-		text    = self.txtFields [docKeys [self.getDocType()]]
-		return	Extractor.getDescription (text)
+		try:
+			docKeys	= {"CARTAPORTE":"txt12", "MANIFIESTO":"txt29", "DECLARACION":"txt10"}
+			text    = self.getTxt (docKeys [self.getDocType()])
+			return	Extractor.getDescription (text) if text else None
+		except Exception as ex:
+			Utils.printException (f"Error obteniendo fecha emision para '{self.getDocType()}'")
+		return None
 
 	#-- Extract 'fecha emision' from doc fields
 	def getTxtFechaEmision (self):
 		try:
 			docKeys	= {"CARTAPORTE":"txt19", "MANIFIESTO":"txt40", "DECLARACION":"txt23"}
-			text    = self.txtFields [docKeys [self.getDocType()]]
-			return Extractor.getFechaEmisionFromText (text)
+			text    = self.getTxt (docKeys [self.getDocType()])
+			return Extractor.getFechaEmisionFromText (text) if text else None
 		except Exception as ex:
 			Utils.printException (f"Error obteniendo fecha emision para '{self.getDocType()}'")
 		return None
@@ -121,23 +130,33 @@ class DocBaseModel (models.Model):
 	# Methods for special column "Acciones" when listing documents
 	#-------------------------------------------------------------------
 	def get_link_editar(self):
-		docName = self.getDocType ().lower()
-		url     = f"{docName}-editardoc"
+		docUrl = self.getDocType ().lower()
+		url     = f"{docUrl}-editardoc"
 		return reverse (url, args=[self.pk])
 
 	def get_link_pdf (self):
-		docName = self.getDocType ().lower()
-		url     = f"{docName}-pdf_original"
-		return reverse (url, args=[self.pk])
+		docUrl = self.getDocType ().lower()
+		url     = f"{docUrl}-pdf"
+		return reverse (url, args=[self.getPdfName ()])
+#
+#	def get_link_pdf_original (self):
+#		docUrl = self.getDocType ().lower()
+#		url     = f"{docUrl}-pdf_original"
+#		return reverse (url, args=[self.pk])
+#
+#	def get_link_pdf_copia (self):
+#		docUrl = self.getDocType ().lower()
+#		url     = f"{docUrl}-pdf_copia"
+#		return reverse (url, args=[self.pk])
 
 	def get_link_eliminar(self):
-		docName = self.getDocType ().lower()
-		url     = f"{docName}-delete"
+		docUrl = self.getDocType ().lower()
+		url     = f"{docUrl}-delete"
 		return reverse (url, args=[self.pk])
 
 	def get_link_detalle(self):
-		docName = self.getDocType ().lower()
-		url     = f"{docName}-detalle"
+		docUrl = self.getDocType ().lower()
+		url     = f"{docUrl}-detalle"
 		return reverse (url, args=[self.pk])
 
 	
@@ -145,60 +164,19 @@ class DocBaseModel (models.Model):
 	#-- Search a pattern in all 'FORMMODEL' fields of a model
 	#-- Overwritten in some child classes
 	#-------------------------------------------------------------------
-	def searchModelAllFields (self, searchPattern):
-		queries = Q()
-		FORMMODEL = self._meta.get_field ('documento').related_model
-		for field in FORMMODEL._meta.fields:
-			field_name = field.name
-			queries |= Q(**{f"{field_name}__icontains": searchPattern})
-		
-		formInstances = FORMMODEL.objects.filter (queries)
-		DOCMODEL      = self.__class__
-		docInstances  = DOCMODEL.objects.filter (documento__in=formInstances)
-		return docInstances
+	def searchModelAllFields(self, s: str):
+		M = type(self)
 
-#	#-------------------------------------------------------------------
-#	# DB Functions
-#	#-------------------------------------------------------------------
-#	def saveNewDocToDB  (doc):
-#		print  (f">>> Guardando '{docType}' nuevo en la BD...")
-#
-#		DocModel  = self.getDocModelClass  (doc.docType)
-#		docNumber = self.generateDocNumber (DocModel, doc.pais)      # Fist, generate docNumber based on id of last DocModel row"
-#
-#		# Second, save doc model
-#		docModel  = DocModel (numero=docNumber, pais=doc.pais, usuario=doc.usuario)
-#		docModel.save  ()
-#
-#		return id, docNumber
-#
-#	#-------------------------------------------------------------------
-#	#-- Return form document class and register class from document type
-#	#-------------------------------------------------------------------
-#	def getDocModelClass  (self):
-#		import app_cartaporte, app_manifiesto, app_declaracion
-#		if self.docType == "CARTAPORTE":
-#			return app_cartaporte.models_doccpi.Cartaporte
-#		elif self.docType == "MANIFIESTO":
-#			return app_manifiesto.models_docmci.Manifiesto
-#		elif self.docType == "DECLARACION":
-#			return app_declaracion.models_docdti.Declaracion 
-#		else:
-#			raise Exception  (f"Error: Tipo de documento '{docType}' no soportado")
-#			
-#	#-------------------------------------------------------------------
-#	#-- Generate doc number from last doc number saved in DB
-#	#-------------------------------------------------------------------
-#	def generateDocNumber  (self, DocModel, pais):
-#		num_zeros = 5
-#		lastDoc   = DocModel.objects.filter  (pais=pais).exclude  (numero="SUGERIDO").order_by  ("-id").first  ()
-#		if lastDoc:
-#			lastNumber = Utils.getNumberFromDocNumber  (lastDoc.numero)
-#			newNumber  = str  (lastNumber + 1).zfill  (num_zeros)
-#		else:
-#			newNumber  = str  (1).zfill  (num_zeros)
-#
-#		docNumber = Utils.getCodigoPaisFromPais  (pais) + newNumber
-#		print  (f"+++ docNumber '{docNumber}'")
-#		return docNumber
-#
+		q = Q()
+		for f in M._meta.get_fields():
+			if getattr(f, "concrete", False) and not f.is_relation:
+				if isinstance(f, (CharField, TextField, EmailField, SlugField, URLField)):
+					q |= Q(**{f"{f.name}__icontains": s})
+
+		# Always present on this model → no need to guard
+		return (
+			M.objects
+			 .annotate(_txt=Cast("txtFields", TextField()))
+			 .filter(q | Q(_txt__icontains=s))
+		)
+

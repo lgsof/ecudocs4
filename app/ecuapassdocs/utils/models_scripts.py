@@ -32,18 +32,18 @@ class Scripts:
 	#-------------------------------------------------------------------
 	#-- Generate doc number from last doc number saved in DB
 	#-------------------------------------------------------------------
-	def generateDocNumber  (DocModel, pais):
-		num_zeros = 5
-		lastDoc   = DocModel.objects.filter  (pais=pais).exclude  (numero="SUGERIDO").order_by  ("-id").first  ()
-		if lastDoc:
-			lastNumber = Utils.getNumberFromDocNumber  (lastDoc.numero)
-			newNumber  = str  (lastNumber + 1).zfill  (num_zeros)
-		else:
-			newNumber  = str  (1).zfill  (num_zeros)
-
-		docNumber = Utils.getCodigoPaisFromPais  (pais) + newNumber
-		print  (f"+++ docNumber '{docNumber}'")
-		return docNumber
+#	def generateDocNumber  (DocModel, pais):         # DEPRECATED: Moved to EcuapassDoc
+#		num_zeros = 5
+#		lastDoc   = DocModel.objects.filter  (pais=pais).exclude  (numero="SUGERIDO").order_by  ("-id").first  ()
+#		if lastDoc:
+#			lastNumber = Utils.getNumberFromDocNumber  (lastDoc.numero)
+#			newNumber  = str  (lastNumber + 1).zfill  (num_zeros)
+#		else:
+#			newNumber  = str  (1).zfill  (num_zeros)
+#
+#		docNumber = Utils.getCodigoPaisFromPais  (pais) + newNumber
+#		print  (f"+++ docNumber '{docNumber}'")
+#		return docNumber
 
 	#-------------------------------------------------------------------
 	# Save new DocBaseModel document to DB from formFields
