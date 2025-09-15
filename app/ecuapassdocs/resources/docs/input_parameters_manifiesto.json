@@ -21,6 +21,31 @@
             "readonly"
         ]
     },
+
+    "usuario": {
+        "value": "",
+        "class": "input_general",
+        "ecudocsField": "",
+        "codebinField": "",
+        "appField": "",
+        "restrictions": [
+            "hidden",
+            "readonly"
+        ]
+    },
+
+    "empresa": {
+        "value": "",
+        "class": "input_general",
+        "ecudocsField": "",
+        "codebinField": "",
+        "appField": "",
+        "restrictions": [
+            "hidden",
+            "readonly"
+        ]
+    },
+
     "pais": {
         "value": "",
         "class": "input_general",
@@ -33,26 +58,24 @@
             "readonly"
         ]
 	},
-    "txt0c": {
-        "ecudocsField": "00_DocType",
-        "appField": "txt0c",
-        "value": ""
-    },
 
-    "txt0b": {
-        "ecudocsField": "00_DocPermiso",
-        "appField": "txt0b",
-        "value": ""
+    "url": {
+        "value": "",
+        "class": "input_general",
+        "ecudocsField": "",
+        "codebinField": "",
+        "appField": "",
+        "restrictions": [
+            "hidden",
+            "readonly"
+        ]
     },
 
 	"txt0a": {
-        "restrictions": [
-            "readonly",
-            "color=red"
-        ],
+        "value": "",
         "align": "left",
         "class": "input_numero",
-        "ecudocsField": "00_DocPais",
+        "ecudocsField": "00_Pais",
         "codebinField": "",
         "appField": "txt0a",
         "font": "large",
@@ -60,15 +83,16 @@
         "height": 28,
         "maxChars": 2,
         "maxLines": 1,
-        "value": "",
+        "restrictions": [
+            "readonly",
+            "color=red"
+        ],
         "width": 40,
         "x": 760,
         "y": 94
     },
     "txt00": {
-        "restrictions": [
-            "color=red"
-        ],
+        "value": "",
         "align": "left",
         "class": "input_numero",
         "ecudocsField": "00_Numero",
@@ -79,7 +103,9 @@
         "height": 28,
         "maxChars": 12,
         "maxLines": 1,
-        "value": "",
+        "restrictions": [
+            "color=red"
+        ],
         "width": 203,
         "x": 847,
         "y": 94
@@ -472,6 +498,8 @@
         "y": 676
     },
     "txt25_0": {
+        "value": "",
+        "class": "NO_FORMFIELD",
         "ecudocsField": "25_Carga_Tipo",
         "codebinField": "",
         "appField": "txt25_0"
@@ -622,6 +650,7 @@
     },
     "txt29_1": {
         "info": "Only for Transcomerinter general description",
+        "class": "NO_FORMFIELD",
         "ecudocsField": "",
         "codebinField": "",
         "appField": "",

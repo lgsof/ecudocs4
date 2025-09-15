@@ -1,0 +1,12 @@
+{% block command_buttons %}
+<div class="top-panel">
+	<button class="editar_btn"> <a href="{% url docType %}editardoc/{{ docId }}" >Editar</a></button>
+	<button class="original_btn"> <a href="{% url docType %}pdf_original/{{ docId }}" target="_blank">PDF Original</a></button>
+	<button class="copiar_btn"> <a href="{% url docType %}pdf_copia/{{ docId }}" target="_blank">PDF Copia</a></button>
+	<button class="paquete_btn"> <a href="{% url docType %}pdf_paquete/{{ docId }}" target="_blank">PDF Paquete</a></button>
+	<button class="clonar_btn"> <a href="{% url docType %}clonar/{{ docId }}" target="_blank">Clonar</a></button>
+	<span>&nbsp;</span>
+	<span>&nbsp;</span>
+	<button class="borrar_btn"> <a href="{% url docType %}borrar/{{ docId }}" >Borrar</a></button>
+<div>
+{% endblock %}

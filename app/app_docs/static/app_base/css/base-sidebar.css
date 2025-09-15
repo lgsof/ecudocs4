@@ -35,7 +35,10 @@ aside.sidebar li.mb-2 .text-muted.small.d-block {
 }
 
 /* Reset list spacing */
-aside.sidebar ul { margin: 0; padding: 0; }
+aside.sidebar li.nav-item { 
+	margin: -4px 0px; 
+	padding: 1px 4px; 
+}
 
 /* LINKS — make them yellow */
 aside.sidebar a,

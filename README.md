@@ -4,7 +4,9 @@
 - Custom user management
 
 ## LOG
-Sep/15: r0.900 : Redesigned: working full CPIs. 
+Sep/15: r0.901 : Working partially with MCIs.
+
+Sep/14: r0.900 : Redesigned: working full CPIs. 
 
 Sep/02: r0.870 : New simple ecudocs4
 

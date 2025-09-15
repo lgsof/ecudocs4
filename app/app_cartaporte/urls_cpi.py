@@ -21,12 +21,6 @@ urlpatterns = [
 
 	# PDF, detail, remove
 	path('pdf/<str:filename>', CartaporteDocView.as_view(), name='cartaporte-pdf'),
-	#path('pdf/<int:pk>', CartaporteDocView.as_view(), name='cartaporte-pdf'),
-	#path('pdf/<str:pdfType>/<str:filename>', CartaporteDocView.as_view(), name='cartaporte-pdf'),
-
-	#path('pdf_original/<int:pk>', CartaporteDocView.as_view(), name='cartaporte-pdf_original'),
-	#path('pdf_copia/<int:pk>', CartaporteDocView.as_view(), name='cartaporte-pdf_copia'),
-	#path('pdf_paquete/<int:pk>', CartaporteDocView.as_view(), name='cartaporte-pdf_paquete'),
 
 	path('clonar/<int:pk>', CartaporteDocView.as_view(), name='cartaporte-clonar'),
 

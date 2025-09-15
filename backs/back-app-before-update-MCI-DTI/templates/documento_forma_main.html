@@ -1,0 +1,119 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ecuapass Doc:</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			font-family: Arial, sans-serif;
+			height: 100vh;
+			overflow: hidden;
+		}
+
+		.container {
+			display: flex;
+			height: 100%;
+		}
+
+		/* Left Sidebar */
+		.sidebar {
+			width: 10%;
+			background-color: #333;
+			padding: 10px;
+			color: white;
+			height: 100vh;
+		}
+
+		.sidebar button {
+			width: 100%;
+			padding: 10px;
+			margin: 10px 0;
+			background-color: #444;
+			border: none;
+			color: white;
+			cursor: pointer;
+		}
+
+		.sidebar button:hover {
+			background-color: #555;
+		}
+
+		/* Right Content (Iframe) */
+		.content {
+			width: 100%;
+			height: 100vh;
+		}
+
+		iframe {
+			width: 100%;
+			height: 100%;
+			border: none;
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="{% static 'app_docs/css/documento_forma_styles.css' %}">
+
+	<script>
+		// Function to simulate a button click inside the iframe
+		function triggerButtonInIframe (buttonId) {
+			var iframe	  = document.getElementById('documento_frame').contentWindow;
+			var iframeDoc = iframe.document || iframe.contentDocument;
+			var button	  = iframeDoc.getElementById (buttonId);
+			if (button) 
+				button.click(); // Simulate a click on the iframe button
+			 else 
+				console.log("Button not found in iframe");
+		}
+	</script>
+	<script src="{% static 'app_docs/js/enable_disable_doc_buttons.js' %}"></script>
+</head>
+<body>
+	<div class="container">
+		<!-- Left Sidebar -->
+		<div class="sidebar">
+			<h4>Opciones Documento</h4>
+			<button id="boton_guardar" 
+				onclick="triggerButtonInIframe ('boton_guardar')">Guardar</button>
+			<button id="boton_pdf_original" disabled
+				onclick="triggerButtonInIframe ('boton_pdf_original')">PDF Original</button>
+			<button id="boton_pdf_copia" disabled
+				onclick="triggerButtonInIframe ('boton_pdf_copia')">PDF Copia</button>
+			<button id="boton_pdf_paquete" disabled
+				onclick="triggerButtonInIframe ('boton_pdf_paquete')">PDF Paquete</button>
+			<button id="boton_clonar" disabled
+				onclick="triggerButtonInIframe ('boton_clonar')">Clonar</button>
+			<button id="boton_detalle" disabled
+				onclick="triggerButtonInIframe ('boton_detalle')">Detalles</button>
+		</div>
+
+		<div class="content">
+			{% if pk %} <!-- Editar -->
+				<iframe id="documento_frame" src="{% url requestType pk=pk %}"></iframe>
+			{% else %} <!-- Nuevo -->
+				<iframe id="documento_frame" src="{% url requestType %}"></iframe>
+			{% endif %}			  
+		</div>
+		<script>
+			var iframe = document.getElementById('documento_frame');
+			iframe.onload = function() {
+				var iframeDocument = iframe.contentWindow.document;
+				// Enable/disable option buttons
+				docNumber = iframeDocument.getElementById ("numero");
+				enableDisableDocButtons (document, docNumber)
+				// Change the title of the iframe page
+				docTitle = iframe.contentWindow.getDocTitle ()
+				document.title = docTitle
+			}
+		</script>
+	</div>
+
+</body>
+</html>
+

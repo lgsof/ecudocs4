@@ -1,0 +1,13 @@
+{% extends "main_page_template.html" %}
+
+{% block content %}
+  <h1>Cliente: {{ cliente.nombre }}</h1>
+
+  <p><strong>Tipo ID:</strong> {{ cliente.tipoId }}</p>
+  <p><strong>Número ID:</strong> {{ cliente.numeroId }}</p>
+  <p><strong>Dirección:</strong> {{ cliente.direccion }}</p>
+  <p><strong>Ubicación:</strong> {{ cliente.ciudad }} - {{ cliente.pais }}</p>
+
+  <button><a href="{% url 'cliente-editar' cliente.id %}">Editar</a></button>
+  <button><a href="{% url 'cliente-eliminar' cliente.id %}">Eliminar</a></button>
+{% endblock %}

@@ -1,0 +1,33 @@
+/* For main side bar
+ * Put this in your base CSS 
+ * */
+
+.sidebar {
+  position: sticky;  /* or fixed if your layout needs it */
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: #00001e;
+  color: yellow;
+}
+
+.sidebar .nav-link.active {
+  font-weight: 600;
+  text-decoration: underline;
+}
+.sidebar-separator {
+  margin: .75rem 0;
+}
+
+/*
+        .sidebar {
+            width: 210px;
+            background-color: #00001e;
+            color: yellow;
+            padding: 5px;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+
+*/

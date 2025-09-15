@@ -1,0 +1,10 @@
+{
+	"name" : "ecuapassdocs",
+	"release" : "4.0",
+	"log": {
+		"r4.0"   : "ReDesigned",
+		"r1.000" : "On railway. Migrated data BY/LG. MaxChars/MaxLines",
+		"r0.720" : "Modified links to open in new tabs. Improved DB scrips for load data to DB",
+		"r0.710" : "Fixed cartaporte PDF/PNG templates and bounds"
+		}
+}

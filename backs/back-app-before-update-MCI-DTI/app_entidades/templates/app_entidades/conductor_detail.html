@@ -1,0 +1,13 @@
+{% extends "main_page_template.html" %}
+
+{% block content %}
+  <h1>Conductor: {{ conductor.nombre }}</h1>
+
+  <p><strong>Identificación:</strong> {{ conductor.documento }}</p>
+  <p><strong>Nacionalidad:</strong> {{ conductor.pais }}</p>
+  <p><strong>Licencia:</strong> {{ conductor.licencia }}</p>
+
+  <button><a href="{% url 'conductor-editar' conductor.id %}">Editar</a></button>
+  <button><a href="{% url 'conductor-eliminar' conductor.id %}">Eliminar</a></button>
+
+{% endblock %}

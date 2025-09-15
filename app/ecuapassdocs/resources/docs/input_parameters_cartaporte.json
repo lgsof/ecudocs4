@@ -71,6 +71,7 @@
     },
 
     "txt0a": {
+        "value": "",
         "align": "left",
         "class": "input_numero",
         "ecudocsField": "00a_Pais",
@@ -85,12 +86,12 @@
             "readonly",
             "color=red"
         ],
-        "value": "",
         "width": 40,
         "x": 696,
         "y": 88
     },
     "txt00": {
+        "value": "",
         "align": "left",
         "class": "input_numero",
         "ecudocsField": "00_Numero",
@@ -104,7 +105,6 @@
         "restrictions": [
             "color=red"
         ],
-        "value": "",
         "width": 233,
         "x": 797,
         "y": 88

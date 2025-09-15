@@ -1,0 +1,179 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title> {% block title %} {{ docTitle }}{% endblock %} </title>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-------------------------------------------------------------------->
+	<!-- ECUAPASS document styles(cartaporte, manifiesto, declaracion) -->
+	<!-------------------------------------------------------------------->
+	<style>
+		#background {
+			/*background-image: url('{% static background_image %}?v={{ timestamp }}');*/
+			/*background-size: 1699px 2200px; /* Tamaño fijo de la imagen de fondo */
+			/*#background-size: cover; /* Adjust as needed */
+			background-image: url('{% static background_image %}');
+			background-repeat: no-repeat;
+			width: 1100px; /* Ancho fijo de la imagen de fondo */
+			height: 1424px; /* Alto fijo de la imagen de fondo */
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="{% static 'app_docs/css/documento_forma_styles.css' %}">
+
+	<!-------------------------------------------------------------------->
+	<!-- For autocomplete: Include necessary CSS and JS files, e.g., jQuery UI -->
+	<!-------------------------------------------------------------------->
+	<link rel="stylesheet" href="{% static 'web/css/jquery-ui.css' %}">     {# Bootstrap CSS (local or CDN). Example local: #}
+	<script src="{% static 'web/js/jquery-3.6.0.min.js' %}"></script>
+	<script src="{% static 'web/js/jquery-ui.js' %}"></script>
+    <!--
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="{% static 'web/js/bootstrap.bundle.min.js' %}"></script>
+    -->
+
+	<!-------------------------------------------------------------------->
+	<!-- ECUAPASS Document JS Scripts -->
+	<!-------------------------------------------------------------------->
+	<script src="{% static 'app_docs/js/utils.js' %}"></script>
+	<script src="{% static 'app_docs/js/createInputTextareas.js' %}"></script>
+	<script src="{% static 'app_docs/js/handleInput.js' %}"></script>
+	<script src="{% static 'app_docs/js/handlePredictions.js' %}"></script>
+	<script src="{% static 'app_docs/js/setParametersToInputs.js' %}"></script>
+	<script src="{% static 'app_docs/js/autocomplete-documents.js' %}"></script>
+	<script src="{% static 'app_docs/js/enable_disable_doc_buttons.js' %}"></script>
+	<!-------------------------------------------------------------------->
+	<!-------------------------------------------------------------------->
+	<style>
+		.top-panel {
+			display: none;
+		}
+	</style>
+	<script> 
+		// Return the currect document title (e.g. "CPI : CO000431") 
+		function getDocTitle () {
+			return ("{{ docTitle }}") 
+		}
+
+		// Return the proposed PDF filename (e.g. "CPI_CO000431.pdf") 
+		function getPdfName () {
+			var pdfName ="{{ docTitle }}";
+            return pdfName.replaceAll (" ", "").replaceAll (":", "-") + ".pdf"
+		}
+	</script>
+</head>
+
+<script>
+	/* Handle events from top bar buttons and from external left sidebar*/
+	 function setActionUrl (base_url) {
+		let docId  = document.getElementById ("id").value
+		let docUrl = docType.toLowerCase(); 
+		let url    = "/" + docUrl  + base_url + docId;
+		let form   = document.getElementById('forma_pdf')
+		if (base_url.includes ("editar")) {
+			url    = "/"+docUrl+"/"
+			form.target =""
+		}
+		if (base_url.includes ("clonar")){
+			url = "/" + docUrl	+ "/clonar/" + docId
+			form.target ="" ;
+		}else if (base_url.includes ("pdf")) {
+            url = "/" + docUrl	+ "/pdf/" + getPdfName ()
+			form.target ="_blank";
+		} else if (base_url.includes ("detalle")) {
+			form.target ="_blank"
+			url = "/" + docUrl	+ "/detalle/" + docId;
+		}
+        console.log ("PDF URL:", url)
+		form.action = url
+	}
+</script>
+
+<body>
+	<div id="background"></div>
+		<form action="{% url document_url  %}" method="post" id="forma_pdf">
+			{% csrf_token %}
+			<div class="container">
+				<!-- Panel superior que muestra cuatro opciones para realizar con el documento -->
+				<div class="top-panel">
+					<button class="submit" type="submit" onclick="setActionUrl('/editar/')" 
+					    id="boton_guardar" name="action" value="guardar" formtarget="_top">Guardar</button>
+					<button class="submit" type="submit" formtarget="_blank"  onclick="setActionUrl('/pdf_original/')"
+				        id="boton_pdf_original" name="action" value="original" disabled >PDF Original</button>
+					<button class="submit" type="submit" onclick="setActionUrl('/pdf_copia/')" 
+						id="boton_pdf_copia" name="action" value="copia" disabled>PDF Copia</button>
+					<button class="submit" type="submit" onclick="setActionUrl('/pdf_paquete/')" 
+						id="boton_pdf_paquete" name="action" value="paquete" disabled>PDF Paquete</button>
+					<button class="submit" type="submit" onclick="setActionUrl('/clonar/')" 
+						id="boton_clonar" name="action" value="clonar" disabled>Clonar</button>
+					<button class="submit" type="submit" onclick="setActionUrl('/detalle/')" 
+						id="boton_detalle" name="action" value="detalle" disabled>Detalles</button>
+				</div>
+				<!--------------------------------------------------------------->
+				<!------------- Input fields added dynamically ------------------>
+				<!--------------------------------------------------------------->
+				<!-- Add other input fields as needed -->
+				<input type="hidden" name="boton_seleccionado" id="boton_seleccionado" value="">
+				<input type="hidden" name="trigger_url" value="{{ request.build_absolute_uri }}">
+			</div>
+		</form>
+	</div>
+
+	<script>
+		//-------------------------------------------------------------
+		// Get input parameters from server and apply to form inputs
+		//-------------------------------------------------------------
+		let inputsParameters = {{ input_parameters|safe }};
+		let docType	   = '{{ docType }}';
+		let docProcess = '{{ procedimiento }}';
+
+		// Create input textareas for the html form
+		const inputsContainer = document.querySelector(".container");
+		const textAreas = createInputTextareas (inputsParameters, inputsContainer);
+
+		// Set values, restrictions and styles for each input textarea
+		setParametersToInputs (textAreas, inputsParameters, docType);
+
+		// Predict the field values based on previous filed values
+		handlePredictions (docType, textAreas) 
+
+		// Enable / Disable document buttons
+		let docNumber = document.getElementById ("numero")
+		enableDisableDocButtons (document, docNumber)
+
+		//-------------------------------------------------------------
+		// For handling "original", "copia", and "clonar" options
+		// and getting document Id
+		//-------------------------------------------------------------
+		$(document).ready(function () {
+			$('#forma_pdf').submit(function (event) {
+				let formaPdf = this;
+				let submitterButton = event["originalEvent"]["submitter"]["id"];
+
+				document.getElementById('boton_seleccionado').value = submitterButton; 
+			});
+
+			// Scripts for autocomplete options in input fields
+			setAutocompleteForDocument (docType);
+		});
+
+		/*
+		// Autosave every 5 seconds by autoclicking "boton_guardar"
+			setInterval (function () {
+				let formaPdf = this;
+				document.getElementById("boton_guardar").click();				
+				var isButtonDisabled = document.getElementById("boton_pdf_original").hasAttribute("disabled");
+				if (isButtonDisabled) {
+					enableDisableDocButtons ("ENABLE");
+				}
+			}, 5000); */
+	</script>
+</body>
+</html>
+
+ 

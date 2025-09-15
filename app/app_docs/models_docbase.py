@@ -6,8 +6,10 @@ from datetime import date
 
 from django.db import models
 from django.urls import reverse
+from django.http import HttpResponse
 
 from ecuapassdocs.info.ecuapass_utils import Utils 
+from ecuapassdocs.utils.models_scripts import Scripts
 from ecuapassdocs.info.ecuapass_extractor import Extractor 
 
 from django.db.models import Q, CharField, TextField, EmailField, SlugField, URLField
@@ -35,9 +37,59 @@ class DocBaseModel (models.Model):
 	class Meta:
 		abstract = True
 
-	#-- Get str for printing
+	#-- Get str for printing-----------------------------------------
 	def __str__ (self):
 		return f"{self.numero}, {self.fecha_emision}"
+
+	def printInfo (self):
+		print (f"\n+++ Info current model:'")
+		for field in self._meta.get_fields():
+			if hasattr(self, field.name):
+				value = getattr(self, field.name)
+				print(f"{field.name}: {value}")
+
+	#-- Update base fields using doc info----------------------------
+	def update (self, doc):
+		# Set basic fields
+		self.numero        = doc.numero
+		empresaInstance    = Scripts.getEmpresaByNickname (doc.empresa)
+		self.empresa       = empresaInstance
+		usuarioInstance    = Scripts.getUsuarioByUsernameEmpresa (doc.usuario, empresaInstance.id)
+		self.usuario       = usuarioInstance
+		self.pais          = doc.pais
+
+		# Set txt fields
+		self.setTxtFields (doc.getTxtFields ())
+		self.setTxtNumero (self.numero)
+		self.setTxtPais (self.pais)
+
+		# Set doc fields
+		self.descripcion   = self.getTxtDescripcion ()
+		self.fecha_emision = self.getTxtFechaEmision ()
+
+	#-- Save and create response after saving
+	def saveCreateResponse (self):
+		self.save()
+		resp = HttpResponse("OK")
+		resp["HX-Trigger"] = '{"docs-updated": true}'
+		return resp
+
+	#-- Return docParams from doc DB instance
+	def getDocParams (self, inputParams):
+		docParams = inputParams
+		docParams ["id"]["value"]       = self.id
+		docParams ["numero"]["value"]   = self.numero
+		docParams ["pais"]["value"]     = self.pais
+		docParams ["usuario"]["value"]  = self.usuario.username
+		docParams ["empresa"]["value"]  = self.empresa.nickname
+
+		txtFields = self.getTxtFields ()
+		for k, v in txtFields.items():	# Not include "numero" and "id"
+			text     = txtFields [k]
+			maxChars = inputParams [k]["maxChars"]
+			newText  = Utils.breakLongLinesFromText (text, maxChars)
+			docParams [k]["value"] = newText if newText else ""
+		return docParams
 
 	#-- Returns the url to access a particular language instance
 	def get_absolute_url (self):
@@ -88,6 +140,8 @@ class DocBaseModel (models.Model):
 	# Helpers for get/set form txt fields
 	#----------------------------------------------------------------
 	def getTxt (self, key, default=None):
+		if not key in self.txtFields:
+			return ""
 		return self.txtFields.get (key, default)
 
 	def setTxt (self, key, value):
@@ -138,16 +192,6 @@ class DocBaseModel (models.Model):
 		docUrl = self.getDocType ().lower()
 		url     = f"{docUrl}-pdf"
 		return reverse (url, args=[self.getPdfName ()])
-#
-#	def get_link_pdf_original (self):
-#		docUrl = self.getDocType ().lower()
-#		url     = f"{docUrl}-pdf_original"
-#		return reverse (url, args=[self.pk])
-#
-#	def get_link_pdf_copia (self):
-#		docUrl = self.getDocType ().lower()
-#		url     = f"{docUrl}-pdf_copia"
-#		return reverse (url, args=[self.pk])
 
 	def get_link_eliminar(self):
 		docUrl = self.getDocType ().lower()

@@ -24,7 +24,7 @@ from app_manifiesto.models_docmci import Manifiesto, ManifiestoForm
 from app_declaracion.models_docdti import Declaracion, DeclaracionForm
 
 from .docs_DocEcuapass import DocEcuapass 
-from ecuapassdocs.utils.commander import Commander
+from ecuapassdocs.utils.docpdfcreator import DocPdfCreator
 
 #--------------------------------------------------------------------
 #-- Handle URL request for new doc template with iframes
@@ -53,7 +53,6 @@ class EcuapassDocView (LoginRequiredMixin, View):
 		self.background_image = background_image
 		self.parameters_file  = parameters_file
 
-		self.commander        = Commander (self.docType)
 		self.doc              = DocEcuapass (self.docType, self.parameters_file)
 
 	#-------------------------------------------------------------------
@@ -110,16 +109,17 @@ class EcuapassDocView (LoginRequiredMixin, View):
 	
 	#-------------------------------------------------------------------
 	#-------------------------------------------------------------------
-	def onPdfCommand (self, pdfCommand, request, *args, **kwargs):
+	def onPdfCommand (self, pdfType, request, *args, **kwargs):
 		print (f"\n+++ onPdfCommand:", request.method, ": PK :", kwargs.get ("pk"))
 		if request.method == "GET":
 			pk         = int (request.GET.get ("pk"))
-			pdfCommand = request.GET.get ("pdfType")
+			pdfType = request.GET.get ("pdfType")
 			self.formFields = self.doc.getFormFieldsFromDB (pk)
 		else:
 			self.formFields = self.doc.getFormFieldsFromRequest (request)
 
-		return self.commander.createPdf (pdfCommand, self.formFields)
+		docPdfCreator = DocPdfCreator (self.docType)
+		return docPdfCreator.createPdf (pdfType, self.formFields)
 
 	#-------------------------------------------------------------------
 	# Save document to DB checking max docs for user

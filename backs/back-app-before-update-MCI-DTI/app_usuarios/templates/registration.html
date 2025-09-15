@@ -1,0 +1,22 @@
+{% extends 'base_usuarios.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+    <h2>Registro de un Nuevo Usuario</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div>
+            <strong>Fortaleza de la Clave:</strong>
+            <div id="password-strength">Ingrese una clave.</div>
+        </div>
+		<!-- Submit button -->
+        <button type="submit" class="btn btn-primary" style="margin-top: 8px;">Registrar</button>
+		<!-- Cancel button -->
+		<a href="{% url 'listar' %}" class="btn btn-secondary" style="margin-top: 8px;">Cancelar</a>
+    </form>
+</div>
+
+{% endblock %}

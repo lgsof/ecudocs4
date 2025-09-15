@@ -1,0 +1,358 @@
+>>> Excepcion obteniendo opciones de cartaportes:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 36, in post
+    docsCartaportes = [model.documento.__dict__ for model in cartaportes]
+                       ^^^^^^^^^^^^^^^
+AttributeError: 'Cartaporte' object has no attribute 'documento'
+Error creando PDF simple:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/commander.py", line 78, in createPdfResponseSingleDoc
+    outPdfPath = creadorPDF.createPdfFileSingleDoc (self.docType, formFields, pdfType)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/pdfcreator.py", line 116, in createPdfFileSingleDoc
+    text_pdf, jsonFieldsDic = self.writeInputsToPdf (docType, self.paramFields, formFields)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/pdfcreator.py", line 135, in writeInputsToPdf
+    imgBounds = [params["x"], params["y"]-7, params ["width"], params ["height"]]
+                 ~~~~~~^^^^^
+KeyError: 'x'
+Error creando PDF simple:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/commander.py", line 78, in createPdfResponseSingleDoc
+    outPdfPath = creadorPDF.createPdfFileSingleDoc (self.docType, formFields, pdfType)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/pdfcreator.py", line 116, in createPdfFileSingleDoc
+    text_pdf, jsonFieldsDic = self.writeInputsToPdf (docType, self.paramFields, formFields)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/pdfcreator.py", line 135, in writeInputsToPdf
+    imgBounds = [params["x"], params["y"]-7, params ["width"], params ["height"]]
+                 ~~~~~~^^^^^
+KeyError: 'x'
+Error creando PDF simple:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 74, in createPdfResponseSingleDoc
+    outPdfPath = creadorPDF.createPdfFileSingleDoc (self.docType, formFields, pdfType)
+                                                    ^^^^^^^^^^^^
+AttributeError: 'DocPdfCreator' object has no attribute 'docType'
+Error creando PDF simple:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 75, in createPdfResponseSingleDoc
+    outPdfPath = creadorPDF.createPdfFileSingleDoc (self.docType, formFields, pdfType)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 181, in createPdfFileSingleDoc
+    text_pdf, jsonFieldsDic = self.writeInputsToPdf (docType, self.paramFields, formFields)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 200, in writeInputsToPdf
+    imgBounds = [params["x"], params["y"]-7, params ["width"], params ["height"]]
+                 ~~~~~~^^^^^
+KeyError: 'x'
+Error creando PDF simple:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 75, in createPdfResponseSingleDoc
+    outPdfPath = creadorPDF.createPdfFileSingleDoc (self.docType, formFields, pdfType)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 181, in createPdfFileSingleDoc
+    text_pdf, jsonFieldsDic = self.writeInputsToPdf (docType, self.paramFields, formFields)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 201, in writeInputsToPdf
+    imgBounds = [params["x"], params["y"]-7, params ["width"], params ["height"]]
+                 ~~~~~~^^^^^
+KeyError: 'x'
+Error creando PDF simple:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 75, in createPdfResponseSingleDoc
+    outPdfPath = creadorPDF.createPdfFileSingleDoc (self.docType, formFields, pdfType)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 181, in createPdfFileSingleDoc
+    text_pdf, jsonFieldsDic = self.writeInputsToPdf (docType, self.paramFields, formFields)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 201, in writeInputsToPdf
+    imgBounds = [params["x"], params["y"]-7, params ["width"], params ["height"]]
+                 ~~~~~~^^^^^
+KeyError: 'x'
+Error creando PDF simple:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 75, in createPdfResponseSingleDoc
+    outPdfPath = creadorPDF.createPdfFileSingleDoc (self.docType, formFields, pdfType)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 181, in createPdfFileSingleDoc
+    text_pdf, jsonFieldsDic = self.writeInputsToPdf (docType, self.paramFields, formFields)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 201, in writeInputsToPdf
+    imgBounds = [params["x"], params["y"]-7, params ["width"], params ["height"]]
+                 ~~~~~~^^^^^
+KeyError: 'x'
+Error creando PDF simple:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 75, in createPdfResponseSingleDoc
+    outPdfPath = creadorPDF.createPdfFileSingleDoc (self.docType, formFields, pdfType)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 181, in createPdfFileSingleDoc
+    text_pdf, jsonFieldsDic = self.writeInputsToPdf (docType, self.paramFields, formFields)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 201, in writeInputsToPdf
+    imgBounds = [params["x"], params["y"]-7, params ["width"], params ["height"]]
+                 ~~~~~~^^^^^
+KeyError: 'x'
+Error creando PDF simple:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 75, in createPdfResponseSingleDoc
+    outPdfPath = creadorPDF.createPdfFileSingleDoc (self.docType, formFields, pdfType)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 181, in createPdfFileSingleDoc
+    text_pdf, jsonFieldsDic = self.writeInputsToPdf (docType, self.paramFields, formFields)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 201, in writeInputsToPdf
+    imgBounds = [params["x"], params["y"]-7, params ["width"], params ["height"]]
+                 ~~~~~~^^^^^
+KeyError: 'x'
+Error creando PDF simple:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 77, in createPdfResponseSingleDoc
+    outPdfPath = creadorPDF.createPdfFileSingleDoc (self.docType, formFields, pdfType)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 183, in createPdfFileSingleDoc
+    text_pdf, jsonFieldsDic = self.writeInputsToPdf (docType, self.paramFields, formFields)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 203, in writeInputsToPdf
+    imgBounds = [params["x"], params["y"]-7, params ["width"], params ["height"]]
+                 ~~~~~~^^^^^
+KeyError: 'x'
+Error creando PDF simple:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 77, in createPdfResponseSingleDoc
+    outPdfPath = creadorPDF.createPdfFileSingleDoc (self.docType, formFields, pdfType)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 183, in createPdfFileSingleDoc
+    text_pdf, jsonFieldsDic = self.writeInputsToPdf (docType, self.paramFields, formFields)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 203, in writeInputsToPdf
+    imgBounds = [params["x"], params["y"]-7, params ["width"], params ["height"]]
+                 ~~~~~~^^^^^
+KeyError: 'x'
+Error creando PDF simple:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 77, in createPdfResponseSingleDoc
+    outPdfPath = creadorPDF.createPdfFileSingleDoc (self.docType, formFields, pdfType)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 183, in createPdfFileSingleDoc
+    text_pdf, jsonFieldsDic = self.writeInputsToPdf (docType, self.paramFields, formFields)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 203, in writeInputsToPdf
+    imgBounds = [params["x"], params["y"]-7, params ["width"], params ["height"]]
+                 ~~~~~~^^^^^
+KeyError: 'x'
+Error creando PDF simple:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 77, in createPdfResponseSingleDoc
+    outPdfPath = creadorPDF.createPdfFileSingleDoc (self.docType, formFields, pdfType)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 183, in createPdfFileSingleDoc
+    text_pdf, jsonFieldsDic = self.writeInputsToPdf (docType, self.paramFields, formFields)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 200, in writeInputsToPdf
+    if not key.startswith ("txt") or "NO_FORMFIELD" in params ["class"]:
+                                                       ~~~~~~~^^^^^^^^^
+KeyError: 'class'
+Error creando PDF simple:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 77, in createPdfResponseSingleDoc
+    outPdfPath = creadorPDF.createPdfFileSingleDoc (self.docType, formFields, pdfType)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 183, in createPdfFileSingleDoc
+    text_pdf, jsonFieldsDic = self.writeInputsToPdf (docType, self.paramFields, formFields)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 201, in writeInputsToPdf
+    if not key.startswith ("txt") or "NO_FORMFIELD" in params ["class"]:
+                                                       ~~~~~~~^^^^^^^^^
+KeyError: 'class'
+Error creando PDF múltiple:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 106, in getInputValuesForDocumentChilds
+    regCartaporte	= app_cartaporte.models_doccpi.Cartaporte.objects.get (id=docId)
+                    ^^^^^^^^^^^^^^
+NameError: name 'app_cartaporte' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 91, in createPdfResponseMultiDoc
+    valuesList, typesList = self.getInputValuesForDocumentChilds (self.docType, id)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 117, in getInputValuesForDocumentChilds
+    Utils.printException ()
+TypeError: Utils.printException() missing 1 required positional argument: 'message'
+Error creando PDF múltiple:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 106, in getInputValuesForDocumentChilds
+    regCartaporte	= app_cartaporte.models_doccpi.Cartaporte.objects.get (id=docId)
+                    ^^^^^^^^^^^^^^
+NameError: name 'app_cartaporte' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 91, in createPdfResponseMultiDoc
+    valuesList, typesList = self.getInputValuesForDocumentChilds (self.docType, id)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 117, in getInputValuesForDocumentChilds
+    Utils.printException ()
+TypeError: Utils.printException() missing 1 required positional argument: 'message'
+Error creando PDF múltiple:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 106, in getInputValuesForDocumentChilds
+    regCartaporte	= app_cartaporte.models_doccpi.Cartaporte.objects.get (id=docId)
+                    ^^^^^^^^^^^^^^
+NameError: name 'app_cartaporte' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 91, in createPdfResponseMultiDoc
+    valuesList, typesList = self.getInputValuesForDocumentChilds (self.docType, id)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 117, in getInputValuesForDocumentChilds
+    Utils.printException ()
+TypeError: Utils.printException() missing 1 required positional argument: 'message'
+Error creando PDF múltiple:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 106, in getInputValuesForDocumentChilds
+    regCartaporte	= app_cartaporte.models_doccpi.Cartaporte.objects.get (id=docId)
+                    ^^^^^^^^^^^^^^
+NameError: name 'app_cartaporte' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 91, in createPdfResponseMultiDoc
+    valuesList, typesList = self.getInputValuesForDocumentChilds (self.docType, id)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 117, in getInputValuesForDocumentChilds
+    Utils.printException ()
+TypeError: Utils.printException() missing 1 required positional argument: 'message'
+Error creando PDF múltiple:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 106, in getInputValuesForDocumentChilds
+    regCartaporte	= app_cartaporte.models_doccpi.Cartaporte.objects.get (id=docId)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecuapassdocs3/dvenv/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecuapassdocs3/dvenv/lib/python3.12/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+app_cartaporte.models_doccpi.Cartaporte.DoesNotExist: Cartaporte matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 91, in createPdfResponseMultiDoc
+    valuesList, typesList = self.getInputValuesForDocumentChilds (self.docType, id)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 117, in getInputValuesForDocumentChilds
+    Utils.printException ()
+TypeError: Utils.printException() missing 1 required positional argument: 'message'
+Error obteniendo documentos asociados a 'MANIFIESTO'::id=2:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 106, in getInputValuesForDocumentChilds
+    regCartaporte	= app_cartaporte.models_doccpi.Cartaporte.objects.get (id=docId)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecuapassdocs3/dvenv/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecuapassdocs3/dvenv/lib/python3.12/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+app_cartaporte.models_doccpi.Cartaporte.DoesNotExist: Cartaporte matching query does not exist.
+Error obteniendo documentos asociados a 'MANIFIESTO'::id=1:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 106, in getInputValuesForDocumentChilds
+    regCartaporte	= app_cartaporte.models_doccpi.Cartaporte.objects.get (id=docId)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecuapassdocs3/dvenv/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecuapassdocs3/dvenv/lib/python3.12/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+app_cartaporte.models_doccpi.Cartaporte.DoesNotExist: Cartaporte matching query does not exist.
+>>> Excepcion obteniendo opciones de cartaportes:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 36, in post
+    docsCartaportes = [model.documento.__dict__ for model in cartaportes]
+                       ^^^^^^^^^^^^^^^
+AttributeError: 'Cartaporte' object has no attribute 'documento'
+>>> Excepcion obteniendo opciones de cartaportes:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 42, in post
+    doc ["txt12"],   # Descripcion
+    ~~~~^^^^^^^^^
+KeyError: 'txt12'
+>>> Excepcion obteniendo opciones de cartaportes:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 41, in post
+    doc.getTxt ('txt00'),  # Cartaporte
+    ^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'getTxt'
+>>> Excepcion obteniendo opciones de cartaportes:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 39, in post
+    itemLine = f"{i}. {doc['numero']}"
+                       ~~~^^^^^^^^^^
+TypeError: 'Cartaporte' object is not subscriptable
+>>> Excepcion obteniendo opciones de cartaportes:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 48, in post
+    re.sub (r'[\r\n)+\s*', '. ', doc.getTxt ("txt16")), # INCONTERMS
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/re/__init__.py", line 186, in sub
+    return _compile(pattern, flags).sub(repl, string, count)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/re/__init__.py", line 307, in _compile
+    p = _compiler.compile(pattern, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/re/_compiler.py", line 745, in compile
+    p = _parser.parse(p, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/re/_parser.py", line 979, in parse
+    p = _parse_sub(source, state, flags & SRE_FLAG_VERBOSE, 0)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/re/_parser.py", line 460, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/re/_parser.py", line 568, in _parse
+    raise source.error("unterminated character set",
+re.error: unterminated character set at position 0
+>>> Excepcion obteniendo opciones de cartaportes:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 48, in post
+    re.sub (r'[\r\n)+\s*]', '. ', doc.getTxt ("txt16")), # INCONTERMS
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/re/__init__.py", line 186, in sub
+    return _compile(pattern, flags).sub(repl, string, count)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: expected string or bytes-like object, got 'NoneType'
+>>> Excepcion obteniendo opciones de cartaportes:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 48, in post
+    re.sub (r'[\r\n]+\s*', '. ', doc.getTxt ("txt16")), # INCONTERMS
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/re/__init__.py", line 186, in sub
+    return _compile(pattern, flags).sub(repl, string, count)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: expected string or bytes-like object, got 'NoneType'
+>>> Excepcion obteniendo opciones de cartaportes:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 49, in post
+    re.sub (r'[\r\n]+\s*', '. ', doc.getTxt ("txt16")), # INCONTERMS
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/re/__init__.py", line 186, in sub
+    return _compile(pattern, flags).sub(repl, string, count)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: expected string or bytes-like object, got 'NoneType'
+>>> Excepcion obteniendo opciones de cartaportes:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 40, in post
+    itemLine = f"{i}. {doc.getTxt ('txt00')}"
+                       ^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/app_docs/models_docbase.py", line 143, in getTxt
+    if not key in txtFields:
+                  ^^^^^^^^^
+NameError: name 'txtFields' is not defined. Did you mean: 'self.txtFields'?

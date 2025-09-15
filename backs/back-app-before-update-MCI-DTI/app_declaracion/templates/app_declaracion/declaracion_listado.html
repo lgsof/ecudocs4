@@ -1,0 +1,24 @@
+{% extends "main_page_template.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h1>Lista de Declaraciones</h1>
+    <form method="GET" action="">
+		{% csrf_token %}
+		{% crispy form %}
+    </form>
+
+    {% if declaracion_list %}
+    <ul>
+      {% for declaracion in declaracion_list %}
+      <li>
+        <a href="{{ declaracion.get_absolute_url }}">{{ declaracion.numero }}</a>,
+	{{declaracion.fecha_emision}}, {{declaracion.documento.getConductor}}
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>No hay declaraciones registradas</p>
+    {% endif %}
+{% endblock %}

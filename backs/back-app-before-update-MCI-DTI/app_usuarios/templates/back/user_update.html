@@ -1,0 +1,18 @@
+{% extends 'base_usuarios.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+	<div class="container">
+		<h2>Actualizacion de Datos</h2>
+		<form method="post">
+			{% csrf_token %}
+			{{ form|crispy }}
+
+			<!-- Submit button -->
+			<button type="submit" class="btn btn-primary">Actualizar</button>
+			<!-- Cancel button -->
+			<a href="{% url 'listar' %}" class="btn btn-secondary">Cancelar</a>
+
+		</form>
+	</div>
+{% endblock %}

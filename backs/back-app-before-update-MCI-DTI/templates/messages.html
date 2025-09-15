@@ -1,0 +1,34 @@
+
+{% block content %}
+
+	{% if messages %}
+	<ul class="messages">
+	  {% for message in messages %}
+		<li class="{{ message.tags }}">{{ message }}</li>
+	  {% endfor %}
+	</ul>
+	{% endif %}
+
+	<style>
+	  .messages {
+		/* Your styling for the message container */
+	  }
+	  .messages li {
+		/* Styling for each message */
+		padding: 10px;
+		border: 1px solid #ccc;
+		margin-bottom: 5px;
+	  }
+	  .messages li.success {
+		/* Customize how "success" messages look */
+		background-color: #dff0d8;
+		color: #3c763d;
+	  }
+	  .messages li.error {
+		/* Customize how "error" messages look */
+		background-color: #f2dede;
+		color: #a94442;
+	  }
+	</style>
+
+{% endblock %}

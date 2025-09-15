@@ -222,17 +222,6 @@ class DocEcuapass:
 		self.docParams = docParams
 		return docParams
 
-	def getDocParams (self, idRecord=None):
-		# Check if new or existing document
-		if idRecord:
-			print (f"\n+++  Cargando documento desde la BD...'")
-			self.docParams = self.getSavedDocParams (idRecord)
-		else:
-			print (f"\n+++  Creando documento nuevo...'")
-			self.docParams = self.inputParams
-
-		return self.docParams
-
 	#-------------------------------------------------------------------
 	# Get values from DB or initialize document
 	#-------------------------------------------------------------------
@@ -245,23 +234,6 @@ class DocEcuapass:
 				docFields [docKey] = value
 
 		return docFields
-
-	#-- Get values from DB into docParams
-	def getSavedDocParams (self, idRecord):
-		instanceDoc = ModelCLASS.objects.get (id=idRecord)
-
-		# Align text in fields with newlines 
-		docParams = self.inputParams
-		txtFields = instanceDoc.getTxtFields ()
-		print (f"\n+++ {txtFields=}'")
-
-		for k, v in txtFields.items ():	# Not include "numero" and "id"
-			text     = txtFields [k]
-			maxChars = self.inputParams [k]["maxChars"]
-			newText  = Utils.breakLongLinesFromText (text, maxChars)
-			docParams [k]["value"] = newText if newText else ""
-
-		return docParams
 
 	#-- Save suggested manifiesto
 	#-- TO OPTIMIZE: It is similar to EcuapassDocView::saveNewDocToDB

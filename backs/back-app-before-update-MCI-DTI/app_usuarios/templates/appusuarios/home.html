@@ -1,0 +1,34 @@
+{% extends "app_usuarios/base.html" %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <div class="card">
+                    <div class="card-body">
+                        {% if user.es_externo %}
+                            <h3 class="card-title">Bienbenido a la Student Home Page</h3>
+                            <p class="card-text">Where your inquiries are heard. 
+                                Proceed a la Administrative Requests or Academic Requests Tab to inquire! </p>
+                        {% elif user.es_funcionario %}
+                            <h3 class="card-title">Bienbenido a la Facilitators' Home Page</h3>
+                            <p class="card-text">Where we bring you closer to your students' worries.
+                                To Proceed, check the Academic Requests Tab(View) to see the Requests made by your Students.
+                                You can either choose to 'Respond' to them or 'Delete' them.
+                            </p>
+                        {% elif user.es_director %}
+                            <h3 class="card-title">Bienbenido a la Team Lead Page</h3>
+                            <p class="card-text"> As a Team Lead, you will be able to view all Academic Requests
+                                                                        &
+                                                 Administrative Requests. You will be able to 'Respond' a la Administrative Tasks.
+                            </p>
+
+                        {% else %}
+                            <h3 class="card-title">Bienbenido a la Inquiry Application💬</h3>
+                            <p class="card-text"> Proceed a la Log In tab, if you already have an account.Else, Proceed a la Sign Up.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

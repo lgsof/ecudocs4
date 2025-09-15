@@ -1,0 +1,15 @@
+{% extends "main_page_template.html" %}
+
+{% block content %}
+
+
+<h1>¿ Eliminar Declaración 
+	<a href="{% url 'declaracion' %}editar/{{ declaracion.id }}" target="_blank">{{ declaracion.numero }}</a> ?
+</h1>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" action="" value="Si, borrar." />
+</form>
+
+{% endblock %}

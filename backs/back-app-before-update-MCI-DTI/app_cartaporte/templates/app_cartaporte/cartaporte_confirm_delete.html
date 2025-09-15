@@ -1,0 +1,14 @@
+{% extends "main_page_template.html" %}
+
+{% block content %}
+
+<h1>¿ Eliminar Carta de Porte 
+	<a href="{% url 'cartaporte' %}editar/{{ cartaporte.id }}" target="_blank">{{ cartaporte.numero }}</a> ?
+</h1>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" action="" value="Si, eliminar." />
+</form>
+
+{% endblock %}

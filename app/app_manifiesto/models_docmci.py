@@ -1,7 +1,5 @@
 import os, tempfile, json
-
 from django.db import models
-from django.urls import reverse  # To generate URLS by reversing URL patterns
 
 from ecuapassdocs.info.ecuapass_utils import Utils
 
@@ -11,152 +9,48 @@ from ecuapassdocs.utils.models_scripts import Scripts
 from app_entidades.models_Entidades import Vehiculo, Conductor
 
 #--------------------------------------------------------------------
-# Model ManifiestoForm
-#--------------------------------------------------------------------
-class ManifiestoForm (models.Model):
-	class Meta:
-		db_table = "manifiestoform"
-
-	numero = models.CharField (max_length=20)
-
-	txt0a = models.CharField (max_length=20, null=True)
-	txt01 = models.CharField (max_length=20, null=True)
-	txt00 = models.CharField (max_length=20, null=True)
-	txt01 = models.CharField (max_length=200, null=True)
-	txt02 = models.CharField (max_length=200, null=True)
-	txt03 = models.CharField (max_length=200, null=True)
-	txt04 = models.CharField (max_length=200, null=True)
-	txt05 = models.CharField (max_length=200, null=True)
-	txt06 = models.CharField (max_length=200, null=True)
-	txt07 = models.CharField (max_length=200, null=True)
-	txt08 = models.CharField (max_length=200, null=True)
-	txt09 = models.CharField (max_length=200, null=True)
-	txt10 = models.CharField (max_length=200, null=True)
-	txt11 = models.CharField (max_length=200, null=True)
-	txt12 = models.CharField (max_length=200, null=True)
-	txt13 = models.CharField (max_length=200, null=True)
-	txt14 = models.CharField (max_length=200, null=True)
-	txt15 = models.CharField (max_length=200, null=True)
-	txt16 = models.CharField (max_length=200, null=True)
-	txt17 = models.CharField (max_length=200, null=True)
-	txt18 = models.CharField (max_length=200, null=True)
-	txt19 = models.CharField (max_length=200, null=True)
-	txt20 = models.CharField (max_length=200, null=True)
-	txt21 = models.CharField (max_length=200, null=True)
-	txt22 = models.CharField (max_length=200, null=True)
-	txt23 = models.CharField (max_length=200, null=True)
-	txt24 = models.CharField (max_length=200, null=True)
-	txt25_1 = models.CharField (max_length=200, null=True)
-	txt25_2 = models.CharField (max_length=200, null=True)
-	txt25_3 = models.CharField (max_length=200, null=True)
-	txt25_4 = models.CharField (max_length=200, null=True)
-	txt25_5 = models.CharField (max_length=200, null=True)
-	txt26 = models.CharField (max_length=200, null=True)
-	txt27 = models.CharField (max_length=200, null=True)
-	#-- Info mercancia (cartaporte, descripcion, ...totales ----
-	txt28 = models.CharField (max_length=200, null=True)    # Cartaporte
-	txt29 = models.TextField (null=True, blank=True)        # Descripcion
-	txt30 = models.CharField (max_length=200, null=True)    # Cantidad
-	txt31 = models.CharField (max_length=200, null=True)    # Marca
-	txt32_1 = models.CharField (max_length=200, null=True)  # Peso bruto
-	txt32_2 = models.CharField (max_length=200, null=True)  # Peso bruto total
-	txt32_3 = models.CharField (max_length=200, null=True)  # Peso neto
-	txt32_4 = models.CharField (max_length=200, null=True)  # Peso neto total
-	txt33_1 = models.CharField (max_length=200, null=True)  # Otra medida
-	txt33_2 = models.CharField (max_length=200, null=True)  # Otra medida total
-	txt34 = models.CharField (max_length=200, null=True)    # INCOTERMS
-	#------------------------------------------------------------
-	txt35 = models.CharField (max_length=200, null=True)
-	txt37 = models.CharField (max_length=200, null=True)    # Aduana cruce
-	txt38 = models.CharField (max_length=200, null=True)    # Aduana destino
-	txt40 = models.CharField (max_length=200, null=True)
-
-	def getConductor (self):
-		return self.txt13
-
-	def __str__ (self):
-		return f"{self.numero}, {self.txt03}"
-	
-	def setMercanciaInfo (self, mercanciaInfo):
-		self.txt20 = mercanciaInfo ["cartaporte"]
-		self.txt29 = mercanciaInfo ["descripcion"]
-		self.txt30 = mercanciaInfo ["cantidad"]
-		self.txt31 = mercanciaInfo ["marcas"]
-
-	def getInputValuesFromInfo (infoFromCPI):
-		print (f"+++ infoFromCPI '{infoFromCPI}'")
-		inputValues = {}
-		inputValues ["txt0a"]	= infoFromCPI ["pais"]
-		inputValues ["txt02"]	= infoFromCPI ["permisoOriginario"]
-		inputValues ["txt03"]	= infoFromCPI ["permisoServicios"]
-		inputValues ["txt28"]	= infoFromCPI ["cartaporte"]
-		inputValues ["txt29"]	= infoFromCPI ["descripcion"]
-		inputValues ["txt30"]	= infoFromCPI ["cantidad"]
-		inputValues ["txt31"]	= infoFromCPI ["marcas"]
-		inputValues ["txt32_1"] = infoFromCPI ["pesoBruto"]
-		inputValues ["txt32_3"] = infoFromCPI ["pesoNeto"]
-		inputValues ["txt33_1"]	= infoFromCPI ["otrasUnd"]
-		inputValues ["txt34"]	= infoFromCPI ["incoterms"]
-		inputValues ["txt37"]	= infoFromCPI ["aduanaCruce"]
-		inputValues ["txt38"]	= infoFromCPI ["aduanaDestino"]
-		inputValues ["txt40"]	= infoFromCPI ["fechaEmision"]
-
-		# Predicted info for "Vehiculo"
-		inputValues ["txt04"]	= infoFromCPI ["marcaVehiculo"] 
-		inputValues ["txt05"]	= infoFromCPI ["anhoVehiculo"]
-		inputValues ["txt06"]	= infoFromCPI ["placaPaisVehiculo"]
-		inputValues ["txt07"]	= infoFromCPI ["chasisVehiculo"]
-		# Predicted info for "Remolque"
-		inputValues ["txt09"]	= infoFromCPI ["marcaRemolque"]
-		inputValues ["txt10"]	= infoFromCPI ["anhoRemolque"]
-		inputValues ["txt11"]	= infoFromCPI ["placaPaisRemolque"]
-		inputValues ["txt12"]	= infoFromCPI ["chasisRemolque"]
-		# Predicted info for "Conductor"
-		inputValues ["txt13"]	= infoFromCPI ["nombreConductor"]
-		inputValues ["txt14"]	= infoFromCPI ["documentoConductor"]
-		inputValues ["txt15"]	= infoFromCPI ["paisConductor"]
-		inputValues ["txt16"]	= infoFromCPI ["licenciaConductor"]
-		# Predicted info for "Auxiliar"
-		inputValues ["txt18"]	= infoFromCPI ["nombreAuxiliar"]
-		inputValues ["txt19"]	= infoFromCPI ["documentoAuxiliar"]
-		inputValues ["txt20"]	= infoFromCPI ["paisAuxiliar"]
-		inputValues ["txt21"]	= infoFromCPI ["licenciaAuxiliar"]
-
-		# Datos sobre la carga
-		inputValues ["txt23"]	= infoFromCPI ["ciudadPaisCarga"]
-		inputValues ["txt24"]	= infoFromCPI ["ciudadPaisDescarga"]
-		inputValues ["txt25_4"]	= infoFromCPI ["otroTipoCarga"]
-		inputValues ["txt25_5"]	= infoFromCPI ["descripcionCarga"]
-
-		# Aduanas info
-		inputValues ["txt37"]	= infoFromCPI ["aduanaCruce"]
-		inputValues ["txt38"]	= infoFromCPI ["aduanaDestino"]
-
-		return inputValues
-
-
-
-
-
-#--------------------------------------------------------------------
 # Model Manifiesto
 #--------------------------------------------------------------------
 class Manifiesto (DocBaseModel):
 	class Meta:
 		db_table = "manifiesto"
 
-	documento     = models.OneToOneField (ManifiestoForm, on_delete=models.CASCADE, null=True)
 	vehiculo      = models.ForeignKey (Vehiculo, on_delete=models.SET_NULL, related_name='manifiestos', null=True)
 	conductor     = models.ForeignKey (Conductor, on_delete=models.SET_NULL, related_name='manifiestos', null=True)
 	cartaporte    = models.ForeignKey (Cartaporte, on_delete=models.SET_NULL, related_name="manifiestos", null=True)
 
-	#-- Get str for printing
+	#-- Get str for printing -------------------------------------------
 	def __str__ (self):
-		return f"{self.numero}, {self.conductor}"
+		return f"{self.numero}, {self.vehiculo}"
 
-	def setValues (self, manifiestoForm, docFields, pais, username):
-		# Base values
-		super().setValues (manifiestoForm, docFields, pais, username)
+	#---------------------------------------------------------------
+	# Save doc to DB
+	#---------------------------------------------------------------
+	def update (self, doc):
+		print (f"\n+++ Guardando cartaporte número: '{doc.numero}'")
+		if doc.numero:
+			# Set common fields
+			super().update (doc)
+
+			# Set specific fields
+#			self.vehiculo   = self.getTxtVehiculo ()  
+#			self.conductor  = self.getTxtConductor ()  
+#			self.cartaporte = self.getTxtCartaporte ()  
+
+			# Save and create HttpResponse
+			return super().saveCreateResponse ()
+
+	#---------------------------------------------------------------
+	# Get/Set txt fields
+	#---------------------------------------------------------------
+	def getTxtVehiculo (self):
+		text    = self.getTxt ("txt02")
+		cliente = Scripts.getSaveClienteInstanceFromText (text, type="02_Remitente") if text else None
+		return cliente 
+
+#	def setValues (self, manifiestoForm, docFields, pais, username):
+#		# Base values
+#		super().setValues (manifiestoForm, docFields, pais, username)
 
 		# Document values
 #		placaPais        = manifiestoInfo.getPlacaPais ()
@@ -302,4 +196,143 @@ class Manifiesto (DocBaseModel):
     #------------------------------------------------------
     #def getInitialValuesFromCartaporte (cartaporteNumber):
     #def getInitialValuesFromEmpresa (empresaName):
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#--------------------------------------------------------------------
+# Model ManifiestoForm
+#--------------------------------------------------------------------
+class ManifiestoForm (models.Model):
+	class Meta:
+		db_table = "manifiestoform"
+
+	numero = models.CharField (max_length=20)
+
+	txt0a = models.CharField (max_length=20, null=True)
+	txt01 = models.CharField (max_length=20, null=True)
+	txt00 = models.CharField (max_length=20, null=True)
+	txt01 = models.CharField (max_length=200, null=True)
+	txt02 = models.CharField (max_length=200, null=True)
+	txt03 = models.CharField (max_length=200, null=True)
+	txt04 = models.CharField (max_length=200, null=True)
+	txt05 = models.CharField (max_length=200, null=True)
+	txt06 = models.CharField (max_length=200, null=True)
+	txt07 = models.CharField (max_length=200, null=True)
+	txt08 = models.CharField (max_length=200, null=True)
+	txt09 = models.CharField (max_length=200, null=True)
+	txt10 = models.CharField (max_length=200, null=True)
+	txt11 = models.CharField (max_length=200, null=True)
+	txt12 = models.CharField (max_length=200, null=True)
+	txt13 = models.CharField (max_length=200, null=True)
+	txt14 = models.CharField (max_length=200, null=True)
+	txt15 = models.CharField (max_length=200, null=True)
+	txt16 = models.CharField (max_length=200, null=True)
+	txt17 = models.CharField (max_length=200, null=True)
+	txt18 = models.CharField (max_length=200, null=True)
+	txt19 = models.CharField (max_length=200, null=True)
+	txt20 = models.CharField (max_length=200, null=True)
+	txt21 = models.CharField (max_length=200, null=True)
+	txt22 = models.CharField (max_length=200, null=True)
+	txt23 = models.CharField (max_length=200, null=True)
+	txt24 = models.CharField (max_length=200, null=True)
+	txt25_1 = models.CharField (max_length=200, null=True)
+	txt25_2 = models.CharField (max_length=200, null=True)
+	txt25_3 = models.CharField (max_length=200, null=True)
+	txt25_4 = models.CharField (max_length=200, null=True)
+	txt25_5 = models.CharField (max_length=200, null=True)
+	txt26 = models.CharField (max_length=200, null=True)
+	txt27 = models.CharField (max_length=200, null=True)
+	#-- Info mercancia (cartaporte, descripcion, ...totales ----
+	txt28 = models.CharField (max_length=200, null=True)    # Cartaporte
+	txt29 = models.TextField (null=True, blank=True)        # Descripcion
+	txt30 = models.CharField (max_length=200, null=True)    # Cantidad
+	txt31 = models.CharField (max_length=200, null=True)    # Marca
+	txt32_1 = models.CharField (max_length=200, null=True)  # Peso bruto
+	txt32_2 = models.CharField (max_length=200, null=True)  # Peso bruto total
+	txt32_3 = models.CharField (max_length=200, null=True)  # Peso neto
+	txt32_4 = models.CharField (max_length=200, null=True)  # Peso neto total
+	txt33_1 = models.CharField (max_length=200, null=True)  # Otra medida
+	txt33_2 = models.CharField (max_length=200, null=True)  # Otra medida total
+	txt34 = models.CharField (max_length=200, null=True)    # INCOTERMS
+	#------------------------------------------------------------
+	txt35 = models.CharField (max_length=200, null=True)
+	txt37 = models.CharField (max_length=200, null=True)    # Aduana cruce
+	txt38 = models.CharField (max_length=200, null=True)    # Aduana destino
+	txt40 = models.CharField (max_length=200, null=True)
+
+	def getConductor (self):
+		return self.txt13
+
+	def __str__ (self):
+		return f"{self.numero}, {self.txt03}"
+	
+	def setMercanciaInfo (self, mercanciaInfo):
+		self.txt20 = mercanciaInfo ["cartaporte"]
+		self.txt29 = mercanciaInfo ["descripcion"]
+		self.txt30 = mercanciaInfo ["cantidad"]
+		self.txt31 = mercanciaInfo ["marcas"]
+
+	def getInputValuesFromInfo (infoFromCPI):
+		print (f"+++ infoFromCPI '{infoFromCPI}'")
+		inputValues = {}
+		inputValues ["txt0a"]	= infoFromCPI ["pais"]
+		inputValues ["txt02"]	= infoFromCPI ["permisoOriginario"]
+		inputValues ["txt03"]	= infoFromCPI ["permisoServicios"]
+		inputValues ["txt28"]	= infoFromCPI ["cartaporte"]
+		inputValues ["txt29"]	= infoFromCPI ["descripcion"]
+		inputValues ["txt30"]	= infoFromCPI ["cantidad"]
+		inputValues ["txt31"]	= infoFromCPI ["marcas"]
+		inputValues ["txt32_1"] = infoFromCPI ["pesoBruto"]
+		inputValues ["txt32_3"] = infoFromCPI ["pesoNeto"]
+		inputValues ["txt33_1"]	= infoFromCPI ["otrasUnd"]
+		inputValues ["txt34"]	= infoFromCPI ["incoterms"]
+		inputValues ["txt37"]	= infoFromCPI ["aduanaCruce"]
+		inputValues ["txt38"]	= infoFromCPI ["aduanaDestino"]
+		inputValues ["txt40"]	= infoFromCPI ["fechaEmision"]
+
+		# Predicted info for "Vehiculo"
+		inputValues ["txt04"]	= infoFromCPI ["marcaVehiculo"] 
+		inputValues ["txt05"]	= infoFromCPI ["anhoVehiculo"]
+		inputValues ["txt06"]	= infoFromCPI ["placaPaisVehiculo"]
+		inputValues ["txt07"]	= infoFromCPI ["chasisVehiculo"]
+		# Predicted info for "Remolque"
+		inputValues ["txt09"]	= infoFromCPI ["marcaRemolque"]
+		inputValues ["txt10"]	= infoFromCPI ["anhoRemolque"]
+		inputValues ["txt11"]	= infoFromCPI ["placaPaisRemolque"]
+		inputValues ["txt12"]	= infoFromCPI ["chasisRemolque"]
+		# Predicted info for "Conductor"
+		inputValues ["txt13"]	= infoFromCPI ["nombreConductor"]
+		inputValues ["txt14"]	= infoFromCPI ["documentoConductor"]
+		inputValues ["txt15"]	= infoFromCPI ["paisConductor"]
+		inputValues ["txt16"]	= infoFromCPI ["licenciaConductor"]
+		# Predicted info for "Auxiliar"
+		inputValues ["txt18"]	= infoFromCPI ["nombreAuxiliar"]
+		inputValues ["txt19"]	= infoFromCPI ["documentoAuxiliar"]
+		inputValues ["txt20"]	= infoFromCPI ["paisAuxiliar"]
+		inputValues ["txt21"]	= infoFromCPI ["licenciaAuxiliar"]
+
+		# Datos sobre la carga
+		inputValues ["txt23"]	= infoFromCPI ["ciudadPaisCarga"]
+		inputValues ["txt24"]	= infoFromCPI ["ciudadPaisDescarga"]
+		inputValues ["txt25_4"]	= infoFromCPI ["otroTipoCarga"]
+		inputValues ["txt25_5"]	= infoFromCPI ["descripcionCarga"]
+
+		# Aduanas info
+		inputValues ["txt37"]	= infoFromCPI ["aduanaCruce"]
+		inputValues ["txt38"]	= infoFromCPI ["aduanaDestino"]
+
+		return inputValues
+
 

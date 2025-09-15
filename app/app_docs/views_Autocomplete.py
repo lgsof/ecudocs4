@@ -13,7 +13,7 @@ from ecuapassdocs.info.ecuapass_utils import Utils
 
 from ecuapassdocs.utils.models_scripts import Scripts
 from app_cartaporte.models_doccpi import Cartaporte
-from app_manifiesto.models_docmci import Manifiesto, ManifiestoForm
+from app_manifiesto.models_docmci import Manifiesto
 
 from app_entidades.models_Entidades import Vehiculo, Conductor, Cliente
 
@@ -33,23 +33,26 @@ class CartaporteOptionsView (View):
 			query = request.POST.get ('query', '')
 
 			cartaportes     = Scripts.getRecentDocuments (Cartaporte, days)
-			docsCartaportes = [model.documento.__dict__ for model in cartaportes]
+			docsCartaportes = [model for model in cartaportes]
+			print (f"\n+++ '{docsCartaportes=}'")
 
 			for i, doc in enumerate (docsCartaportes):
-				itemLine = f"{i}. {doc['numero']}"
+				print (f"\n+++ '{doc.printInfo()=}'")
+				itemLine = f"{i}. {doc.getTxt ('txt00')}"
 				itemText = "%s||%s||%s||%s||%s||%s||%s||%s||%s||%s||%s||%s" % ( 
-							doc ['numero'],  # Cartaporte
-							doc ["txt12"],   # Descripcion 
-							doc ["txt10"],   # Cantidad
-							doc ["txt11"],   # Marca
-							doc ["txt13_2"], # Peso bruto
-							doc ["txt13_1"], # Peso neto
-							doc ["txt15"],   # Otras unidades
-							re.sub (r'[\r\n]+\s*', '. ', doc ["txt16"]), # INCONTERMS
-							doc ["txt13_2"], # Peso bruto total
-							doc ["txt13_1"], # Peso neto total
-							doc ["txt15"],  # Otras unidades total
-							doc ["txt19"])   # Fecha emision
+							doc.getTxt ('txt00'),  # Cartaporte
+							doc.getTxt ("txt12"),   # Descripcion 
+							doc.getTxt ("txt10"),   # Cantidad
+							doc.getTxt ("txt11"),   # Marca
+							doc.getTxt ("txt13_2"), # Peso bruto
+							doc.getTxt ("txt13_1"), # Peso neto
+							doc.getTxt ("txt15"),   # Otras unidades
+							re.sub (r'[\r\n]+\s*', '. ', doc.getTxt ("txt16")), # INCONTERMS
+							doc.getTxt ("txt13_2"), # Peso bruto total
+							doc.getTxt ("txt13_1"), # Peso neto total
+							doc.getTxt ("txt15"),  # Otras unidades total
+							doc.getTxt ("txt19")   # Fecha emision
+				)
 
 				newOption = {"itemLine" : itemLine, "itemText" : itemText}
 				itemOptions.append (newOption)

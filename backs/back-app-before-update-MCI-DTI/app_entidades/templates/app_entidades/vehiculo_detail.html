@@ -1,0 +1,17 @@
+{% extends "main_page_template.html" %}
+
+{% block content %}
+	<h1>Vehículo: {{ vehiculo.placa }}</h1>
+
+	<p><strong>Marca:</strong> {{ vehiculo.marca }}</p>
+	<p><strong>País:</strong> {{ vehiculo.pais }}</p>
+	<p><strong>Chasís:</strong> {{ vehiculo.chasis }}</p> 
+	<p><strong>Año fabricación:</strong> {{ vehiculo.anho }}</p>
+	<p><strong>Conductor:</strong> <a href="{{ vehiculo.conductor.get_absolute_url }}">{{ vehiculo.conductor}}</a> </p>
+	<p><strong>Remolque:</strong> {{ vehiculo.remolque }}</p>
+
+	<hr>
+	<button><a href="{% url 'vehiculo-editar' vehiculo.id %}">Editar</a></button>
+	<button><a href="{% url 'vehiculo-eliminar' vehiculo.id %}">Eliminar</a></button>
+
+{% endblock %}

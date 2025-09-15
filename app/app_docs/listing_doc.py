@@ -164,9 +164,6 @@ class DocumentosListadoTable (BaseListadoTable):
 		# Column for apply actions in the current item document
 		self.base_columns ['acciones'] = tables.TemplateColumn(
 			template_code='''
-			<!-- Focus (don’t navigate if already open) -->
-			<a href="{{ record.get_link_editar }}" class="open-doc" data-win="doc_{{ record.pk }}">Editar</a>
-
 			<a href="{{ record.get_link_pdf }}?pk={{ record.id }}&pdfType=original" target='_blank'>PdfO</a>
 			<a href="{{ record.get_link_pdf }}?pk={{ record.id }}&pdfType=copia" target='_blank'>PdfC</a>
 			<a href="{{ record.get_link_pdf }}?pk={{ record.id }}&pdfType=paquete" target='_blank'>PdfP</a>

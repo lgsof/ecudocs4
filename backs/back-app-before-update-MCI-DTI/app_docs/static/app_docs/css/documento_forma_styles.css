@@ -1,0 +1,118 @@
+/*
+ * Styles for docuemnt form (cartaporte, manifiesto, declaracion)
+ * and buttons bar
+*/
+		#container {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%; 
+			height: 100%; 
+			overflow: visible; 
+		}
+
+		.container {
+			position: absolute;
+			left: 00px; 
+			top: 00px; 
+			width: 100%; 
+			height: 1424px; 
+
+			background: rgba(55, 55, 255, 0.00); 
+			padding: 00px;
+			box-shadow: 0 0 10px rgba(255, 255, 255, 1.0); 
+		}
+
+        /* Dynamically Background image in the html form */
+
+		/* Style for the form header (containing the pdf-clonar button) */
+		.form-header {
+		  text-align: center;
+		  margin-bottom: 10px;
+		}
+
+		.top-panel {
+			background-color: #fff0ff;
+			padding: 03px;
+			text-align: center;
+		}
+
+		.submit:disabled {
+			background-color: #ccc; /* Set the background color to gray when disabled */
+			color: #666; /* Set the text color to a darker shade when disabled */
+			cursor: not-allowed; /* Change cursor to indicate the button is disabled */
+		}
+
+
+		form {
+		  display: flex;
+		  flex-direction: column; /* Align items in a column */
+		  align-items: center;
+		  padding: 00px;
+		}		
+
+		#boton_guardar:enabled {
+		  background-color: #FFFF00;
+		  color: black;
+		}
+		#boton_pdf_original:enabled {
+		  background-color: #FAAAA0;
+		  color: black;
+		}
+
+		#boton_pdf_copia:enabled {
+		  background-color: #F0FFFF;
+		  color: black;
+		}
+
+		#boton_clonar:enabled {
+		  background-color: #ADD8E6;
+		  color: black;
+		}		
+
+		#boton_pdf_paquete:enabled {
+		  background-color: #9BFF9b;
+		  color: black;
+		}		
+
+		#boton_detalle:enabled {
+		  background-color: #FFFF9b;
+		  color: black;
+		}		
+
+		textarea {
+			font-family: 'Times New Roman', Times, serif;
+			font-family: 'Courier New', Courier, monospace;
+			/*
+			font-family: 'Helvetica', sans-serif;
+			*/
+
+			/*
+			font-weight: bold; /* Set font weight to bold */
+			*/
+			width: 100%; /* Adjusted width */
+			padding: 0px;
+			box-sizing: border-box; /* Ensure padding and border are included in the width */
+
+	        resize: none; /* "none" disables resizing */
+	        overflow: hidden ; /* Disable scrolling */
+	        /*
+               white-space: pre-line; /* Wrap and preserve line breaks */
+            */
+
+            white-space: pre-wrap;  /* Preserve white spaces */
+            overflow-wrap: break-word;  /* Handle word wrap */
+            word-wrap: break-word;  /* Older version for word wrap */
+		}
+		textarea:focus {
+			border: 2px solid red; /* Change border thickness and color */
+			outline: none; /* Remove default outline if you are setting a custom border */
+		}
+
+
+		/*****************************************************************************/
+		/*****************************************************************************/
+		/*** Establece dinamicamente coordenadas X, Y, ancho, alto de los inputsi ****/
+		/*****************************************************************************/
+		/*****************************************************************************/
+

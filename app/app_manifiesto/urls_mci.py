@@ -18,10 +18,9 @@ urlpatterns = [
 	path('editardoc/<int:pk>', docView, name='manifiesto-editardoc'),
 	path('editar/<int:pk>', ManifiestoDocView.as_view(), name='manifiesto-editar'),
 
-	# PDF, detail, remove
-	path('pdf_original/<int:pk>', ManifiestoDocView.as_view(), name='manifiesto-pdf_original'),
-	path('pdf_copia/<int:pk>', ManifiestoDocView.as_view(), name='manifiesto-pdf_copia'),
-	path('pdf_paquete/<int:pk>', ManifiestoDocView.as_view(), name='manifiesto-pdf_paquete'),
+	# PDF
+	path('pdf/<str:filename>', ManifiestoDocView.as_view(), name='manifiesto-pdf'),
+
 	path('clonar/<int:pk>', ManifiestoDocView.as_view(), name='manifiesto-clonar'),
     path('detalle/<pk>', views_mci.ManifiestoDetailView.as_view(), name='manifiesto-detalle'),
 	path('borrar/<int:pk>', views_mci.ManifiestoDelete.as_view(), name='manifiesto-delete'),
