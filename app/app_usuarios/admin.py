@@ -33,32 +33,42 @@ def desactivar_empresas(modeladmin, request, queryset):
 
 @admin.register(Empresa)
 class EmpresaAdmin(admin.ModelAdmin):
-    list_display  = ("nickname", "nombre", "activo", "fecha_creacion", "link_dev", "link_prod")
-    list_filter   = ("activo",)
-    search_fields = ("nickname", "nombre")
-    actions       = (activar_empresas, desactivar_empresas)
+	list_display  = ("nickname", "nombre", "permiso", "activo", "fecha_creacion", "link_dev", "link_prod")
+	list_filter   = ("activo",)
+	search_fields = ("nickname", "nombre")
+	actions		  = (activar_empresas, desactivar_empresas)
+	prepopulated_fields = {"nickname": ("nombre",)}
+	readonly_fields = ("fecha_creacion",)  # auto_now_add -> not editable
 
-    # Si tu campo es SlugField, esto ayuda:
-    prepopulated_fields = {"nickname": ("nombre",)}  # quítalo si NO es SlugField
+	# (no fieldsets -> Django shows all editable fields automatically)
 
-    fieldsets = (
-        (None, {"fields": ("nickname", "nombre", "activo")}),
-    )
+	# Control *order* explicitly (include readonly fields where you want them)
+	fields = (
+		"nickname",
+		"nombre",
+		"permiso",
+		"activo",
+		"nit",
+		"direccion",
+		"telefono",
+		"email",
+		"fecha_creacion",	# readonly, but placed here
+	)	
 
-    def save_model(self, request, obj, form, change):
-        # Normaliza el subdominio
-        if obj.nickname:
-            obj.nickname = obj.nickname.strip().lower()
-        super().save_model(request, obj, form, change)
+	def save_model(self, request, obj, form, change):
+		# Normaliza el subdominio
+		if obj.nickname:
+			obj.nickname = obj.nickname.strip().lower()
+		super().save_model(request, obj, form, change)
 
-    def link_dev(self, obj):
-        # Link a http://<nickname>.localhost:8000/
-        return format_html('<a href="http://{}.localhost:8000/" target="_blank">dev</a>', obj.nickname)
-    link_dev.short_description = "Dev"
+	def link_dev(self, obj):
+		# Link a http://<nickname>.localhost:8000/
+		return format_html('<a href="http://{}.localhost:8000/" target="_blank">dev</a>', obj.nickname)
+	link_dev.short_description = "Dev"
 
-    def link_prod(self, obj):
-        # Usa tu dominio base; configurable por settings.TENANT_BASE_DOMAIN
-        base = getattr(settings, "TENANT_BASE_DOMAIN", "ecuapassdocs.app")
-        return format_html('<a href="https://{}.{}" target="_blank">prod</a>', obj.nickname, base)
-    link_prod.short_description = "Prod"
+	def link_prod(self, obj):
+		# Usa tu dominio base; configurable por settings.TENANT_BASE_DOMAIN
+		base = getattr(settings, "TENANT_BASE_DOMAIN", "ecuapassdocs.app")
+		return format_html('<a href="https://{}.{}" target="_blank">prod</a>', obj.nickname, base)
+	link_prod.short_description = "Prod"
 

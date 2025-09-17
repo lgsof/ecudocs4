@@ -2,6 +2,7 @@ import os, tempfile, json
 from django.db import models
 
 from ecuapassdocs.info.ecuapass_utils import Utils
+from ecuapassdocs.info.ecuapass_extractor import Extractor
 
 from app_docs.models_docbase import DocBaseModel
 from app_cartaporte.models_doccpi import Cartaporte
@@ -33,44 +34,52 @@ class Manifiesto (DocBaseModel):
 			super().update (doc)
 
 			# Set specific fields
-#			self.vehiculo   = self.getTxtVehiculo ()  
-#			self.conductor  = self.getTxtConductor ()  
-#			self.cartaporte = self.getTxtCartaporte ()  
+			self.cartaporte = self.getCartaporteInstance ()  
+			self.vehiculo   = self.getVehiculoInstance ()  
+			self.conductor  = self.getConductorInstance ()  
+			print (f"\n+++ '{self.conductor=}'")
 
 			# Save and create HttpResponse
 			return super().saveCreateResponse ()
 
 	#---------------------------------------------------------------
-	# Get/Set txt fields
+	# Get model field instances
 	#---------------------------------------------------------------
-	def getTxtVehiculo (self):
-		text    = self.getTxt ("txt02")
-		cliente = Scripts.getSaveClienteInstanceFromText (text, type="02_Remitente") if text else None
-		return cliente 
+	#-- Get cartaporte instance ------------------------------------
+	def getCartaporteInstance (self):
+		cartaporte         = None
+		textCartaporte     = self.getTxt ("txt28")
+		try:
+			numeroCartaporte   = Extractor.getNumeroDocumento (textCartaporte)
+			cartaporte         = Scripts.getCartaporteInstanceByNumero (numeroCartaporte)
+		except:
+			Utils.printException (f"Error obteniendo cartaporte desde texto: '{textCartaporte}'")
+		return cartaporte
 
-#	def setValues (self, manifiestoForm, docFields, pais, username):
-#		# Base values
-#		super().setValues (manifiestoForm, docFields, pais, username)
+	#-- Get vehiculo instance --------------------------------------
+	def getVehiculoInstance (self):
+		vehiculo = None
+		placaPaisText = self.getTxt ("txt06")
+		try:
+			placa         = Extractor.getPlaca (placaPaisText)
+			vehiculo      = Scripts.getVehiculoByPlaca (placa)
+		except Exception as ex:
+			Utils.printException (f"Error obteniendo vehiculo placa: '{placaPaisText}'")
+		return vehiculo
 
-		# Document values
-#		placaPais        = manifiestoInfo.getPlacaPais ()
-#		conductor        = manifiestoInfo.getConductor ()
-#		cartaporteNumber = manifiestoInfo.getNumeroCartaporte ()
-#		descripcion      = manifiestoInfo.getDescripcion ()
-#		referencia       = manifiestoInfo.getReferencia ()
-#
-#		self.cartaporte  = Scripts.getCartaporteInstanceByNumero (cartaporteNumber)
-#		print (f"\t+++ cartaporte instance:'{self.cartaporte}'")
-#
-#		self.getSaveVehiculoConductorInstance (manifiestoInfo)
-#		self.fecha_emision = EcuInfo.getFechaEmision (docFields, "MANIFIESTO")
+	#-- Get conductor instance -------------------------------------
+	def getConductorInstance (self):
+		conductor        = None
+		textDocumento = self.getTxt ("txt14")
+		print (f"\n+++ '{textDocumento=}'")
+		try:
+			documento = Extractor.getNumeroDocumento (textDocumento)
+			conductor = Scripts.getConductorByDocumento (documento)
+		except Exception as ex:
+			Utils.printException (f"Error obteniendo conductor con id : '{textDocumento}'")
+		return conductor
 
-		#self.updateFieldRelations ()
-
-		def getDocPlacaPais (self, docFields):
-			placaPais = Extractor.getPlacaPais (docFields ["06_Camion_PlacaPais"], self.resourcesPath) 
-            
-
+	#----------------------------------------------------------------
 	#-- Get and save info vehiculo/remolque/conductor/auxiliar
 	def getSaveVehiculoConductorInstance (self, manifiestoInfo):
 		# Vehiculo
@@ -129,19 +138,6 @@ class Manifiesto (DocBaseModel):
 			Utils.printException (f"Error con nombre de instancia '{instanceName}'")
 		return instance, changeFlag
 
-
-	#-- Get cartaporte from manifiesto info
-	def getCartaporteInstance (self, manifiestoInfo):
-		cartaporteNumber = None
-		try:
-			cartaporteNumber = manifiestoInfo.getNumeroCartaporte ()
-			instance = Cartaporte.objects.get (numero=cartaporteNumber)
-			return instance
-		except: 
-			Utils.printx (f"ALERTA: Cartaporte número '{cartaporteNumber}' no encontrado.")
-			#Utils.printException ()
-		return None
-
 	#-- Get a 'conductor' instance from extracted info
 	def getSaveConductorInstance (self, manifiestoInfo, vehicleType):
 		try:
@@ -196,19 +192,6 @@ class Manifiesto (DocBaseModel):
     #------------------------------------------------------
     #def getInitialValuesFromCartaporte (cartaporteNumber):
     #def getInitialValuesFromEmpresa (empresaName):
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #--------------------------------------------------------------------

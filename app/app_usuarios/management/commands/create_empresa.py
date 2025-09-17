@@ -8,20 +8,23 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument("nickname", type=str, help="Código/subdominio de la empresa (ej: 'byza').")
         parser.add_argument("--nombre", type=str, required=True, help="Nombre completo de la empresa.")
+        parser.add_argument("--permiso", type=str, required=True, help="Número del Permiso Originario.")
         parser.add_argument("--inactiva", action="store_true", help="Crear empresa inicialmente inactiva.")
 
     def handle(self, *args, **options):
         nickname = options["nickname"].strip().lower()
-        nombre = options["nombre"].strip()
-        activo = not options["inactiva"]
+        nombre   = options["nombre"].strip()
+        permiso  = options["permiso"].strip()
+        activo   = not options["inactiva"]
 
         if Empresa.objects.filter(nickname=nickname).exists():
             raise CommandError(f"La empresa con código '{nickname}' ya existe.")
 
-        empresa = Empresa.objects.create(
+        empresa = Empresa.objects.create (
             nickname=nickname,
             nombre=nombre,
             activo=activo,
+			permiso=permiso,
         )
 
         self.stdout.write(

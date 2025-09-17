@@ -39,10 +39,11 @@ class Empresa (models.Model):
 	activo	       = models.BooleanField (default=True)
 	fecha_creacion = models.DateTimeField (auto_now_add=True)
 
-	nit		   = models.CharField (max_length=20, null=True, blank=True)
-	direccion  = models.CharField (max_length=200, null=True, blank=True)
-	telefono   = models.CharField (max_length=50, null=True, blank=True)
-	email	   = models.EmailField (null=True, blank=True)
+	permiso        = models.CharField (max_length=20, null=True, blank=True)
+	nit		       = models.CharField (max_length=20, null=True, blank=True)
+	direccion      = models.CharField (max_length=200, null=True, blank=True)
+	telefono       = models.CharField (max_length=50, null=True, blank=True)
+	email	       = models.EmailField (null=True, blank=True)
 
 	class Meta:
 		db_table = 'empresa'

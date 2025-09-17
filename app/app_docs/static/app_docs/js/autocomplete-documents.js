@@ -20,7 +20,6 @@ function getCookie(name) {
 // Create autocomplete for an entity
 function createAutocomplete (entity) {
 	const csrftoken = getCookie('csrftoken');
-
 	let inputSelector = entity.inputSelector
 	let sourceUrl     = "/" + entity.sourceUrl
 	
@@ -35,8 +34,8 @@ function createAutocomplete (entity) {
 				},
 
 				success: function (data) {
-					responseData = entity.onAjaxSuccess (data)
-					response (responseData)
+                    //responseData = entity.onAjaxSuccess (data)
+					response (data)
 				}
 			});
 		},
@@ -44,10 +43,33 @@ function createAutocomplete (entity) {
 		position: { my: "left top", at: "center top", collision: "none" }, // Customize the position
 		select: function (event, ui) {
 			entity.onItemSelected (ui)
+            // Mark that a proper selection was made
+            $(this).data('properlySelected', true);
 			// Prevent the default behavior of filling the input with the selected value
 			return false;
 		}
 	});
+
+//    // Clear input when focus is lost without proper selection
+//    $(inputSelector).on('blur', function(event) {
+//        if (!$(this).data('properlySelected')) {
+//            // Clear the input if not properly selected
+//            $(this).val('');
+//            // Also close the menu if it's open
+//            $(this).autocomplete('close');
+//        }
+//        // Reset the flag for next time
+//        $(this).data('properlySelected', false);
+//    });
+    
+    // Also handle escape key to clear without selection
+    $(inputSelector).on('keydown', function(event) {
+        if (event.keyCode === 27 ||  event.keyCode === 37) { // Escape key
+            $(this).val('');
+            $(this).autocomplete('close');
+            event.preventDefault();
+        }
+    });
 }
 
 // Return array of selected textAreas according to className
@@ -111,7 +133,6 @@ function setAutocompleteForDocument (documentType) {
 		manifiestoInputs.forEach (inputName => {
 			createAutocomplete(new AutoCompleteManifiesto (inputName, 'opciones-manifiesto')) 
 		});
-
 }
 
 //----------------------------------------------------------------------
@@ -121,6 +142,7 @@ function setAutocompleteForDocument (documentType) {
 class AutoComplete {
 	// Init with input element and source URL which is handles in views
 	constructor (inputSelector, sourceUrl, documentType=null) {
+        console.log ("... In constructor ...")
 		let inputId        = "#" + inputSelector
 		this.inputSelector = inputSelector;
 		this.sourceUrl     = sourceUrl;
@@ -128,22 +150,9 @@ class AutoComplete {
 		this.documentType  = documentType; 
 	}
 
-	// When ajax query is succesfull, set items
-	onAjaxSuccess (data) {
-		this.fullData = data;
-		let flatData = [];
-		for (let i=0; i < data.length; i++) {
-			flatData.push (data[i] ["itemLine"])
-		}
-		return flatData;
-	}
-
 	// When an item is selected, populate the textarea 
 	onItemSelected (ui) {
-        console.log (">>> autocomplete : onItemSelected")
-		let index = ui.item.value.split (".")[0]
-		let text = this.fullData [index]["itemText"]
-		$(this.inputSelector).val (text);
+		$(this.inputSelector).val (ui.item.info);
 	}
 }
 
@@ -153,9 +162,7 @@ class AutoComplete {
 class AutoCompleteCartaporte extends AutoComplete {
 	// When a cartaporte number is selected, populate related inputs
 	onItemSelected (ui) {
-		let index = ui.item.value.split (".")[0]
-		let text = this.fullData [index]["itemText"]
-		let values = text.split ("||");
+		let values = ui.item.info.split ("||");
 		
 		let docInputsIds = null;
 		if (this.documentType === "MANIFIESTO")
@@ -179,9 +186,7 @@ class AutoCompleteCartaporte extends AutoComplete {
 class AutoCompleteManifiesto extends AutoComplete {
 	// When a cartaporte number is selected, populate related inputs
 	onItemSelected (ui) {
-		let index = ui.item.value.split (".")[0]
-		let text = this.fullData [index]["itemText"]
-		let values = text.split ("||");
+        let values = ui.item.info.split ("||")
 		
 		let docInputsIds = ["12","13","14","15","16","17","18","19_1","19_3","20_1","21","22","23"]
 
@@ -196,20 +201,19 @@ class AutoCompleteManifiesto extends AutoComplete {
 class AutoCompleteVehiculo extends AutoComplete {
 	// When an item is selected, populate the textarea 
 	onItemSelected (ui) {
-		let index  = ui.item.value.split (".")[0]
-		let text   = this.fullData [index]["itemText"]
-		let values = text.split ("||");
+        console.log ("...In AutoCompleteVehiculo...")
+		let values = ui.item.info.split ("||");
 		let input  = this.inputSelector
 		if (input.id === "txt06") {
             //-- Vehiculo
-			document.getElementById("txt04").value = getValidValue (values [0])
+			document.getElementById("txt04").value = getValidValue (values [2])
 			document.getElementById("txt05").value = getValidValue (values [1])
-			document.getElementById("txt06").value = getValidValue (values [2])
+			document.getElementById("txt06").value = getValidValue (values [0])
 			document.getElementById("txt07").value = getValidValue (values [3])
             //-- Remolque
-			document.getElementById("txt09").value = getValidValue (values [4])
+			document.getElementById("txt09").value = getValidValue (values [6])
 			document.getElementById("txt10").value = getValidValue (values [5])
-			document.getElementById("txt11").value = getValidValue (values [6])
+			document.getElementById("txt11").value = getValidValue (values [4])
 			document.getElementById("txt12").value = getValidValue (values [7])
             //-- Conductor
 			document.getElementById("txt13").value = getValidValue (values [8])
@@ -218,9 +222,9 @@ class AutoCompleteVehiculo extends AutoComplete {
 			document.getElementById("txt16").value = getValidValue (values [11])
 
 		}else {
-			document.getElementById("txt09").value = getValidValue (values [0])
+			document.getElementById("txt09").value = getValidValue (values [2])
 			document.getElementById("txt10").value = getValidValue (values [1])
-			document.getElementById("txt11").value = getValidValue (values [2])
+			document.getElementById("txt11").value = getValidValue (values [0])
 			document.getElementById("txt12").value = getValidValue (values [3])
 		}
 	}
@@ -230,10 +234,8 @@ class AutoCompleteVehiculo extends AutoComplete {
 class AutoCompleteConductor extends AutoComplete {
 	// When an item is selected, populate the textarea 
 	onItemSelected (ui) {
-		let index = ui.item.value.split (".")[0]
-		let text = this.fullData [index]["itemText"]
-		let values = text.split ("||");
 		let input = this.inputSelector
+        let values = ui.item.info.split ("||")
 		if (input.id === "txt13") {
 			document.getElementById("txt13").value = values [0]
 			document.getElementById("txt14").value = values [1]

@@ -22,7 +22,7 @@ import app_declaracion
 #import app_cartaporte.models_doccpi as models_doccpi
 #from app_manifiesto.models_docmci import Manifiesto
 
-from app_entidades.models_Entidades import Cliente
+from app_entidades.models_Entidades import Cliente, Vehiculo, Conductor
 from app_usuarios.models import Usuario, Empresa
 
 #-------------------------------------------------------------------
@@ -102,9 +102,9 @@ class Scripts:
 			instance = app_cartaporte.models_doccpi.Cartaporte.objects.get  (numero=cartaporteNumber)
 			return instance
 		except app_cartaporte.models_doccpi.Cartaporte.DoesNotExist:
-			print  (f"+++ No existe cartaporte nro: '{cartaporteNumber}'!")
+			Utils.printException (f"+++ No existe cartaporte nro: '{cartaporteNumber}'!")
 		except app_cartaporte.models_doccpi.Cartaporte.MultipleObjectsReturned:
-			print  (f"+++ Múltiples instancias de cartaporte nro: '{cartaporteNumber}'!")
+			Utils.printException (f"+++ Múltiples instancias de cartaporte nro: '{cartaporteNumber}'!")
 		return None
 	#-------------------------------------------------------------------
 	#-- Get/Save cliente info. Only works for BYZA
@@ -171,8 +171,12 @@ class Scripts:
 
 	##----------------------------------------------------------
 	##----------------------------------------------------------
-	def getVehiculoInstanceByPlacaId (placa):
-		instances = Vehiculo.filter (id=placa)
+	def getVehiculoByPlaca (placa):
+		instances = Vehiculo.objects.filter (placa=placa)
+		return instances.first () if instances else None
+
+	def getConductorByDocumento (documento):
+		instances = Conductor.objects.filter (documento=documento)
 		return instances.first () if instances else None
 
 	def getEmpresaByNickname (nickname):

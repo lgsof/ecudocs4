@@ -940,13 +940,18 @@ class Utils:
 #		return (docFieldsPath, tmpPath)
 
 	#-----------------------------------------------------------
-	# Return a string
+	# Return a string from a value or collector
 	#-----------------------------------------------------------
 	def toString (value):
+		print (f"\n+++ '{type (value)=}'")		
 		if not value:
 			return ""
 		elif type (value) is list or type (value) is tuple:
 			return [str (x) for x in value]
+		elif type (value) is dict:
+			for k,v in value.items ():
+				value [k] = str (v) if v else ""
+			return value
 		else:
 			return str (value)
 

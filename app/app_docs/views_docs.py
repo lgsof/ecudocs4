@@ -152,21 +152,14 @@ class ConductorDelete(login_required_class(DeleteView)):
 #--------------------------------------------------------------------
 #-- Manifiesto
 #--------------------------------------------------------------------
-#class ManifiestoCreate(login_required_class(CreateView)):
-#	model = Manifiesto
-#	fields = '__all__'
-#
-#class ManifiestoUpdate(login_required_class(UpdateView)):
-#	model = Manifiesto
-#	fields = ['vehiculo', 'cartaporte']
-#
-#class ManifiestoDelete (login_required_class(DeleteView)):
-#	model = Manifiesto
-#	success_url = reverse_lazy('manifiestos')
-
 class InfoView(View):
 	template_name = 'info_view.html'
+	def get(self, request, *args, **kwargs):
+		return render(request, self.template_name)
 
+#-- View for shoing messages
+class MessageView (View):
+	template_name = 'message_view.html'
 	def get(self, request, *args, **kwargs):
 		return render(request, self.template_name)
 

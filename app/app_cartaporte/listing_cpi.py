@@ -1,5 +1,4 @@
 # For models
-from django.utils.text import Truncator
 import django_tables2 as tables
 
 from app_docs.listing_doc import DocumentosListadoView, DocumentosListadoTable
@@ -27,8 +26,3 @@ class CartaportesListadoTable (DocumentosListadoTable):
 		verbose_name="Remitente",
 		attrs={"td": {"class": "text-truncate", "style": "max-width: 500px;"}}
 	)
-
-	def render_descripcion(self, value):
-		return Truncator(value or "").chars(50)   # e.g. ~150 chars
-
-

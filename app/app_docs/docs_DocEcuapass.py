@@ -67,6 +67,7 @@ class DocEcuapass:
 		for key in fields:
 			setattr (self, key, formFields [key])
 		self.formFields = formFields
+		return self.formFields
 
 	#----------------------------------------------------------------
 	# Return current form fields
@@ -176,9 +177,17 @@ class DocEcuapass:
 	#----------------------------------------------------------------
 	# Getters/Settes/Converter between fields (formFields, docParams)
 	#----------------------------------------------------------------
-	#-- Create empty formFields with all keys of inputParams
+	#-- Create  formFields and initialize according to docType and empresa
 	def createFormFields (self):
-		return self.getFormFieldsFromDocParams (self.inputParams)
+		formFields = self.getFormFieldsFromDocParams (self.inputParams)
+	
+		if self.docType == "MANIFIESTO":
+			empresaInstance      = Scripts.getEmpresaByNickname (self.empresa)
+			formFields ["txt02"] = empresaInstance.permiso
+
+		self.formFields  = formFields
+		return self.formFields
+
 
 	def getFormFieldsFromDocParams (self, docParams):
 		formFields = {}
@@ -212,11 +221,12 @@ class DocEcuapass:
 
 	#-- Return docParams from form fields
 	def getDocParamsFromFormFields (self, formFields):
-		docKeys = ["id", "numero", "pais", "usuario", "empresa"]
-		docParams = self.inputParams
-		for k in docKeys:
-			docParams [k]["value"] = formFields [k]
+#		docKeys = ["id", "numero", "usuario", "empresa", "pais"]
+#		for k in docKeys:
+#			print (f"\n+++ '{k=}'")
+#			docParams [k]["value"] = formFields [k]
 
+		docParams = self.inputParams
 		for k in formFields.keys():	
 			docParams [k]["value"] = formFields [k]
 		self.docParams = docParams

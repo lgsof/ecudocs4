@@ -30,12 +30,9 @@ class Cartaporte (DocBaseModel):
 	def update (self, doc):
 		print (f"\n+++ Guardando cartaporte número: '{doc.numero}'")
 		if doc.numero:
-			# Set common fields
-			super().update (doc)
-			# Set specific fields
-			self.remitente    = self.getTxtRemitente ()  
-			# Save and create HttpResponse
-			return super().saveCreateResponse ()
+			super().update (doc)                         # Set common fields
+			self.remitente    = self.getTxtRemitente ()  # Set specific fields
+			return super().saveCreateResponse ()         # Save and create HttpResponse
 
 	#---------------------------------------------------------------
 	# Get/Set txt fields

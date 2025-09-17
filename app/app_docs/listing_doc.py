@@ -12,6 +12,7 @@ from django.conf import settings
 # For forms
 from django import forms
 from django.utils import timezone, formats
+from django.utils.text import Truncator
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column, Field
 
@@ -186,7 +187,7 @@ class DocumentosListadoTable (BaseListadoTable):
 		return formats.date_format(value, "SHORT_DATE_FORMAT")  
 		# or value.strftime("%d/%m/%Y")
 
-	def render_descripcion(self, value):
+	def render_descripcion (self, value):
 		return Truncator(value or "").chars(50)   # e.g. ~150 chars
 
 		## Ensure value is a datetime object before formatting

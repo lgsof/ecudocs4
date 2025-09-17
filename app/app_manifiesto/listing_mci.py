@@ -14,7 +14,7 @@ class ManifiestosListadoView (DocumentosListadoView):
 # Table
 #----------------------------------------------------------
 class ManifiestosListadoTable (DocumentosListadoTable):
-	class Meta:
+	class Meta (DocumentosListadoTable.Meta):
 		model         = Manifiesto
 		urlDoc        = "manifiesto"
 		fields        = ("row_number", "numero", "descripcion", "referencia", "vehiculo", "fecha_emision", "acciones")

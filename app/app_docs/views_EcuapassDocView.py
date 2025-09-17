@@ -4,17 +4,18 @@ from django.urls import reverse
 
 
 from django.utils.timezone import now
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 
 from django.contrib import messages
+from django.http import HttpResponse
 
 # For CSRF protection
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
 
 # For login
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.urls import resolve   # To get calling URLs
 
 # Own imports
@@ -44,7 +45,9 @@ def docView(request, *args, **kwargs):
 #--------------------------------------------------------------------
 LAST_SAVED_VALUES = None
 class EcuapassDocView (LoginRequiredMixin, View):
+	raise_exception = True  # don't redirect to login, let us handle it
 
+	permission_required = "app_cartaporte.add_cartaporte"  # <— app_label.add_modelname
 	def __init__(self, docType, background_image, parameters_file, *args, **kwargs):
 		print (f"\n+++ Creando nueva vista EcuapassDocView...")
 		super().__init__ (*args, **kwargs)
@@ -62,8 +65,8 @@ class EcuapassDocView (LoginRequiredMixin, View):
 	def get (self, request, *args, **kwargs):
 		print ("\n\n+++ GET :: EcuapassDocView +++")
 		print (f"\t+++ getResponseForCommand::{request.GET=}'")
-		pdfType  = request.GET.get ('pdfType', '').lower()
 		urlCommand = resolve (request.path_info).url_name
+		#return self.handle_no_permission ()
 		return self.getResponseForCommand (urlCommand, request, *args, **kwargs)
 
 	#-------------------------------------------------------------------
@@ -78,6 +81,15 @@ class EcuapassDocView (LoginRequiredMixin, View):
 		return self.getResponseForCommand (buttonCommand, request, *args, **kwargs)
 
 	#-------------------------------------------------------------------
+	# Run before GET or POST: Check if user can create docs
+	#-------------------------------------------------------------------
+	def dispatch(self, request, *args, **kwargs):
+		if not self.userCanCreateDocs (request):
+			return self.handle_no_permission()
+
+		return super().dispatch(request, *args, **kwargs)
+
+	#-------------------------------------------------------------------
 	# Get response for document command (save, original, copia, clon, ...)
 	#-------------------------------------------------------------------
 	def getResponseForCommand (self, command, request, *args, **kwargs):
@@ -85,8 +97,10 @@ class EcuapassDocView (LoginRequiredMixin, View):
 		self.docParams  = self.doc.update (request, args, kwargs)
 		self.formFields = self.doc.getFormFields ()
 
-		if "editar" in command or "nuevo" in command:
-			return self.onEditCommand ("NORMAL", request, *args, **kwargs)
+		if "nuevo" in command:
+			return self.onEditCommand ("NUEVO", request, *args, **kwargs)
+		elif "editar" in command:
+			return self.onEditCommand ("BDATOS", request, *args, **kwargs)
 		elif "guardar" in command:
 			docId = self.onSaveCommand (request, args, kwargs) 
 			return HttpResponseRedirect (self.get_edit_url(docId))
@@ -112,7 +126,7 @@ class EcuapassDocView (LoginRequiredMixin, View):
 	def onPdfCommand (self, pdfType, request, *args, **kwargs):
 		print (f"\n+++ onPdfCommand:", request.method, ": PK :", kwargs.get ("pk"))
 		if request.method == "GET":
-			pk         = int (request.GET.get ("pk"))
+			pk      = int (request.GET.get ("pk"))
 			pdfType = request.GET.get ("pdfType")
 			self.formFields = self.doc.getFormFieldsFromDB (pk)
 		else:
@@ -142,9 +156,9 @@ class EcuapassDocView (LoginRequiredMixin, View):
 		print (f"\n+++ onEditCommand...")
 		pk        = kwargs.get ('pk')
 
-		if (editType=="NORMAL" and not pk): # New
+		if (editType=="NUEVO"): # New
 			formFields = self.editDocumentNew (request)
-		elif (editType=="NORMAL" and pk):   # Existing 
+		elif (editType=="BDATOS"):   # Existing 
 			formFields = self.editDocumentFromDB (request, pk)
 		elif (editType=="CLON"):              # Clone
 			formFields = self.editDocumentClon (request)
@@ -152,6 +166,7 @@ class EcuapassDocView (LoginRequiredMixin, View):
 		# Send input fields parameters (bounds, maxLines, maxChars, ...)
 		self.doc.updateFromFormFields (formFields)
 		docParams = self.doc.getDocParamsFromFormFields (self.formFields)
+		print (f"\n+++ '{formFields=}'")
 		contextDic = {
 			"docTitle"         : self.doc.getDocTitulo (),
 			"docType"          : self.docType, 
@@ -166,8 +181,10 @@ class EcuapassDocView (LoginRequiredMixin, View):
 	#-- Update form fields new doc
 	def editDocumentNew (self, request):
 		print (f"\n+++ Editing new document...'")
-		self.formFields ["id"]     = ""
-		self.formFields ["numero"] = self.doc.generateDocNumberTemporal ()
+		formFields            = self.doc.getFormFieldsFromRequest (request)
+		formFields ["id"]     = ""
+		formFields ["numero"] = self.doc.generateDocNumberTemporal ()
+		formFields            = self.doc.updateFromFormFields (formFields)
 		return self.formFields
 
 	#-- Get doc from DB and updates session docs
@@ -211,7 +228,6 @@ class EcuapassDocView (LoginRequiredMixin, View):
 			currentInputValues = sessionInfo.get ("currentInputValues")
 			savedtInputValues  = sessionInfo.get ("savedInputValues")
 			sessionInfo.set ("savedInputValues", currentInputValues)
-			print (sessionInfo)
 			self.doc.saveDocumentToDB (currentInputValues)
 			self.inputFields = currentInputValues
 
@@ -255,3 +271,18 @@ class EcuapassDocView (LoginRequiredMixin, View):
 		url_name = f"{self.docType.lower()}-editardoc"
 		return reverse(url_name, kwargs={"pk": pk})
 
+	#----------------------------------------------------------------
+	# Check and handle when users are not allowed to create docs
+	#----------------------------------------------------------------
+	#-- When view is loaded in a plain iframe
+	def handle_no_permission(self):
+		messages.error (self.request, "No tienes permiso para crear documentos.")
+		target_url = reverse ("message-view")
+		# Break out of the iframe and redirect the top window
+		html = f""" <script> window.top.location.href = "{target_url}"; </script> """
+		return HttpResponse(html)
+
+	#-- Check uf user can create docs
+	def userCanCreateDocs (self, request):
+		user = request.user
+		return any ([user.pais in x for x in ["COLOMBIA", "ECUADOR", "PERU"]])

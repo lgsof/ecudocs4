@@ -1,51 +1,53 @@
+{# contacto.html #}
 {% extends "main_page_template.html" %}
+{% load static %}
+
+{% block title %}Contacto{% endblock %}
 
 {% block content %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página con Campos de Texto</title>
-    <style>
-        body {
-            background-image: url('images/doc.jpg');
-            background-size: 1699px 2200px;
-            background-repeat: no-repeat;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            position: absolute;
-            left: 0px;
-            top: 100px;
-            width: 800px;
-            height: 400px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .custom-input {
-            position: absolute;
-        }
-    </style>
-</head>
-<body>
-    <div>
-        {% load static %}
+  {# Flash/messages area — keep this near the top of content #}
+  {% if messages %}
+    <div class="container mt-3">
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
     </div>
 
-    <h1>Información de contacto</h1>
-    <p>Comunicate con nosotros para cualquier inquietud con esta aplicación</p>
-	<ul>
-		<li> <b>Web: </b> <a href="https://softwareinteligente.github.io/" target="_blank">www.softwareinteligente.co</a></li>
-		<li> <b>Correo: </b><a href="mailto:softwareinteligente.co@gmail.com>" target="_blank">softwareinteligente.co@gmail.com</a></li>
+  {% else %}
+
+  <section class="container py-4">
+    <h1 class="mb-3">Información de contacto</h1>
+    <p>Comunícate con nosotros para cualquier inquietud con esta aplicación.</p>
+    <ul class="list-unstyled">
+      <li>
+        <strong>Web:</strong>
+        <a href="https://softwareinteligente.github.io/" target="_blank" rel="noopener">
+          www.softwareinteligente.co
+        </a>
+      </li>
+      <li>
+        <strong>Correo:</strong>
+        <a href="mailto:softwareinteligente.co@gmail.com" target="_blank" rel="noopener">
+          softwareinteligente.co@gmail.com
+        </a>
+      </li>
     </ul>
-</body>
-</html>
+  </section>
+
+  {% endif %}
+{% endblock %}
+
+{% block extra_css %}
+  <style>
+    body {
+      background-image: url("{% static 'images/doc.jpg' %}");
+      background-size: 1699px 2200px;
+      background-repeat: no-repeat;
+    }
+  </style>
 {% endblock %}
 

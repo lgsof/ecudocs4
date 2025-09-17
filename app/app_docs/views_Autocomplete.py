@@ -27,19 +27,17 @@ class CartaporteOptionsView (View):
 	@method_decorator(csrf_protect)
 	def post (self, request, *args, **kwargs):
 		itemOptions = []
-		days = 30
+		days = 5
 		try:
 			# Get cartaporte docs from query
 			query = request.POST.get ('query', '')
 
 			cartaportes     = Scripts.getRecentDocuments (Cartaporte, days)
 			docsCartaportes = [model for model in cartaportes]
-			print (f"\n+++ '{docsCartaportes=}'")
 
 			for i, doc in enumerate (docsCartaportes):
-				print (f"\n+++ '{doc.printInfo()=}'")
-				itemLine = f"{i}. {doc.getTxt ('txt00')}"
-				itemText = "%s||%s||%s||%s||%s||%s||%s||%s||%s||%s||%s||%s" % ( 
+				itemLabel = doc.getTxt ('txt00')
+				itemValue = "%s||%s||%s||%s||%s||%s||%s||%s||%s||%s||%s||%s" % ( 
 							doc.getTxt ('txt00'),  # Cartaporte
 							doc.getTxt ("txt12"),   # Descripcion 
 							doc.getTxt ("txt10"),   # Cantidad
@@ -53,9 +51,7 @@ class CartaporteOptionsView (View):
 							doc.getTxt ("txt15"),  # Otras unidades total
 							doc.getTxt ("txt19")   # Fecha emision
 				)
-
-				newOption = {"itemLine" : itemLine, "itemText" : itemText}
-				itemOptions.append (newOption)
+				itemOptions.append ({"label":itemLabel, "value":itemLabel, "info":itemValue})
 		except Cartaporte.DoesNotExist:
 			print (f"+++ No existe cartaportes desde hace '{dias}'  ")
 		except:
@@ -74,10 +70,9 @@ class PlacaOptionsView (View):
 
 		itemOptions = []
 		for i, option in enumerate (options):
-			itemLine = f"{i}. {option['placa']}-{option['pais']}"
-			itemText = f"{option['placa']}-{option['pais']}"
-			newOption = {"itemLine" : itemLine, "itemText" : itemText}
-			itemOptions.append (newOption)
+			itemLabel = f"{i}. {option['placa']}-{option['pais']}"
+			itemValue = f"{option['placa']}-{option['pais']}"
+			itemOptions.append ({"label" : itemLabel, "value" : itemValue})
 		
 		return JsonResponse (itemOptions, safe=False)
 
@@ -93,27 +88,27 @@ class VehiculoOptionsView (View):
 		vehiculos = Vehiculo.objects.filter (placa__istartswith=query)
 		items = []
 		for i, vehiculo in enumerate (vehiculos):
-			itemLine = f"{i}. {vehiculo.placa}-{vehiculo.pais}"
+			itemLabel = f"{vehiculo.placa}-{vehiculo.pais}"
 			#-- Vehiculo
-			itemText = "%s||%s||%s||%s" % (vehiculo.marca, vehiculo.anho, 
-			            f"{vehiculo.placa}-{vehiculo.pais}", vehiculo.chasis)
+			itemValue = "%s||%s||%s||%s" % (f"{vehiculo.placa}-{vehiculo.pais}", 
+						vehiculo.chasis, vehiculo.marca, vehiculo.anho) 
 			#-- Remolque
 			remolque = vehiculo.remolque
 			if remolque:
-				itemText += "||%s||%s||%s||%s" % (remolque.marca, remolque.anho, 
-							f"{remolque.placa}-{remolque.pais}", remolque.chasis)
+				itemValue += "||%s||%s||%s||%s" % (f"{remolque.placa}-{remolque.pais}", 
+						remolque.chasis, remolque.marca, remolque.anho)
 			else:
-				itemText += "||None||None||None||None"
+				itemValue += "||None||None||None||None"
 
 			#-- Conductor
 			conductor = vehiculo.conductor
 			if conductor:
-				itemText += "||%s||%s||%s||%s" % (conductor.nombre, conductor.documento, 
+				itemValue += "||%s||%s||%s||%s" % (conductor.nombre, conductor.documento, 
 							conductor.pais, conductor.licencia)
 			else:
-				itemText += "||None||None||None||None"
+				itemValue += "||None||None||None||None"
 
-			newOption = {"itemLine" : itemLine, "itemText" : itemText}
+			newOption = {"label":itemLabel, "value":itemLabel, "info":itemValue}
 			items.append (newOption)
 
 		return JsonResponse (items, safe=False)
@@ -138,8 +133,8 @@ class ManifiestoOptionsView (View):
 			docsManifiestos = [model.documento.__dict__ for model in manifiestos]
 
 			for i, doc in enumerate (docsManifiestos):
-				itemLine = f"{i}. {doc['numero']}"
-				itemText = "%s||%s||%s||%s||%s||%s||%s||%s||%s||%s||%s||%s||%s" % ( 
+				itemLabel = doc['numero']
+				itemValue = "%s||%s||%s||%s||%s||%s||%s||%s||%s||%s||%s||%s||%s" % ( 
 							doc ['numero'],  # 
 							doc ["txt26"],   # Contenedores 
 							doc ["txt27"],   # Precintos
@@ -154,8 +149,7 @@ class ManifiestoOptionsView (View):
 							doc ["txt37"],   # PaisAduana-cruce
 							doc ["txt40"])   # FechaEmision
 
-				print (f"+++ DEBUG: itemText '{itemText}'")
-				newOption = {"itemLine" : itemLine, "itemText" : itemText}
+				newOption = {"label":itemLabel, "value":itemLabel, "info" : itemValue}
 				itemOptions.append (newOption)
 		except:
 			Utils.printException (">>> Excepcion obteniendo opciones de manifiestos")
@@ -173,12 +167,12 @@ class ConductorOptionsView (View):
 
 		itemOptions = []
 		for i, option in enumerate (options):
-			itemLine = f"{i}. {option['nombre']}"
-			itemText = "%s||%s||%s||%s||%s" % (option["nombre"], option["documento"], 
+			option    = Utils.toString (option)
+			itemLabel = option['nombre']
+			itemValue = "%s||%s||%s||%s||%s" % (option["nombre"], option["documento"], 
 			           option["pais"], option ["licencia"], option ["fecha_nacimiento"])
-			newOption = {"itemLine" : itemLine, "itemText" : itemText}
+			newOption = {"label":itemLabel, "value":itemLabel, "info":itemValue}
 			itemOptions.append (newOption)
-		
 		return JsonResponse (itemOptions, safe=False)
 
 #--------------------------------------------------------------------
@@ -193,9 +187,9 @@ class CiudadPaisOptionsView (View):
 		itemOptions = []
 		currentDate = self.getFormatedCurrentDate ()
 		for i, item in enumerate (ciudadesPaises):
-			itemLine = f"{i}. {item}"
-			itemText = f"{item}. {currentDate}" if currentDate else f"{item}"
-			newItem = {"itemLine" : itemLine, "itemText" : itemText}
+			itemLabel = item
+			itemValue = f"{item}. {currentDate}" if currentDate else f"{item}"
+			newItem = {"label":itemLabel, "value":itemLabel, "info" : itemValue}
 			itemOptions.append (newItem)
 
 		return JsonResponse (itemOptions, safe=False)
@@ -236,13 +230,13 @@ class ClienteOptionsView (View):
 
 		itemOptions = []
 		for i, option in enumerate (options):
-			itemLine = f"{i}. {option['nombre']}"
-			itemText = "%s\n%s\n%s-%s. %s:%s" % (
+			itemLabel = f"{option['nombre']}"
+			itemValue = "%s\n%s\n%s-%s. %s:%s" % (
 			              option ["nombre"], option ["direccion"], 
 						  option ["ciudad"], option ["pais"],
 						  option ["tipoId"], option ["numeroId"])
 
-			newOption = {"itemLine" : itemLine, "itemText" : itemText}
+			newOption = {"label":itemLabel, "value":itemLabel, "info":itemValue}
 			itemOptions.append (newOption)
 
 		return JsonResponse (itemOptions, safe=False)

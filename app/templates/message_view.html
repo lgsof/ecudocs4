@@ -1,0 +1,30 @@
+{# templates/message.html #}
+{% extends "main_page_template.html" %}
+{% load static %}
+
+{% block title %}Mensaje{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} fs-5" role="alert">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="alert alert-info fs-5">
+        No hay mensajes para mostrar.
+      </div>
+    {% endif %}
+
+    <div class="text-center mt-4">
+      <button onclick="window.close()" class="btn btn-lg btn-primary">
+        Cerrar esta pestaña
+      </button>
+    </div>
+
+  </div>
+{% endblock %}
+

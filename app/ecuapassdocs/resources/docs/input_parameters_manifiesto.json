@@ -648,20 +648,6 @@
         "x": 155,
         "y": 857
     },
-    "txt29_1": {
-        "info": "Only for Transcomerinter general description",
-        "class": "NO_FORMFIELD",
-        "ecudocsField": "",
-        "codebinField": "",
-        "appField": "",
-        "value": "",
-        "height": 341,
-        "width": 380,
-        "x": 155,
-        "y": 857
-    },
-
-
 
     "txt30": {
         "align": "left",
@@ -825,7 +811,7 @@
     },
     "txt37": {
         "align": "left",
-        "class": "input_general",
+        "class": "input_lugar",
         "ecudocsField": "37_Aduana_Cruce",
         "codebinField": "37",
         "appField": "txt37",
@@ -841,7 +827,7 @@
     },
     "txt38": {
         "align": "left",
-        "class": "input_general",
+        "class": "input_lugar",
         "ecudocsField": "38_Aduana_Destino",
         "codebinField": "38",
         "appField": "txt38",
