@@ -14,6 +14,61 @@ from ecuapassdocs.utils.models_scripts import Scripts
 
 from app_entidades.models_Entidades import Cliente, Conductor, Vehiculo
 
+
+#--------------------------------------------------------------------
+# Model Declaracion
+#--------------------------------------------------------------------
+class Declaracion (DocBaseModel):
+	class Meta:
+		db_table = "declaracion"
+
+	declarante   = models.ForeignKey (Cliente, related_name="declaraciones_declarante",
+	                                   on_delete=models.SET_NULL, null=True)
+	remitente    = models.ForeignKey (Cliente, related_name="declaraciones_remitente",
+	                                   on_delete=models.SET_NULL, null=True)
+	destinatario = models.ForeignKey (Cliente, related_name="declaraciones_destinatario",
+	                                   on_delete=models.SET_NULL, null=True)
+
+	cartaporte   = models.ForeignKey (Cartaporte, on_delete=models.SET_NULL, null=True)
+
+	#-- Get str for printing -------------------------------------------
+	def __str__ (self):
+		return f"{self.numero}, {self.remitente}, {self.destinatario}", 
+
+	#---------------------------------------------------------------
+	# Save doc to DB
+	#---------------------------------------------------------------
+	def update (self, doc):
+		print (f"\n+++ Guardando manifiesto número: '{doc.numero}'")
+		if doc.numero:
+			# Set common fields
+			super().update (doc)
+
+			# Set specific fields
+			self.cartaporte = self.getCartaporteInstance (doc.docType)  
+			self.vehiculo   = self.getVehiculoInstance (doc.docType)  
+
+			# Save and create HttpResponse
+			return super().saveCreateResponse ()
+
+#	def setValues (self, declaracionForm, docFields, pais, username):
+#		# Base values
+#		super().setValues (declaracionForm, docFields, pais, username)
+#
+#		# Document values
+#		self.declarante    = Scripts.getSaveClienteInstance ("02_Declarante", docFields)
+#		self.remitente     = Scripts.getSaveClienteInstance ("03_Remitente", docFields)
+#		self.destinatario  = Scripts.getSaveClienteInstance ("04_Destinatario", docFields)
+#		self.fecha_emision = self.getDocFechaEmision (docFields)
+#
+#		self.cartaporte    = Scripts.getCartaporteInstanceFromDocFields (docFields, "DECLARACION")
+
+
+#	def get_absolute_url(self):
+#		"""Returns the url to access a particular language instance."""
+#		return reverse('declaracion-detail', args=[str(self.id)])
+
+
 #--------------------------------------------------------------------
 # Model DeclaracionForm
 #--------------------------------------------------------------------
@@ -59,40 +114,3 @@ class DeclaracionForm (models.Model):
 	def __str__ (self):
 		return f"{self.numero}, {self.txt03}"
 	
-#--------------------------------------------------------------------
-# Model Declaracion
-#--------------------------------------------------------------------
-class Declaracion (DocBaseModel):
-	class Meta:
-		db_table = "declaracion"
-
-	documento    = models.OneToOneField (DeclaracionForm,
-									   on_delete=models.CASCADE, null=True)
-	#declarante   = models.ForeignKey (Cliente, related_name="declaraciones_declarante",
-	#                                   on_delete=models.SET_NULL, null=True)
-	remitente    = models.ForeignKey (Cliente, related_name="declaraciones_remitente",
-	                                   on_delete=models.SET_NULL, null=True)
-	destinatario = models.ForeignKey (Cliente, related_name="declaraciones_destinatario",
-	                                   on_delete=models.SET_NULL, null=True)
-
-	cartaporte   = models.ForeignKey (Cartaporte, on_delete=models.SET_NULL, null=True)
-
-	def get_absolute_url(self):
-		"""Returns the url to access a particular language instance."""
-		return reverse('declaracion-detail', args=[str(self.id)])
-
-	def __str__ (self):
-		return f"{self.numero}, {self.cartaporte}"
-
-	def setValues (self, declaracionForm, docFields, pais, username):
-		# Base values
-		super().setValues (declaracionForm, docFields, pais, username)
-
-		# Document values
-		self.declarante    = Scripts.getSaveClienteInstance ("02_Declarante", docFields)
-		self.remitente     = Scripts.getSaveClienteInstance ("03_Remitente", docFields)
-		self.destinatario  = Scripts.getSaveClienteInstance ("04_Destinatario", docFields)
-		self.fecha_emision = self.getDocFechaEmision (docFields)
-
-		self.cartaporte    = Scripts.getCartaporteInstanceFromDocFields (docFields, "DECLARACION")
-

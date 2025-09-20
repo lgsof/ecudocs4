@@ -17,7 +17,6 @@ from app_manifiesto.models_docmci import Manifiesto
 
 from app_entidades.models_Entidades import Vehiculo, Conductor, Cliente
 
-
 #--------------------------------------------------------------------
 # Show all 'cartaportes' from current date (selected in manifiesto)
 # Fill from with "mercancia" info (cartaporte, descripcion, ..., totals
@@ -53,7 +52,7 @@ class CartaporteOptionsView (View):
 				)
 				itemOptions.append ({"label":itemLabel, "value":itemLabel, "info":itemValue})
 		except Cartaporte.DoesNotExist:
-			print (f"+++ No existe cartaportes desde hace '{dias}'  ")
+			print (f"+++ No existen cartaportes desde hace '{dias}'  ")
 		except:
 			Utils.printException (">>> Excepcion obteniendo opciones de cartaportes")
 			
@@ -70,9 +69,8 @@ class PlacaOptionsView (View):
 
 		itemOptions = []
 		for i, option in enumerate (options):
-			itemLabel = f"{i}. {option['placa']}-{option['pais']}"
-			itemValue = f"{option['placa']}-{option['pais']}"
-			itemOptions.append ({"label" : itemLabel, "value" : itemValue})
+			itemLabel = f"{option['placa']}-{option['pais']}"
+			itemOptions.append ({"label" : itemLabel, "value" : itemLabel, "info":itemLabel})
 		
 		return JsonResponse (itemOptions, safe=False)
 
@@ -120,34 +118,30 @@ class VehiculoOptionsView (View):
 class ManifiestoOptionsView (View):
 	@method_decorator(csrf_protect)
 	def post (self, request, *args, **kwargs):
-		print (f"+++ DEBUG: ManifiestoOptionsView:POST '{request}'")
 		itemOptions = []
 		try:
 			# Get cartaporte docs from query
 			query = request.POST.get ('query', '')
 
 			manifiestos  = Scripts.getRecentDocuments (Manifiesto)
-			if not manifiestos.exists():
-				manifiestos = Manifiesto.objects.filter (numero__startswith=query, fecha_emision=current_date)
-
-			docsManifiestos = [model.documento.__dict__ for model in manifiestos]
+			docsManifiestos = [model for model in manifiestos]
 
 			for i, doc in enumerate (docsManifiestos):
-				itemLabel = doc['numero']
+				itemLabel = doc.getTxt ('txt00')
 				itemValue = "%s||%s||%s||%s||%s||%s||%s||%s||%s||%s||%s||%s||%s" % ( 
-							doc ['numero'],  # 
-							doc ["txt26"],   # Contenedores 
-							doc ["txt27"],   # Precintos
-							doc ["txt28"],   # Cartaporte
-							doc ["txt29"],   # Descripcion
-							doc ["txt30"],   # Cantidad
-							doc ["txt31"],   # Embalaje
-							doc ["txt32_1"], # Peso bruto
-							doc ["txt32_3"], # Peso neto
-							doc ["txt33_1"], # Otras medidas
-							doc ["txt34"],   # Incoterms
-							doc ["txt37"],   # PaisAduana-cruce
-							doc ["txt40"])   # FechaEmision
+							doc.getTxt ('txt00'),  # 
+							doc.getTxt ("txt26"),   # Contenedores 
+							doc.getTxt ("txt27"),   # Precintos
+							doc.getTxt ("txt28"),   # Cartaporte
+							doc.getTxt ("txt29"),   # Descripcion
+							doc.getTxt ("txt30"),   # Cantidad
+							doc.getTxt ("txt31"),   # Embalaje
+							doc.getTxt ("txt32_1"), # Peso bruto
+							doc.getTxt ("txt32_3"), # Peso neto
+							doc.getTxt ("txt33_1"), # Otras medidas
+							doc.getTxt ("txt34"),   # Incoterms
+							doc.getTxt ("txt37"),   # PaisAduana-cruce
+							doc.getTxt ("txt40"))   # FechaEmision
 
 				newOption = {"label":itemLabel, "value":itemLabel, "info" : itemValue}
 				itemOptions.append (newOption)

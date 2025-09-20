@@ -1,8 +1,11 @@
-{% extends "main_page_template.html" %}
+{#% extends "main_page_template.html" %#}
 
 {% block content %}
 	<h1>Manifiesto: 
-	  <a href="{% url 'manifiesto' %}editar/{{ manifiesto.id }}" target="_blank">{{ manifiesto.numero }}</a>
+        <a href="{% url 'manifiesto' %}editardoc/{{ manifiesto.id }}" class="open-doc" data-win="doc_{{ manifiesto.id }}" >{{ manifiesto.numero }}</a>
+        <!--
+	        <a href="{% url 'manifiesto' %}editar/{{ manifiesto.id }}" class=open-doc target="_blank">{{ manifiesto.numero }}</a>
+        -->
 	</h1>
 
 	<p><strong>Fecha de emisión:</strong> {{ manifiesto.fecha_emision }}</p>

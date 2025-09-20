@@ -28,46 +28,22 @@ class Manifiesto (DocBaseModel):
 	# Save doc to DB
 	#---------------------------------------------------------------
 	def update (self, doc):
-		print (f"\n+++ Guardando cartaporte número: '{doc.numero}'")
+		print (f"\n+++ Guardando manifiesto número: '{doc.numero}'")
 		if doc.numero:
 			# Set common fields
 			super().update (doc)
 
 			# Set specific fields
-			self.cartaporte = self.getCartaporteInstance ()  
-			self.vehiculo   = self.getVehiculoInstance ()  
+			self.cartaporte = self.getCartaporteInstance (doc.docType)  
+			self.vehiculo   = self.getVehiculoInstance (doc.docType)  
 			self.conductor  = self.getConductorInstance ()  
-			print (f"\n+++ '{self.conductor=}'")
 
 			# Save and create HttpResponse
 			return super().saveCreateResponse ()
 
 	#---------------------------------------------------------------
-	# Get model field instances
-	#---------------------------------------------------------------
-	#-- Get cartaporte instance ------------------------------------
-	def getCartaporteInstance (self):
-		cartaporte         = None
-		textCartaporte     = self.getTxt ("txt28")
-		try:
-			numeroCartaporte   = Extractor.getNumeroDocumento (textCartaporte)
-			cartaporte         = Scripts.getCartaporteInstanceByNumero (numeroCartaporte)
-		except:
-			Utils.printException (f"Error obteniendo cartaporte desde texto: '{textCartaporte}'")
-		return cartaporte
-
-	#-- Get vehiculo instance --------------------------------------
-	def getVehiculoInstance (self):
-		vehiculo = None
-		placaPaisText = self.getTxt ("txt06")
-		try:
-			placa         = Extractor.getPlaca (placaPaisText)
-			vehiculo      = Scripts.getVehiculoByPlaca (placa)
-		except Exception as ex:
-			Utils.printException (f"Error obteniendo vehiculo placa: '{placaPaisText}'")
-		return vehiculo
-
 	#-- Get conductor instance -------------------------------------
+	#---------------------------------------------------------------
 	def getConductorInstance (self):
 		conductor        = None
 		textDocumento = self.getTxt ("txt14")

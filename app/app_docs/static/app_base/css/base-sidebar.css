@@ -1,4 +1,6 @@
+/*-------------------------------------------------------------------*/
 /* --- Sidebar layout & behavior --- */
+/*-------------------------------------------------------------------*/
 
 /* Bulletproof override even if template has bg-light */
 #app-sidebar,
@@ -84,3 +86,68 @@ aside.sidebar::-webkit-scrollbar-thumb {
 	border-radius: 4px;
 }
 
+/*------------------------------------------------------------------*/
+/* Custom styles for table actions */
+/*------------------------------------------------------------------*/
+.pdf-icon {
+    background-color: #f8f9fa;
+    padding: 0px;
+    border-radius: 3px;
+    border: 1px solid #dee2e6;
+}
+
+.pdf-original {
+    color: #e74c3c;
+    background-color: rgba(231, 76, 60, 0.1);
+}
+
+.pdf-copia {
+    color: #3498db;
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+.pdf-paquete {
+    color: #9b59b6;
+	background-color: #9BFF9b;
+}
+
+.delete-btn {
+	color: yellow;
+	background-color: red;
+}
+
+.delete-icon {
+    padding: 0px;
+    border-radius: 2px;
+}
+
+.detail-icon {
+    color: white;
+    padding: 0px;
+    border-radius: 3px;
+}
+
+/* Reduce button padding */
+.btn-group-sm .btn {
+    padding: 0.15rem 0.3rem !important;
+    line-height: 1;
+}
+
+/* Reduce icon size and remove extra spacing */
+.btn-group-sm .btn .bi {
+    font-size: 0.9rem;
+    padding: 2px;
+    display: block;
+}
+
+/* Ensure the button group doesn't add extra height */
+.btn-group-sm {
+    line-height: 1;
+    height: auto;
+}
+
+/* Target the specific table row */
+.table tbody tr td {
+    padding: 0.3rem 0.5rem !important;
+    vertical-align: middle;
+}

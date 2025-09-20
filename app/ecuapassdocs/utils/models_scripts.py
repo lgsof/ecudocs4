@@ -239,7 +239,7 @@ class Scripts:
 	#----------------------------------------------------------
 	#-- Return recent cartaportes  (within the past week)
 	#----------------------------------------------------------
-	def getRecentDocuments  (DOCMODEL, days):
+	def getRecentDocuments  (DOCMODEL, days=5):
 		diasRecientes = 7
 		daysAgo = timezone.now  () - timedelta  (days=diasRecientes)
 		recentDocuments = DOCMODEL.objects.filter  (fecha_emision__gte=daysAgo)

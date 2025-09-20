@@ -4,6 +4,7 @@
  */
 
 function focusOrOpen (winName, url) {
+    console.log ("... focurOrOpen...")
     try {
       const w = window.open ('', winName);  // Reuse if it exists
       const mustNavigate = !w || w.closed || w.location.href === 'about:blank';
@@ -23,5 +24,5 @@ document.addEventListener ('click', function (e) {
     const a = e.target.closest('a.open-doc');
     if (!a) return;
     e.preventDefault();
-    focusOrOpen(a.dataset.win, a.href);
+    focusOrOpen (a.dataset.win, a.href);
 })

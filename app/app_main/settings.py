@@ -38,16 +38,11 @@ TENANT_BASE_DOMAIN   = "ecuapassdocs.app"
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
-    "localhost", ".localhost",
-    "ecuapassdocs.app", ".ecuapassdocs.app",
-    "byza.ecuapassdocs.app",
-    "logitrans.ecuapassdocs.app",
-    "byza-ecuapassdocs.up.railway.app",
-    "logitrans-ecuapassdocs.up.railway.app",
-    # si usas dominio .test en local, corrige la ortografía:
-    "ecuapassdocs.test", ".ecuapassdocs.test",
+    "localhost", ".localhost",           # wildcard for *.localhost
+    "ecuapassdocs.app", ".ecuapassdocs.app",   # wildcard for *.ecuapassdocs.app
+    "ecuapassdocs.test", ".ecuapassdocs.test", # wildcard for *.ecuapassdocs.test
+    "up.railway.app", ".up.railway.app",       # wildcard for tenant subdomains on Railway
 ]
-
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:8000",
@@ -85,7 +80,8 @@ INSTALLED_APPS = [
 
 
 MIDDLEWARE = [
-    "django_hosts.middleware.HostsRequestMiddleware",   # ← primero (django-hosts)
+    "django_hosts.middleware.HostsRequestMiddleware",   # 1) resolve host/subdomain first
+    "core.middleware.SubdomainTenantMiddleware",        # 2) set tenant from subdomain here
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -94,10 +90,9 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "app_main.middleware.EmpresaMiddleware",      # ← después de resolver host
+    "app_main.middleware.EmpresaMiddleware",      # ← después de resolver host  # (optional) keep if you still need per-request extras
     "django_hosts.middleware.HostsResponseMiddleware",  # ← último (django-hosts)
 ]
-
 
 ROOT_URLCONF = "app_main.urls"
 
@@ -194,7 +189,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 # Handle static files using 'whitenoise' package
 STATIC_URL	= "/static/"
 STATIC_ROOT = os.path.join (BASE_DIR, 'staticfiles')
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Static file serving.
 # https://whitenoise.readthedocs.io/en/stable/django.html#add-compression-and-caching-support

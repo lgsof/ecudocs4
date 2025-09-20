@@ -4,6 +4,8 @@
 - Custom user management
 
 ## LOG
+Sep/20: r0.903 : Adding multi-tenant support
+
 Sep/16: r0.902 : New message view. Admin users doc checks. MCIs instance fields. Improved Autocomplete.
 
 Sep/15: r0.901 : Working partially with MCIs.

@@ -1,44 +1,77 @@
 {
     "id": {
-        "align": "left",
+        "value": "",
         "class": "input_numero",
         "ecudocsField": "id",
-        "codebinField": "iddtai",
-        "font": "large",
-        "fontSize": "26px",
-        "height": 28,
-        "maxChars": 10,
-        "maxLines": 1,
+        "codebinField": "idmci",
+        "appField": "",
         "restrictions": [
 			"hidden",
-            "readonly",
-            "color=red"
-        ],
-        "value": "",
-        "width": 233,
-        "x": 300,
-        "y": 88
-    },
+            "readonly"
+        ]
+	},
     "numero": {
-        "align": "left",
+        "value": "",
         "class": "input_numero",
         "ecudocsField": "numero",
         "codebinField": "no",
-        "font": "large",
-        "fontSize": "26px",
-        "height": 28,
-        "maxChars": 10,
-        "maxLines": 1,
+        "appField": "txt00",
         "restrictions": [
 			"hidden",
-            "readonly",
-            "color=red"
-        ],
+            "readonly"
+        ]
+    },
+
+    "usuario": {
         "value": "",
-        "width": 233,
-        "x": 300,
-        "y": 88
+        "class": "input_general",
+        "ecudocsField": "",
+        "codebinField": "",
+        "appField": "",
+        "restrictions": [
+            "hidden",
+            "readonly"
+        ]
+    },
+
+    "empresa": {
+        "value": "",
+        "class": "input_general",
+        "ecudocsField": "",
+        "codebinField": "",
+        "appField": "",
+        "restrictions": [
+            "hidden",
+            "readonly"
+        ]
+    },
+
+    "pais": {
+        "value": "",
+        "class": "input_general",
+        "ecudocsField": "pais",
+        "codebinField": "",
+        "appField": "txt0a",
+        "aldiaField": "docField_pais",
+        "restrictions": [
+            "hidden",
+            "readonly"
+        ]
 	},
+
+    "url": {
+        "value": "",
+        "class": "input_general",
+        "ecudocsField": "",
+        "codebinField": "",
+        "appField": "",
+        "restrictions": [
+            "hidden",
+            "readonly"
+        ]
+    },
+
+
     "txt0a": {
         "align": "left", 
         "class": "input_numero", 

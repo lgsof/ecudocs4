@@ -1,0 +1,232 @@
++++ No existe cartaporte nro: 'None'!:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/models_scripts.py", line 102, in getCartaporteInstanceByNumero
+    instance = app_cartaporte.models_doccpi.Cartaporte.objects.get  (numero=cartaporteNumber)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecuapassdocs3/dvenv/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecuapassdocs3/dvenv/lib/python3.12/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+app_cartaporte.models_doccpi.Cartaporte.DoesNotExist: Cartaporte matching query does not exist.
++++ No existe cartaporte nro: 'None'!:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/models_scripts.py", line 102, in getCartaporteInstanceByNumero
+    instance = app_cartaporte.models_doccpi.Cartaporte.objects.get  (numero=cartaporteNumber)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecuapassdocs3/dvenv/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecuapassdocs3/dvenv/lib/python3.12/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+app_cartaporte.models_doccpi.Cartaporte.DoesNotExist: Cartaporte matching query does not exist.
++++ No existe cartaporte nro: 'None'!:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/models_scripts.py", line 102, in getCartaporteInstanceByNumero
+    instance = app_cartaporte.models_doccpi.Cartaporte.objects.get  (numero=cartaporteNumber)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecuapassdocs3/dvenv/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecuapassdocs3/dvenv/lib/python3.12/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+app_cartaporte.models_doccpi.Cartaporte.DoesNotExist: Cartaporte matching query does not exist.
+Error obteniendo vehiculo placa: '':
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/models_docbase.py", line 132, in getVehiculoInstance
+    placa         = Extractor.getPlaca (placaPaisText)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/info/ecuapass_extractor.py", line 533, in getPlaca
+    return result
+           ^^^^^^
+NameError: name 'result' is not defined
++++ No existe cartaporte nro: 'None'!:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/models_scripts.py", line 102, in getCartaporteInstanceByNumero
+    instance = app_cartaporte.models_doccpi.Cartaporte.objects.get  (numero=cartaporteNumber)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecuapassdocs3/dvenv/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecuapassdocs3/dvenv/lib/python3.12/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+app_cartaporte.models_doccpi.Cartaporte.DoesNotExist: Cartaporte matching query does not exist.
+Error obteniendo vehiculo placa: '':
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/models_docbase.py", line 132, in getVehiculoInstance
+    placa         = Extractor.getPlaca (placaPaisText)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/info/ecuapass_extractor.py", line 533, in getPlaca
+    return result
+           ^^^^^^
+NameError: name 'result' is not defined
+>>> Excepcion obteniendo opciones de manifiestos:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 128, in post
+    manifiestos  = Scripts.getRecentDocuments (Manifiesto)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Scripts.getRecentDocuments() missing 1 required positional argument: 'days'
+>>> Excepcion obteniendo opciones de manifiestos:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 126, in post
+    manifiestos  = Scripts.getRecentDocuments (Manifiesto)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Scripts.getRecentDocuments() missing 1 required positional argument: 'days'
+>>> Excepcion obteniendo opciones de manifiestos:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 126, in post
+    manifiestos  = Scripts.getRecentDocuments (Manifiesto)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Scripts.getRecentDocuments() missing 1 required positional argument: 'days'
+>>> Excepcion obteniendo opciones de manifiestos:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 126, in post
+    manifiestos  = Scripts.getRecentDocuments (Manifiesto)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Scripts.getRecentDocuments() missing 1 required positional argument: 'days'
+>>> Excepcion obteniendo opciones de manifiestos:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 126, in post
+    manifiestos  = Scripts.getRecentDocuments (Manifiesto)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Scripts.getRecentDocuments() missing 1 required positional argument: 'days'
+>>> Excepcion obteniendo opciones de manifiestos:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 126, in post
+    manifiestos  = Scripts.getRecentDocuments (Manifiesto)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Scripts.getRecentDocuments() missing 1 required positional argument: 'days'
+>>> Excepcion obteniendo opciones de manifiestos:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 126, in post
+    manifiestos  = Scripts.getRecentDocuments (Manifiesto)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Scripts.getRecentDocuments() missing 1 required positional argument: 'days'
+>>> Excepcion obteniendo opciones de manifiestos:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 126, in post
+    manifiestos  = Scripts.getRecentDocuments (Manifiesto)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Scripts.getRecentDocuments() missing 1 required positional argument: 'days'
+>>> Excepcion obteniendo opciones de manifiestos:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 126, in post
+    manifiestos  = Scripts.getRecentDocuments (Manifiesto)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Scripts.getRecentDocuments() missing 1 required positional argument: 'days'
+>>> Excepcion obteniendo opciones de manifiestos:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 126, in post
+    manifiestos  = Scripts.getRecentDocuments (Manifiesto)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Scripts.getRecentDocuments() missing 1 required positional argument: 'days'
+>>> Excepcion obteniendo opciones de manifiestos:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 126, in post
+    manifiestos  = Scripts.getRecentDocuments (Manifiesto)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Scripts.getRecentDocuments() missing 1 required positional argument: 'days'
+>>> Excepcion obteniendo opciones de manifiestos:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 126, in post
+    manifiestos  = Scripts.getRecentDocuments (Manifiesto)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Scripts.getRecentDocuments() missing 1 required positional argument: 'days'
+>>> Excepcion obteniendo opciones de manifiestos:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 126, in post
+    manifiestos  = Scripts.getRecentDocuments (Manifiesto)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Scripts.getRecentDocuments() missing 1 required positional argument: 'days'
+>>> Excepcion obteniendo opciones de manifiestos:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 126, in post
+    manifiestos  = Scripts.getRecentDocuments (Manifiesto)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Scripts.getRecentDocuments() missing 1 required positional argument: 'days'
+>>> Excepcion obteniendo opciones de manifiestos:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 126, in post
+    manifiestos  = Scripts.getRecentDocuments (Manifiesto)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Scripts.getRecentDocuments() missing 1 required positional argument: 'days'
+>>> Excepcion obteniendo opciones de manifiestos:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 130, in post
+    docsManifiestos = [model.documento.__dict__ for model in manifiestos]
+                       ^^^^^^^^^^^^^^^
+AttributeError: 'Manifiesto' object has no attribute 'documento'
+>>> Excepcion obteniendo opciones de manifiestos:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 136, in post
+    doc ["txt26"],   # Contenedores
+    ~~~~^^^^^^^^^
+KeyError: 'txt26'
+>>> Excepcion obteniendo opciones de manifiestos:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 135, in post
+    doc.getTxt ('numero'),  #
+    ^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'getTxt'
+>>> Excepcion obteniendo opciones de manifiestos:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 133, in post
+    itemLabel = doc.getTxt ('txt00')
+                ^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'getTxt'
+>>> Excepcion obteniendo opciones de manifiestos:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/views_Autocomplete.py", line 134, in post
+    itemLabel = doc.getTxt ('txt00')
+                ^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'getTxt'
+Extrayendo placa pais desde el texto: 'CO00055':
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/info/ecuapass_extractor.py", line 538, in getPlaca
+    placa             = placa.replace (" ","").replace("-","")
+                        ^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'replace'
+Extrayendo placa pais desde el texto: 'CO00055':
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/info/ecuapass_extractor.py", line 538, in getPlaca
+    placa             = placa.replace (" ","").replace("-","")
+                        ^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'replace'
+Error obteniendo vehiculo placa: '':
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/models_docbase.py", line 132, in getVehiculoInstance
+    placa         = Extractor.getPlaca (placaPaisText)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/info/ecuapass_extractor.py", line 533, in getPlaca
+    return result
+           ^^^^^^
+NameError: name 'result' is not defined
+Error obteniendo vehiculo placa: '':
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/models_docbase.py", line 132, in getVehiculoInstance
+    placa         = Extractor.getPlaca (placaPaisText)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/info/ecuapass_extractor.py", line 533, in getPlaca
+    return result
+           ^^^^^^
+NameError: name 'result' is not defined
+Error obteniendo vehiculo placa: '':
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/app_docs/models_docbase.py", line 132, in getVehiculoInstance
+    placa         = Extractor.getPlaca (placaPaisText)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/info/ecuapass_extractor.py", line 533, in getPlaca
+    return result
+           ^^^^^^
+NameError: name 'result' is not defined
+Error obteniendo documentos asociados a 'CARTAPORTE'::id=250:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 110, in getInputValuesForDocumentChilds
+    docManifiesto  = app_manifiesto.models_docmci.ManifiestoForm.objects.get (id=reg.id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecuapassdocs3/dvenv/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecuapassdocs3/dvenv/lib/python3.12/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+app_manifiesto.models_docmci.ManifiestoForm.DoesNotExist: ManifiestoForm matching query does not exist.

@@ -21,6 +21,3 @@ class ManifiestosListadoTable (DocumentosListadoTable):
 		template_name = DocumentosListadoTable.template
 
 
-
-
-

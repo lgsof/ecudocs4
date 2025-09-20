@@ -131,6 +131,7 @@ function setAutocompleteForDocument (documentType) {
 		// Numero Manifiesto (Used in Declaracion)
 		let manifiestoInputs = getTextAreasByClassName ("input_manifiesto")
 		manifiestoInputs.forEach (inputName => {
+            console.log ("...In manifiestoInputs...")
 			createAutocomplete(new AutoCompleteManifiesto (inputName, 'opciones-manifiesto')) 
 		});
 }

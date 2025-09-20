@@ -1,0 +1,38 @@
+{# expects: obj (the instance), compact (bool optional) #}
+{% load static %}
+{# Bootstrap Icons (once in base.html is enough) #}
+{# <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"> #}
+
+{% with size="btn-sm" if compact else "btn-sm" %} {# tweak if you want full-size on forms #}
+
+{# View / Edit are GET → links styled as buttons #}
+<a href="{% url 'view_item' obj.id %}" class="btn btn-outline-secondary {{ size }}" title="View">
+  <i class="bi bi-eye"></i>
+</a>
+<a href="{% url 'edit_item' obj.id %}" class="btn btn-primary {{ size }}" title="Edit">
+  <i class="bi bi-pencil"></i>
+</a>
+
+{# Example extra GET action: PDF #}
+<a href="{% url 'pdf_item' obj.id %}" class="btn btn-outline-dark {{ size }}" title="PDF">
+  <i class="bi bi-file-earmark-pdf"></i>
+</a>
+
+{# POST actions → form + csrf + button #}
+<form method="post" action="{% url 'clone_item' obj.id %}" style="display:inline;">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-warning {{ size }}" title="Clone">
+    <i class="bi bi-files"></i>
+  </button>
+</form>
+
+<form method="post" action="{% url 'delete_item' obj.id %}" style="display:inline;"
+      onsubmit="return confirm('Delete this item?');">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger {{ size }}" title="Delete">
+    <i class="bi bi-trash"></i>
+  </button>
+</form>
+
+{% endwith %}
+

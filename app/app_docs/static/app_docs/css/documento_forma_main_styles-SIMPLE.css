@@ -1,0 +1,54 @@
+/* Styles for documento forma main
+*/
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			font-family: Arial, sans-serif;
+			height: 100vh;
+			overflow: hidden;
+		}
+
+		.ecudoc-layout {
+			display: flex;
+			height: 100%;
+		}
+
+		/* Right Content (Iframe) */
+		.ecudoc-main {
+			width: 100%;
+			height: 100vh;
+		}
+
+		/* Left Sidebar */
+		.sidebar {
+			width: 10%;
+			background-color: #333;
+			padding: 10px;
+			color: white;
+			height: 100vh;
+		}
+
+		.sidebar button {
+			width: 100%;
+			padding: 10px;
+			margin: 10px 0;
+			background-color: #444;
+			border: none;
+			color: white;
+			cursor: pointer;
+		}
+
+		.sidebar button:hover {
+			background-color: #555;
+		}
+
+
+		iframe {
+			width: 100%;
+			height: 100%;
+			border: none;
+		}
+

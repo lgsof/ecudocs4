@@ -19,9 +19,8 @@ urlpatterns = [
 	path('editar/<int:pk>', DeclaracionDocView.as_view(), name='declaracion-editar'),
 
 	# PDF, detail, remove
-	path('pdf_original/<int:pk>', DeclaracionDocView.as_view(), name='declaracion-pdf_original'),
-	path('pdf_copia/<int:pk>', DeclaracionDocView.as_view(), name='declaracion-pdf_copia'),
-	path('pdf_paquete/<int:pk>', DeclaracionDocView.as_view(), name='declaracion-pdf_paquete'),
+	path('pdf/<str:filename>', DeclaracionDocView.as_view(), name='declaracion-pdf'),
+
 	path('clonar/<int:pk>', DeclaracionDocView.as_view(), name='declaracion-clonar'),
     path('detalle/<pk>', views_dti.DeclaracionDetailView.as_view(), name='declaracion-detalle'),
 	path('borrar/<int:pk>', views_dti.DeclaracionDelete.as_view(), name='declaracion-delete')

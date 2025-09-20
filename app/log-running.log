@@ -1,0 +1,12 @@
+Error obteniendo documentos asociados a 'CARTAPORTE'::id=250:
+Traceback (most recent call last):
+  File "/ecuapp/ecudocs4/app/ecuapassdocs/utils/docpdfcreator.py", line 110, in getInputValuesForDocumentChilds
+    docManifiesto  = app_manifiesto.models_docmci.ManifiestoForm.objects.get (id=reg.id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecuapassdocs3/dvenv/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ecuapp/ecuapassdocs3/dvenv/lib/python3.12/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+app_manifiesto.models_docmci.ManifiestoForm.DoesNotExist: ManifiestoForm matching query does not exist.
+

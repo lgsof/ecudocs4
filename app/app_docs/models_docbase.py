@@ -15,12 +15,13 @@ from ecuapassdocs.info.ecuapass_extractor import Extractor
 from django.db.models import Q, CharField, TextField, EmailField, SlugField, URLField
 from django.db.models.functions import Cast
 
-#from .models_Entidades import Cliente
+# Tenant support
+from core.mixins import TenantOwnedModel
 
 #--------------------------------------------------------------------
 # Base model for doc models: Cartaporte, Manifiesto, Declaracion
 #--------------------------------------------------------------------
-class DocBaseModel (models.Model):
+class DocBaseModel (TenantOwnedModel):
 	numero         = models.CharField (max_length=50)
 	usuario        = models.ForeignKey ('app_usuarios.Usuario', on_delete=models.SET_NULL, null=True, blank=True)
 	empresa        = models.ForeignKey('app_usuarios.Empresa', on_delete=models.CASCADE)
@@ -108,6 +109,45 @@ class DocBaseModel (models.Model):
 		docPrefix = Utils.getDocPrefix (self.getDocType())
 		return f"{docPrefix}-{self.numero}.pdf"
 
+	#----------------------------------------------------------------
+	# Get instance objects
+	#----------------------------------------------------------------
+	#-- Get cartaporte instance ------------------------------------
+	def getCartaporteInstance (self, docType):
+		cartaporte     = None
+		txtSourcesKeys = {"CARTAPORTE":"txt00", "MANIFIESTO":"txt28", "DECLARACION":"txt15"} 
+		textCartaporte = self.getTxt (txtSourcesKeys [docType])
+		try:
+			numeroCartaporte   = Extractor.getNumeroDocumento (textCartaporte)
+			cartaporte         = Scripts.getCartaporteInstanceByNumero (numeroCartaporte)
+		except:
+			Utils.printException (f"Error obteniendo cartaporte desde texto: '{textCartaporte}'")
+		return cartaporte
+
+	#-- Get vehiculo instance --------------------------------------
+	def getVehiculoInstance (self, docType):
+		vehiculo       = None
+		txtSourcesKeys = {"CARTAPORTE":None, "MANIFIESTO":"txt28", "DECLARACION":"txt10"} 
+		placaPaisText  = self.getTxt (txtSourcesKeys [docType])
+		try:
+			placa         = Extractor.getPlaca (placaPaisText)
+			vehiculo      = Scripts.getVehiculoByPlaca (placa)
+		except Exception as ex:
+			Utils.printException (f"Error obteniendo vehiculo placa: '{placaPaisText}'")
+		return vehiculo
+
+	#-- Get conductor instance -------------------------------------
+	def getConductorInstance (self):
+		conductor      = None
+		txtSourcesKeys = {"CARTAPORTE":None, "MANIFIESTO":"txt28", "DECLARACION":"txt10"} 
+		textDocumento  = self.getTxt ("txt14")
+		print (f"\n+++ '{textDocumento=}'")
+		try:
+			documento = Extractor.getNumeroDocumento (textDocumento)
+			conductor = Scripts.getConductorByDocumento (documento)
+		except Exception as ex:
+			Utils.printException (f"Error obteniendo conductor con id : '{textDocumento}'")
+		return conductor
 	#----------------------------------------------------------------
 	# Get/Set txt form fields
 	#----------------------------------------------------------------
@@ -202,7 +242,6 @@ class DocBaseModel (models.Model):
 		docUrl = self.getDocType ().lower()
 		url     = f"{docUrl}-detalle"
 		return reverse (url, args=[self.pk])
-
 	
 	#-------------------------------------------------------------------
 	#-- Search a pattern in all 'FORMMODEL' fields of a model
